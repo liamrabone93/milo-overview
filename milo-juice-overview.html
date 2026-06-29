@@ -146,12 +146,12 @@ h1,h2,h3,h4,.sec-title,.hero h1{font-family:'Poppins',sans-serif}
 .send-btn svg{width:13px;height:13px}
 
 /* ─── STATS ───────────────────────────────────── */
-.stats-strip{background:var(--navy);padding:40px;display:grid;grid-template-columns:repeat(4,1fr);max-width:none}
-.stats-inner{max-width:980px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.stats-strip{background:var(--navy);padding:40px}
+.stats-inner{max-width:980px;margin:0 auto;display:flex;justify-content:center;flex-wrap:wrap}
 .s-num{font-family:'Poppins';font-size:2.3rem;font-weight:700;color:var(--lime);line-height:1;margin-bottom:6px}
 .s-item:nth-child(odd) .s-num{color:var(--orange-mid,#FF7A45)}
 .s-label{font-size:.72rem;color:rgba(255,255,255,.6);font-weight:500;line-height:1.4}
-.s-item{text-align:center;padding:0 14px}
+.s-item{text-align:center;padding:0 40px}
 .s-item+.s-item{border-left:1px solid rgba(255,255,255,.12)}
 
 /* ─── CASES ───────────────────────────────────── */
@@ -205,11 +205,18 @@ table.cmp{width:100%;border-collapse:collapse;font-size:.83rem}
 .contact-line{margin-top:30px;font-size:.85rem;color:rgba(255,255,255,.78)}
 .contact-line a{color:#fff;font-weight:700;text-decoration:none}
 .footer-mark{margin-top:8px;font-size:.72rem;color:rgba(255,255,255,.6)}
+.demo-steps{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:640px;margin:6px auto 26px;text-align:left}
+.demo-step{display:flex;gap:12px;align-items:flex-start;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:13px;padding:14px 16px}
+.demo-step .n{width:26px;height:26px;border-radius:50%;background:#fff;color:var(--orange-deep);font-weight:800;font-size:.8rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.demo-step h5{font-size:.86rem;font-weight:700;color:#fff;margin-bottom:2px}
+.demo-step p{font-size:.78rem;color:rgba(255,255,255,.85);line-height:1.45;margin:0}
+.demo-note{font-size:.84rem;color:#fff;font-weight:600;margin-bottom:26px}
+@media(max-width:640px){.demo-steps{grid-template-columns:1fr}}
 
 @media(max-width:760px){
   .topnav-inner,#hero,#video-section,.section,.demo-inner,.cta-inner{padding-left:24px;padding-right:24px}
-  .stats-strip{padding:32px 24px}.stats-inner{grid-template-columns:1fr 1fr;gap:24px}
-  .s-item+.s-item{border-left:none}.s-item:nth-child(3),.s-item:nth-child(4){border-top:1px solid rgba(255,255,255,.12);padding-top:18px}
+  .stats-strip{padding:32px 24px}
+  .s-item{padding:10px 20px}.s-item+.s-item{border-left:none}
   .process-grid{grid-template-columns:1fr}.int-grid{grid-template-columns:repeat(2,1fr)}
   .cmp thead th,.cmp tbody td{padding:10px;font-size:.74rem}
 }
@@ -236,7 +243,7 @@ table.cmp{width:100%;border-collapse:collapse;font-size:.83rem}
   <div class="hero-inner">
     <div class="hero-tag">Overview · prepared for the Juice team</div>
     <h1>Ask your data anything.<br>Get answers in <span class="hl">seconds.</span></h1>
-    <p class="hero-sub">Milo connects to the systems you already run on, <span class="hl">Xero</span>, your <span class="hl">banking data</span>, your CRM, and answers questions in plain English with a chart, a number, or a written analysis. No SQL. No analyst queue. No three-day wait for a report.</p>
+    <p class="hero-sub">Milo connects to the systems you already run on and answers questions in plain English with a chart, a number, or a written analysis. No SQL. No analyst queue. No three-day wait for a report.</p>
     <div class="hero-badges">
       <span class="badge a">700+ integrations</span>
       <span class="badge">Browser · Slack · Teams · WhatsApp</span>
@@ -385,7 +392,6 @@ table.cmp{width:100%;border-collapse:collapse;font-size:.83rem}
 <!-- ── STATS ────────────────────────────────────── -->
 <div class="stats-strip reveal">
   <div class="stats-inner">
-    <div class="s-item"><div class="s-num">~1s</div><div class="s-label">Average time to insight</div></div>
     <div class="s-item"><div class="s-num">700+</div><div class="s-label">Supported integrations</div></div>
     <div class="s-item"><div class="s-num">30 min</div><div class="s-label">A report that used to take 3 days</div></div>
     <div class="s-item"><div class="s-num">Unlimited</div><div class="s-label">Users across every team, one price</div></div>
@@ -468,10 +474,17 @@ table.cmp{width:100%;border-collapse:collapse;font-size:.83rem}
 <!-- ── CTA ──────────────────────────────────────── -->
 <section id="cta" class="reveal">
   <div class="cta-inner">
-    <h2>See it work. Then decide.</h2>
-    <p>30 minutes. We'll walk through a live Milo instance on a comparable data stack and answer your questions in real time.</p>
-    <a href="mailto:liam@milo.ai?subject=Milo%20for%20Juice%20%E2%80%94%20I%27d%20like%20to%20see%20a%20demo" class="cta-btn">See Milo in action →</a>
-    <p class="contact-line">Get in touch · <a href="mailto:liam@milo.ai">liam@milo.ai</a></p>
+    <h2>Try it yourself.</h2>
+    <p>Open your own Milo demo and ask it anything. It takes a minute to set up, and there's nothing to install.</p>
+    <div class="demo-steps">
+      <div class="demo-step"><div class="n">1</div><div><h5>Company</h5><p>Enter Juice Ventures Ltd.</p></div></div>
+      <div class="demo-step"><div class="n">2</div><div><h5>Job title</h5><p>Enter your job title.</p></div></div>
+      <div class="demo-step"><div class="n">3</div><div><h5>Tools you use</h5><p>Type in generic versions of your stack. Your integrations might not be set yet.</p></div></div>
+      <div class="demo-step"><div class="n">4</div><div><h5>Ask away</h5><p>Enter queries relevant to your role and tools, and let it take you on the user journey.</p></div></div>
+    </div>
+    <p class="demo-note">No sign-up, no data capture. Interact with it as if it were your own data.</p>
+    <a href="https://app.milo.ai/demo" target="_blank" rel="noopener" class="cta-btn">Open your Milo demo →</a>
+    <p class="contact-line">Questions? · <a href="mailto:liam@milo.ai">liam@milo.ai</a></p>
     <p class="footer-mark">Milo is an Autonomous Minds product · Prepared for Juice · SOC 2 · ISO 27001 · GDPR</p>
   </div>
 </section>
