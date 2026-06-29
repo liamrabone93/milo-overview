@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Milo × Juice Proposal</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Baloo+2:wght@700;800&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --orange:#EF5A28;--orange-deep:#D8481A;--orange-soft:#FFF1EB;--orange-pale:#FBD9C9;--orange-light:#FF8456;
+      --lime:#A5CE3A;--lime-deep:#7E9E22;--lime-soft:#F3F8E3;--lime-pale:#DDEBB0;
+      --navy:#20303F;--navy-2:#2C4150;
+      --milo-a:#5BC8F5;--milo-b:#7B5CF5;
+      --ink:#20303F;--ink-soft:#566470;--ink-mute:#8A97A0;
+      --rule:#E8ECEE;--white:#FFFFFF;--page-bg:#EEF2F3;
+      --shadow-sm:0 1px 2px rgba(32,48,63,.04),0 2px 8px rgba(32,48,63,.04);
+      --shadow-md:0 4px 12px rgba(32,48,63,.06),0 12px 32px rgba(32,48,63,.07);
+      --shadow-lg:0 8px 24px rgba(216,72,26,.08),0 24px 60px rgba(32,48,63,.13);
+    }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body {
+      font-family:'Inter',system-ui,sans-serif;
+      background:radial-gradient(1100px 600px at 50% -200px,#E4EAEC 0%,transparent 60%),var(--page-bg);
+      color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;padding:40px 20px;
+    }
+    h1,h2,h3,h4,.section-title{font-family:'Poppins',sans-serif}
+
+    .page{max-width:820px;margin:0 auto;background:var(--white);border-radius:22px;overflow:hidden;box-shadow:var(--shadow-lg);border:1px solid rgba(255,255,255,.6)}
+
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+    .reveal.in{opacity:1;transform:none}
+
+    .hl{color:var(--orange);font-weight:600}
+    .hg{color:var(--lime-deep);font-weight:600}
+
+    /* logos */
+    .logo-milo{font-family:'Poppins';font-size:1.4rem;font-weight:800;letter-spacing:-.02em;background:linear-gradient(90deg,var(--milo-a),var(--milo-b));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+    .logo-juice{font-family:'Baloo 2';font-weight:800;color:var(--orange);font-size:1.5rem;letter-spacing:-.03em}
+    .logo-sep{color:var(--ink-mute);font-weight:400;font-size:1.1rem}
+
+    /* HERO (bright Juice) */
+    .hero{position:relative;background:linear-gradient(180deg,#fff 0%,var(--orange-soft) 100%);padding:56px 60px 52px;overflow:hidden;border-bottom:1px solid var(--orange-pale)}
+    .hero::before{content:'';position:absolute;top:-90px;right:-70px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(165,206,58,.22) 0%,transparent 70%);pointer-events:none}
+    .hero::after{content:'';position:absolute;bottom:-120px;left:-60px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(239,90,40,.12) 0%,transparent 70%);pointer-events:none}
+    .hero-logos{display:flex;align-items:center;gap:12px;margin-bottom:30px;position:relative;z-index:1}
+    .hero-meta{display:inline-flex;align-items:center;gap:8px;font-size:.66rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--lime-deep);margin-bottom:18px;padding:6px 14px;border-radius:999px;background:var(--lime-soft);border:1px solid var(--lime-pale);position:relative;z-index:1}
+    .hero-meta::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--lime)}
+    .hero h1{font-size:2.9rem;font-weight:700;line-height:1.1;letter-spacing:-.02em;color:var(--navy);margin-bottom:18px;position:relative;z-index:1}
+    .hero-sub{font-size:1rem;color:var(--ink-soft);max-width:560px;line-height:1.7;position:relative;z-index:1}
+    .hero-chips{display:flex;gap:9px;flex-wrap:wrap;margin-top:26px;position:relative;z-index:1}
+    .chip{background:#fff;border:1px solid var(--orange-pale);border-radius:999px;padding:6px 15px;font-size:.73rem;font-weight:600;color:var(--orange-deep);transition:transform .25s}
+    .chip:hover{transform:translateY(-2px)}
+
+    /* VIDEO */
+    .video-section{position:relative;z-index:2;padding:28px 60px 8px}
+    .video-wrap{aspect-ratio:16/9;border-radius:18px;overflow:hidden;position:relative;box-shadow:0 18px 50px rgba(32,48,63,.18),0 0 0 1px var(--rule),0 0 0 6px #fff;background:var(--navy)}
+    .video-wrap iframe{width:100%;height:100%;border:none;display:block}
+    .video-caption{text-align:center;font-size:.76rem;color:var(--ink-mute);margin-top:14px;font-weight:500}
+
+    /* SECTIONS */
+    section{padding:46px 60px;position:relative}
+    section + section{border-top:1px solid var(--rule)}
+    .section-label{display:inline-flex;align-items:center;gap:9px;font-size:.66rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--orange);margin-bottom:12px}
+    .section-label::before{content:'';width:22px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--orange),var(--lime))}
+    .section-title{font-size:1.75rem;font-weight:700;line-height:1.18;letter-spacing:-.02em;color:var(--navy);margin-bottom:16px}
+    .section-body{font-size:.92rem;color:var(--ink-soft);line-height:1.75;margin-bottom:16px}
+    .section-body strong{color:var(--navy)}
+
+    /* INCLUDED */
+    .included-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px}
+    .inc-item{display:flex;align-items:flex-start;gap:13px;padding:18px;background:linear-gradient(180deg,#fff,var(--orange-soft));border-radius:14px;border:1px solid var(--orange-pale);box-shadow:var(--shadow-sm);transition:transform .25s,box-shadow .25s,border-color .25s}
+    .inc-item:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:var(--orange-light)}
+    .inc-check{width:24px;height:24px;border-radius:8px;background:var(--lime);color:#fff;font-size:.72rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+    .inc-text h4{font-size:.88rem;font-weight:700;color:var(--navy);margin-bottom:3px}
+    .inc-text p{font-size:.8rem;color:var(--ink-soft);line-height:1.5}
+
+    /* BUILD LIST */
+    .build-list{display:flex;flex-direction:column;gap:13px;margin-top:18px}
+    .build-item{display:flex;gap:16px;align-items:flex-start;padding:20px 22px;border:1px solid var(--rule);border-radius:14px;background:#fff;box-shadow:var(--shadow-sm);position:relative;transition:transform .25s,box-shadow .25s,border-color .25s}
+    .build-item::before{content:'';position:absolute;left:0;top:16px;bottom:16px;width:3px;border-radius:0 3px 3px 0;background:linear-gradient(180deg,var(--orange),var(--lime));opacity:0;transition:opacity .25s}
+    .build-item:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:var(--orange-pale)}
+    .build-item:hover::before{opacity:1}
+    .build-num{width:36px;height:36px;border-radius:10px;background:var(--orange);color:#fff;font-size:.85rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+    .build-text h4{font-size:.92rem;font-weight:700;color:var(--navy);margin-bottom:4px}
+    .build-text p{font-size:.83rem;color:var(--ink-soft);line-height:1.55}
+    .build-tag{display:inline-block;margin-top:8px;font-size:.63rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:999px}
+    .build-tag.f{background:var(--orange-soft);color:var(--orange-deep)}
+    .build-tag.s{background:var(--lime-soft);color:var(--lime-deep)}
+
+    /* PHASE GRID */
+    .phase-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
+    .phase-card{border-radius:16px;padding:24px 26px;border:1px solid var(--rule);background:#fff;box-shadow:var(--shadow-sm);position:relative;overflow:hidden}
+    .phase-card .pn{font-size:.63rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--orange);margin-bottom:10px}
+    .phase-card.b .pn{color:var(--lime-deep)}
+    .phase-card h4{font-size:1.02rem;font-weight:700;color:var(--navy);margin-bottom:8px}
+    .phase-card p{font-size:.83rem;color:var(--ink-soft);line-height:1.6}
+    .phase-card .who{margin-top:14px;padding-top:12px;border-top:1px solid var(--rule);font-size:.76rem;color:var(--ink-mute)}
+    .phase-card .who strong{color:var(--ink-soft)}
+
+    /* TOOLS */
+    .tools-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}
+    .tool-cat{border:1px solid var(--rule);border-radius:14px;padding:20px;background:#fff;box-shadow:var(--shadow-sm);transition:transform .25s,box-shadow .25s,border-color .25s}
+    .tool-cat:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:var(--orange-pale)}
+    .tool-cat .tc-head{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+    .tool-cat .tc-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.05rem;background:var(--orange-soft);border:1px solid var(--orange-pale);flex-shrink:0}
+    .tool-cat:nth-child(even) .tc-icon{background:var(--lime-soft);border-color:var(--lime-pale)}
+    .tool-cat h4{font-size:.95rem;font-weight:700;color:var(--navy)}
+    .tool-pills{display:flex;flex-wrap:wrap;gap:7px}
+    .tool-pill{font-size:.74rem;font-weight:600;color:var(--ink-soft);background:var(--page-bg);border:1px solid var(--rule);border-radius:999px;padding:5px 11px}
+    .tools-note{margin-top:16px;font-size:.83rem;color:var(--ink-mute);text-align:center}
+    .tools-note strong{color:var(--navy)}
+    @media(max-width:640px){.tools-grid{grid-template-columns:1fr}}
+
+    /* SUPPORT */
+    .support-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}
+    .support-card{border:1px solid var(--rule);border-radius:14px;padding:22px;background:linear-gradient(180deg,#fff,var(--lime-soft));box-shadow:var(--shadow-sm);transition:transform .25s,box-shadow .25s,border-color .25s}
+    .support-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:var(--lime-pale)}
+    .support-icon{width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:1.15rem;background:#fff;border:1px solid var(--lime-pale);margin-bottom:13px}
+    .support-card:nth-child(even) .support-icon{border-color:var(--orange-pale)}
+    .support-card h4{font-size:.93rem;font-weight:700;color:var(--navy);margin-bottom:5px}
+    .support-card p{font-size:.82rem;color:var(--ink-soft);line-height:1.55}
+    @media(max-width:640px){.support-grid{grid-template-columns:1fr}}
+
+    /* H2H */
+    .h2h-table{width:100%;border-collapse:collapse;font-size:.82rem;margin-top:16px}
+    .h2h-table thead tr{border-bottom:2px solid var(--rule)}
+    .h2h-table thead th{padding:10px 14px;text-align:left;font-size:.72rem;font-weight:700}
+    .h2h-table thead th.them{color:var(--ink-mute);width:38%}
+    .h2h-table thead th.us{color:var(--orange);width:30%}
+    .h2h-table thead th:first-child{width:22%}
+    .h2h-table tbody tr{border-bottom:1px solid var(--rule);transition:background .2s}
+    .h2h-table tbody tr:hover{background:var(--orange-soft)}
+    .h2h-table tbody tr:last-child{border-bottom:none}
+    .h2h-table tbody td{padding:11px 14px;vertical-align:top;line-height:1.5;font-size:.82rem}
+    .h2h-table tbody td:first-child{font-weight:600;color:var(--navy);font-size:.8rem}
+    .h2h-table tbody td.them{color:var(--ink-soft)}
+    .h2h-table tbody td.us{color:var(--navy);font-weight:500}
+    .val-bad{color:var(--orange-deep);font-weight:600}
+    .val-good{color:var(--lime-deep);font-weight:700}
+
+    /* PRICE */
+    .price-duo{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
+    .price-card{border-radius:18px;padding:26px 28px;border:1px solid var(--orange-pale);background:linear-gradient(180deg,#fff,var(--orange-soft));box-shadow:var(--shadow-sm);position:relative;overflow:hidden}
+    .price-card.featured{color:#fff;border:1px solid transparent;background:linear-gradient(150deg,var(--navy) 0%,var(--navy-2) 60%,#33485A 100%);box-shadow:var(--shadow-md)}
+    .price-card.featured::before{content:'';position:absolute;top:-50px;right:-40px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(255,132,86,.3),transparent 70%)}
+    .pc-tag{position:relative;z-index:1;font-size:.63rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);margin-bottom:14px}
+    .price-card.featured .pc-tag{color:var(--orange-light)}
+    .pc-amount{position:relative;z-index:1;font-family:'Poppins';font-size:2.6rem;font-weight:700;letter-spacing:-.03em;line-height:1;color:var(--navy)}
+    .pc-amount span{font-size:1.05rem;font-weight:600;color:var(--ink-mute);letter-spacing:0}
+    .price-card.featured .pc-amount{color:#fff}
+    .price-card.featured .pc-amount span{color:rgba(255,255,255,.6)}
+    .pc-label{position:relative;z-index:1;font-size:.76rem;color:var(--ink-mute);margin-top:6px;font-weight:500}
+    .price-card.featured .pc-label{color:rgba(255,255,255,.62)}
+    .pc-desc{position:relative;z-index:1;font-size:.82rem;line-height:1.55;color:var(--ink-soft);margin-top:16px;padding-top:16px;border-top:1px solid var(--orange-pale)}
+    .price-card.featured .pc-desc{color:rgba(255,255,255,.8);border-top-color:rgba(255,255,255,.18)}
+
+    /* NOTE */
+    .note{background:linear-gradient(180deg,#fff,var(--lime-soft));border:1px solid var(--lime-pale);border-radius:14px;padding:22px 24px;margin-top:18px;box-shadow:var(--shadow-sm)}
+    .note h4{font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--lime-deep);margin-bottom:8px}
+    .note p{font-size:.84rem;color:var(--ink-soft);line-height:1.6}
+    .note p strong{color:var(--navy)}
+
+    /* STEPS */
+    .steps-list{display:flex;flex-direction:column;gap:10px;margin-top:16px}
+    .step-item{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border-radius:10px;border:1px solid var(--rule)}
+    .step-owner{font-size:.66rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:3px 9px;border-radius:999px;flex-shrink:0;margin-top:1px;white-space:nowrap}
+    .step-owner.liam{background:var(--orange-soft);color:var(--orange-deep)}
+    .step-owner.both{background:var(--lime-soft);color:var(--lime-deep)}
+    .step-item p{font-size:.83rem;color:var(--ink-soft);line-height:1.5}
+    .step-item p strong{color:var(--navy)}
+
+    /* FOOTER */
+    .footer{background:var(--page-bg);border-top:1px solid var(--rule);padding:26px 60px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+    .footer-left{font-size:.77rem;color:var(--ink-mute)}
+    .footer-left strong{color:var(--ink-soft)}
+    .footer-contact{font-size:.77rem;color:var(--ink-mute)}
+    .footer-contact a{color:var(--orange);text-decoration:none;font-weight:600}
+
+    @media print{body{background:#fff;padding:0;-webkit-print-color-adjust:exact;print-color-adjust:exact}.page{box-shadow:none;border-radius:0}.reveal{opacity:1!important;transform:none!important}}
+    @media (max-width:640px){
+      body{padding:0}.page{border-radius:0}
+      .hero,section,.footer{padding-left:24px;padding-right:24px}
+      .hero{padding-top:40px;padding-bottom:36px}.hero h1{font-size:2rem}
+      .section-title{font-size:1.4rem}
+      .included-grid,.price-duo,.phase-grid{grid-template-columns:1fr}
+      .video-section{padding:22px 24px 4px}
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-logos">
+      <span class="logo-milo">Milo</span>
+      <span class="logo-sep">×</span>
+      <span class="logo-juice">juice</span>
+    </div>
+    <div class="hero-meta">Proposal · 29 June 2026</div>
+    <h1>The reporting that eats your week, done in <span class="hl">minutes.</span></h1>
+    <p class="hero-sub">
+      What we discussed on the call. Start Milo with your finance team, then Luke's sales team. Prove the time-save on real data, then open it up across the business, and explore the customer-facing and portal angles from there.
+    </p>
+    <div class="hero-chips">
+      <span class="chip">Reports in minutes, not days</span>
+      <span class="chip">Connects across your whole stack</span>
+      <span class="chip">Unlimited users, no per-seat cost</span>
+    </div>
+  </header>
+
+  <!-- VIDEO -->
+  <div class="video-section">
+    <div class="video-wrap">
+      <iframe src="https://player.vimeo.com/video/1196983997?background=1&autoplay=1&loop=1&muted=1" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    </div>
+    <p class="video-caption">See Milo in action: ask questions, get answers, take action.</p>
+  </div>
+
+  <!-- THE CASE -->
+  <section>
+    <div class="section-label">The Case</div>
+    <h2 class="section-title">Where Milo earns its keep at Juice</h2>
+    <p class="section-body">
+      A couple of scenarios came up on the call, and both are natural starting points. The first is finance reporting: with a small team, the monthly and weekly packs take real time to pull together. The second is sales: Luke's reps want a live view of where they are against target, what's closing, and how they compare with the rest of the team, without waiting on someone to pull it.
+    </p>
+    <p class="section-body">
+      Milo connects to the data you already hold and answers both in plain English. The proof point we keep coming back to: <strong>at Coolr, 20 to 30 reports that used to take days now come together in hours, and a finance director cut a three-day report to 30 minutes.</strong> Same numbers, a fraction of the work.
+    </p>
+  </section>
+
+  <!-- POC INCLUDED -->
+  <section>
+    <div class="section-label">Getting Started</div>
+    <h2 class="section-title">A focused proof of concept</h2>
+    <p class="section-body">
+      We start small and real. Your data connected, the heaviest reporting automated, and two teams using it day to day. A one-off fee gives everyone skin in the game, drives engagement, and covers the cost of building out integrations such as Codat. If it delivers, we move to the ongoing plan. If it doesn't, you've committed to nothing significant. Pricing is at the end; here's what's included.
+    </p>
+    <div class="included-grid">
+      <div class="inc-item"><div class="inc-check">✓</div><div class="inc-text"><h4>Full onboarding</h4><p>Finance and sales set up, data sources connected, workflows ready from day one.</p></div></div>
+      <div class="inc-item"><div class="inc-check">✓</div><div class="inc-text"><h4>Xero + banking connected</h4><p>Your core financial data flowing in automatically. Net cash flow, margins, CAGR, ROI on tap.</p></div></div>
+      <div class="inc-item"><div class="inc-check">✓</div><div class="inc-text"><h4>Unlimited users</h4><p>Finance, sales, and anyone else you want to bring in. One platform, no per-seat cost.</p></div></div>
+      <div class="inc-item"><div class="inc-check">✓</div><div class="inc-text"><h4>Unlimited data</h4><p>Your full book and pipeline, no caps or tiers.</p></div></div>
+      <div class="inc-item"><div class="inc-check">✓</div><div class="inc-text"><h4>Dedicated support</h4><p>Direct access to the team, not a ticket queue.</p></div></div>
+      <div class="inc-item"><div class="inc-check">✓</div><div class="inc-text"><h4>Security &amp; compliance</h4><p>Read-only connections, role-based access, SOC 2 · ISO 27001 · GDPR. The bar a lender needs.</p></div></div>
+    </div>
+  </section>
+
+  <!-- WHAT WE SET UP -->
+  <section>
+    <div class="section-label">What We Set Up</div>
+    <h2 class="section-title">Working from day one</h2>
+    <p class="section-body">
+      The automations that free up the most time for the finance team first, then Luke's sales team. Each runs on your real data.
+    </p>
+    <div class="build-list">
+      <div class="build-item"><div class="build-num">01</div><div class="build-text"><h4>Finance reporting, automated</h4><p>The monthly and weekly packs build themselves from Xero and banking data. Net cash flow, margins, CAGR, ROI on the facility. The CFO reviews in minutes instead of losing days to it.</p><span class="build-tag f">Phase 1 · Finance</span></div></div>
+      <div class="build-item"><div class="build-num">02</div><div class="build-text"><h4>Ask the numbers anything</h4><p>"What's net cash flow this month and who's paying late?" Answered in plain English, with the working shown. No spreadsheet to dig through, no trip to the accountant.</p><span class="build-tag f">Phase 1 · Finance</span></div></div>
+      <div class="build-item"><div class="build-num">03</div><div class="build-text"><h4>Cash-flow alerts</h4><p>Milo watches the position and flags a tightening or a cluster of late payers to Slack or Teams before it bites. The early-warning layer a small finance team doesn't have time to run by hand.</p><span class="build-tag f">Phase 1 · Finance</span></div></div>
+      <div class="build-item"><div class="build-num">04</div><div class="build-text"><h4>Sales target tracking</h4><p>For Luke's team: where each rep is against target, what's weighted to close, and how they benchmark against the rest of the team. No waiting on a report.</p><span class="build-tag s">Phase 1 · Sales</span></div></div>
+      <div class="build-item"><div class="build-num">05</div><div class="build-text"><h4>Codat integration</h4><p>Codat exposes a standardised REST API across Xero, accounting and banking data, so Milo connects to it directly rather than reverse-engineering each source. A clean build inside the POC, with no manual exports.</p><span class="build-tag s">Phase 1 · Build</span></div></div>
+    </div>
+  </section>
+
+  <!-- SUPPORT -->
+  <section>
+    <div class="section-label">Looking After You</div>
+    <h2 class="section-title">A team behind the platform</h2>
+    <p class="section-body">
+      You're not buying software and being left to it. From day one you have a direct line to the people who build and run Milo.
+    </p>
+    <div class="support-grid">
+      <div class="support-card">
+        <div class="support-icon">🧑‍💼</div>
+        <h4>Dedicated Customer Success</h4>
+        <p>A named contact who knows your setup and your goals. Not a ticket queue.</p>
+      </div>
+      <div class="support-card">
+        <div class="support-icon">💬</div>
+        <h4>Support on your channels</h4>
+        <p>Reach us through Slack, WhatsApp or Teams, wherever your team already works.</p>
+      </div>
+      <div class="support-card">
+        <div class="support-icon">🤝</div>
+        <h4>Onboarding, in person and online</h4>
+        <p>We set your team up face to face and remotely, so everyone's confident from day one.</p>
+      </div>
+      <div class="support-card">
+        <div class="support-icon">✨</div>
+        <h4>Feature updates as they happen</h4>
+        <p>New capabilities roll out to you continuously, included as standard.</p>
+      </div>
+      <div class="support-card">
+        <div class="support-icon">🛠️</div>
+        <h4>Tips and tricks from our CTO</h4>
+        <p>Direct access to the people building Milo, with practical ways to get more out of it.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROADMAP -->
+  <section>
+    <div class="section-label">Beyond the POC</div>
+    <h2 class="section-title">Where this can go</h2>
+    <p class="section-body">
+      Once the internal time-save is proven, the same engine opens up to the rest of the business, and to your customers. These are the threads worth pulling on next. Some depend on the technical scoping with Phil.
+    </p>
+    <div class="phase-grid">
+      <div class="phase-card"><div class="pn">Internal · Next</div><h4>The whole business</h4><p>Ops, data, leadership and HR asking their own questions, from sick rates against pay and cost-to-business to the data pulls leadership would normally queue for.</p><div class="who"><strong>Owner:</strong> rolls out from finance &amp; sales once proven</div></div>
+      <div class="phase-card b"><div class="pn">Customer-facing · Explore</div><h4>Growth Copilot, powered</h4><p>A chatbot-style layer over a borrower's own data. The questions they'd otherwise take to an accountant, answered inside your product. Milo as the engine behind the insights you already sell.</p><div class="who"><strong>Needs:</strong> scoping with Phil (CTO)</div></div>
+      <div class="phase-card b"><div class="pn">Customer-facing · Explore</div><h4>Portal alerts &amp; embedding</h4><p>A Milo alert surfaced in the Juice client portal when a borrower's cash flow runs low, with Juice as the recommended next step. The white-label model you're already mid-stage on with ticketing partners likely applies here too.</p><div class="who"><strong>Needs:</strong> feasibility check with Phil</div></div>
+      <div class="phase-card"><div class="pn">Commercial · Explore</div><h4>Distribution &amp; referral</h4><p>If Milo proves useful to Juice's customers, there's a model in it. Discounts on monthlies, or a referral arrangement. Fractional CFO, CDO and COO partners on hand for referrals too.</p><div class="who"><strong>Owner:</strong> Liam &amp; Juice, post-POC</div></div>
+    </div>
+  </section>
+
+  <!-- TOOLS -->
+  <section>
+    <div class="section-label">One Platform</div>
+    <h2 class="section-title">Connects across your whole stack</h2>
+    <p class="section-body">
+      Milo isn't just for finance. It plugs into the tools every team already runs on, so the same answers are available wherever the data lives. A sample of what it connects to:
+    </p>
+    <div class="tools-grid">
+      <div class="tool-cat">
+        <div class="tc-head"><div class="tc-icon">💷</div><h4>Accountancy</h4></div>
+        <div class="tool-pills"><span class="tool-pill">Xero</span><span class="tool-pill">QuickBooks</span><span class="tool-pill">Sage</span><span class="tool-pill">Codat</span><span class="tool-pill">Open Banking</span></div>
+      </div>
+      <div class="tool-cat">
+        <div class="tc-head"><div class="tc-icon">🤝</div><h4>CRMs</h4></div>
+        <div class="tool-pills"><span class="tool-pill">HubSpot</span><span class="tool-pill">Salesforce</span><span class="tool-pill">Pipedrive</span><span class="tool-pill">Close</span></div>
+      </div>
+      <div class="tool-cat">
+        <div class="tc-head"><div class="tc-icon">📣</div><h4>Marketing</h4></div>
+        <div class="tool-pills"><span class="tool-pill">Meta Ads</span><span class="tool-pill">Google Analytics</span><span class="tool-pill">Klaviyo</span><span class="tool-pill">Mailchimp</span></div>
+      </div>
+      <div class="tool-cat">
+        <div class="tc-head"><div class="tc-icon">🛒</div><h4>Ecommerce</h4></div>
+        <div class="tool-pills"><span class="tool-pill">Shopify</span><span class="tool-pill">Amazon</span><span class="tool-pill">WooCommerce</span><span class="tool-pill">Stripe</span></div>
+      </div>
+      <div class="tool-cat">
+        <div class="tc-head"><div class="tc-icon">👥</div><h4>HR</h4></div>
+        <div class="tool-pills"><span class="tool-pill">BambooHR</span><span class="tool-pill">Personio</span><span class="tool-pill">HiBob</span><span class="tool-pill">Workday</span></div>
+      </div>
+      <div class="tool-cat">
+        <div class="tc-head"><div class="tc-icon">🔌</div><h4>Anything else</h4></div>
+        <div class="tool-pills"><span class="tool-pill">Slack</span><span class="tool-pill">Teams</span><span class="tool-pill">Snowflake</span><span class="tool-pill">Any database or API</span></div>
+      </div>
+    </div>
+    <p class="tools-note"><strong>700+ integrations</strong> out of the box, plus bespoke builds where a connector doesn't exist yet.</p>
+  </section>
+
+  <!-- H2H -->
+  <section>
+    <div class="section-label">The Comparison</div>
+    <h2 class="section-title">Why teams move to Milo</h2>
+    <table class="h2h-table">
+      <thead><tr><th></th><th class="them">The status quo</th><th class="us">With Milo</th></tr></thead>
+      <tbody>
+        <tr><td>Getting an answer</td><td class="them"><span class="val-bad">Request it, then wait</span><br><span style="font-size:.77rem">a person has to find time to pull it</span></td><td class="us"><span class="val-good">Ask, answered in seconds</span><br><span style="font-size:.77rem">plain English, self-serve</span></td></tr>
+        <tr><td>Recurring reporting</td><td class="them"><span class="val-bad">Rebuilt by hand each time</span></td><td class="us"><span class="val-good">Builds itself, on schedule</span></td></tr>
+        <tr><td>One view across systems</td><td class="them"><span class="val-bad">Stitched together manually</span><br><span style="font-size:.77rem">exports, spreadsheets, copy-paste</span></td><td class="us"><span class="val-good">Connected once, always current</span><br><span style="font-size:.77rem">finance, banking, CRM in one place</span></td></tr>
+        <tr><td>Spotting issues early</td><td class="them"><span class="val-bad">Found out after the fact</span></td><td class="us"><span class="val-good">Proactive alert to Slack / Teams</span></td></tr>
+        <tr><td>Rolling out wider</td><td class="them"><span class="val-bad">More cost per person</span></td><td class="us"><span class="val-good">Included, unlimited users</span></td></tr>
+        <tr><td>Security &amp; GDPR</td><td class="them"><span class="val-bad">Varies by tool</span></td><td class="us"><span class="val-good">Platform-level compliance</span></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- INVESTMENT -->
+  <section>
+    <div class="section-label">Investment</div>
+    <h2 class="section-title">Simple, all-inclusive pricing</h2>
+    <p class="section-body">
+      Start with the POC. Once it proves its value, move to the ongoing plan: 12 months, paid monthly. Everything above is included in both: no per-seat fees, no usage bills, no surprises.
+    </p>
+    <div class="price-duo">
+      <div class="price-card">
+        <div class="pc-tag">Step 1 · Proof of Concept</div>
+        <div class="pc-amount">£1,500</div>
+        <div class="pc-label">one-off</div>
+        <p class="pc-desc">Onboarding, the finance and sales automations live on your real data, plus the Codat API integration. Unlimited users and data. Prove the value with no significant commitment.</p>
+      </div>
+      <div class="price-card featured">
+        <div class="pc-tag">Step 2 · Ongoing</div>
+        <div class="pc-amount">12 months<span> · paid monthly</span></div>
+        <div class="pc-label">begins after the POC</div>
+        <p class="pc-desc">Everything continues, fully maintained and supported, with new integrations and workflows added as you roll out across the business.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEXT STEPS -->
+  <section>
+    <div class="section-label">Next Steps</div>
+    <h2 class="section-title">What happens from here</h2>
+    <div class="steps-list">
+      <div class="step-item"><span class="step-owner liam">Liam</span><p><strong>Review the mutual NDA and return it</strong>, passed to the team for a quick review before signing.</p></div>
+      <div class="step-item"><span class="step-owner liam">Liam</span><p><strong>Confirm with Phil (CTO) what portal and white-label integration is feasible</strong>. What we can build, what needs more discussion, and what's out of scope, ahead of the in-person.</p></div>
+      <div class="step-item"><span class="step-owner both">Both</span><p><strong>15-minute catch-up, Monday 6 July at 11:00</strong>, then an in-person follow-up to include Luke, Raheem and Jay (CFO), with Phil along for the technical and commercial discussion.</p></div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-left"><strong>Milo</strong> · Prepared for Juice · 29 June 2026 · Confidential</div>
+    <div class="footer-contact"><a href="mailto:liam@milo.ai">liam@milo.ai</a></div>
+  </footer>
+
+</div>
+<script>
+  (function () {
+    var els = document.querySelectorAll('.page > section');
+    els.forEach(function (el) { el.classList.add('reveal'); });
+    if (!('IntersectionObserver' in window)) { els.forEach(function (el) { el.classList.add('in'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    els.forEach(function (el) { io.observe(el); });
+  })();
+</script>
+</body>
+</html>

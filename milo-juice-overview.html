@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Milo for Juice · The AI Data Analyst</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Baloo+2:wght@700;800&display=swap');
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --orange:#EF5A28;--orange-deep:#D8481A;--orange-soft:#FFF1EB;--orange-pale:#FBD9C9;
+  --lime:#A5CE3A;--lime-deep:#7E9E22;--lime-soft:#F3F8E3;--lime-pale:#DDEBB0;
+  --navy:#20303F;--navy-2:#2C4150;
+  --milo-a:#5BC8F5;--milo-b:#7B5CF5;
+  --ink:#20303F;--ink-soft:#566470;--ink-mute:#8A97A0;
+  --rule:#E8ECEE;--bg:#FFFFFF;--bg-soft:#F6F8F9;--page:#EEF2F3;
+}
+
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+h1,h2,h3,h4,.sec-title,.hero h1{font-family:'Poppins',sans-serif}
+
+/* logos */
+.milo-mark{font-family:'Poppins',sans-serif;font-size:1.5rem;font-weight:800;background:linear-gradient(90deg,var(--milo-a),var(--milo-b));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;letter-spacing:-.02em}
+.juice-mark{font-family:'Baloo 2',sans-serif;font-weight:800;color:var(--orange);line-height:1;letter-spacing:-.03em;font-size:1.55rem}
+.lock{display:flex;align-items:center;gap:11px}
+.lock-sep{color:var(--ink-mute);font-weight:500;font-family:'Inter';font-size:.95rem}
+
+/* inline highlights, Juice-style */
+.hl{color:var(--orange);font-weight:600}
+.hg{color:var(--lime-deep);font-weight:600}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes barGrow{from{width:0}to{width:var(--w)}}
+@keyframes msgIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes typeDot{0%,80%,100%{transform:scale(0);opacity:.3}40%{transform:scale(1);opacity:1}}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
+.reveal.on{opacity:1;transform:none}
+
+/* ─── NAV ─────────────────────────────────────── */
+.topnav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--rule)}
+.topnav-inner{max-width:980px;margin:0 auto;padding:14px 40px;display:flex;align-items:center;justify-content:space-between}
+.nav-pill{border:1.5px solid var(--orange-pale);background:var(--orange-soft);border-radius:999px;padding:6px 15px;font-size:.72rem;font-weight:600;color:var(--orange-deep)}
+
+/* ─── HERO ────────────────────────────────────── */
+#hero{position:relative;max-width:980px;margin:0 auto;padding:72px 40px 40px;text-align:center;overflow:hidden}
+.hero-blob{position:absolute;border-radius:50%;filter:blur(60px);z-index:0;pointer-events:none}
+.hero-blob.a{width:320px;height:320px;background:rgba(239,90,40,.14);top:-60px;left:-40px;animation:floatY 9s ease-in-out infinite}
+.hero-blob.b{width:300px;height:300px;background:rgba(165,206,58,.16);top:-20px;right:-50px;animation:floatY 11s ease-in-out infinite reverse}
+.hero-inner{position:relative;z-index:1;max-width:740px;margin:0 auto}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--lime-pale);background:var(--lime-soft);border-radius:999px;padding:6px 15px;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--lime-deep);margin-bottom:24px}
+.hero-tag::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--lime)}
+.hero h1{font-size:clamp(2.2rem,5vw,3.4rem);font-weight:700;line-height:1.1;letter-spacing:-.02em;color:var(--navy);margin-bottom:20px}
+.hero-sub{font-size:1.05rem;color:var(--ink-soft);max-width:600px;margin:0 auto 30px;line-height:1.7}
+.hero-badges{display:flex;gap:9px;justify-content:center;flex-wrap:wrap}
+.badge{background:var(--bg-soft);border:1px solid var(--rule);border-radius:999px;padding:6px 14px;font-size:.73rem;font-weight:600;color:var(--ink-soft)}
+.badge.a{background:var(--orange-soft);border-color:var(--orange-pale);color:var(--orange-deep)}
+
+/* ─── VIDEO ───────────────────────────────────── */
+#video-section{max-width:880px;margin:0 auto;padding:8px 40px 64px}
+.video-wrap{aspect-ratio:16/9;border-radius:20px;overflow:hidden;box-shadow:0 24px 60px rgba(32,48,63,.16),0 0 0 1px var(--rule),0 0 0 7px #fff;position:relative;background:var(--navy)}
+.video-wrap iframe{width:100%;height:100%;border:none;display:block}
+
+/* ─── TICKER ──────────────────────────────────── */
+.ticker-wrap{background:var(--navy);padding:13px 0;overflow:hidden}
+.ticker-track{display:flex;white-space:nowrap;animation:ticker 30s linear infinite}
+.ticker-item{display:inline-flex;align-items:center;gap:9px;padding:0 26px;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.55)}
+.t-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
+.t-dot.o{background:var(--orange)}.t-dot.g{background:var(--lime)}
+
+/* ─── SECTION BASE ────────────────────────────── */
+.section{padding:72px 40px;max-width:980px;margin:0 auto}
+.sec-label{display:inline-flex;align-items:center;gap:9px;font-size:.67rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);margin-bottom:12px}
+.sec-label::before{content:'';width:22px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--orange),var(--lime))}
+.sec-title{font-size:clamp(1.6rem,3vw,2.1rem);font-weight:700;line-height:1.2;letter-spacing:-.02em;color:var(--navy);margin-bottom:12px}
+.sec-sub{font-size:.97rem;color:var(--ink-soft);max-width:640px;line-height:1.7;margin-bottom:36px}
+.center{text-align:center}.center .sec-label{justify-content:center}.center .sec-sub{margin-left:auto;margin-right:auto}
+
+/* ─── JUICE-STYLE VALUE CARDS w/ illustrations ── */
+.val-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:12px}
+@media(max-width:760px){.val-grid{grid-template-columns:1fr}}
+.val-card{text-align:left}
+.val-illus{border:2px solid var(--navy);border-radius:14px;padding:0;overflow:hidden;background:#fff;margin-bottom:22px;box-shadow:0 8px 22px rgba(32,48,63,.06)}
+.val-illus svg{display:block;width:100%;height:auto}
+.val-card h4{font-size:1.15rem;font-weight:700;color:var(--navy);margin-bottom:8px}
+.val-card p{font-size:.9rem;color:var(--ink-soft);line-height:1.65}
+
+/* ─── FEATURE GRID ────────────────────────────── */
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:8px}
+@media(max-width:760px){.feat-grid{grid-template-columns:1fr}}
+.feat-card{background:#fff;border:1px solid var(--rule);border-radius:16px;padding:26px 22px;transition:transform .2s,box-shadow .2s,border-color .2s}
+.feat-card:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(32,48,63,.08);border-color:var(--orange-pale)}
+.feat-icon{width:42px;height:42px;border-radius:12px;background:var(--orange-soft);border:1px solid var(--orange-pale);display:flex;align-items:center;justify-content:center;margin-bottom:14px;font-size:1.15rem}
+.feat-card:nth-child(3n+2) .feat-icon{background:var(--lime-soft);border-color:var(--lime-pale)}
+.feat-card h4{font-size:.98rem;font-weight:700;color:var(--navy);margin-bottom:7px}
+.feat-card p{font-size:.84rem;color:var(--ink-soft);line-height:1.6}
+
+/* ─── PROCESS ─────────────────────────────────── */
+.process-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:8px}
+@media(min-width:760px){.process-grid{grid-template-columns:repeat(4,1fr)}}
+.p-card{background:var(--bg-soft);border:1px solid var(--rule);border-radius:16px;padding:24px 20px;transition:transform .2s}
+.p-card:hover{transform:translateY(-4px)}
+.p-num{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:9px;background:var(--orange);color:#fff;font-size:.82rem;font-weight:800;margin-bottom:14px}
+.p-card:nth-child(even) .p-num{background:var(--lime-deep)}
+.p-card h4{font-size:.93rem;font-weight:700;color:var(--navy);margin-bottom:8px}
+.p-card p{font-size:.82rem;color:var(--ink-soft);line-height:1.6}
+
+/* ─── DEMO ────────────────────────────────────── */
+#demo{background:var(--bg-soft);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.demo-inner{max-width:760px;margin:0 auto;padding:0 40px 72px}
+.chat-win{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 30px 70px rgba(32,48,63,.14),0 0 0 1px var(--rule);max-width:700px;margin:0 auto}
+.chat-bar{background:#fff;padding:11px 15px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--rule)}
+.cdot{width:11px;height:11px;border-radius:50%}
+.chat-bar-label{font-size:.76rem;font-weight:700;color:var(--navy);margin-left:4px;flex:1}
+.live-badge{background:var(--lime-soft);border-radius:5px;padding:2px 8px;font-size:.66rem;color:var(--lime-deep);font-weight:700}
+.chat-tabs{padding:11px 13px 9px;display:flex;gap:7px;flex-wrap:wrap;background:#fff;border-bottom:1px solid var(--rule)}
+.c-tab{background:var(--bg-soft);color:var(--ink-soft);border:1px solid var(--rule);border-radius:18px;padding:6px 13px;font-size:.68rem;font-weight:700;cursor:pointer;letter-spacing:.03em;transition:all .15s}
+.c-tab:active{transform:scale(.94)}
+.c-tab.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.chat-msgs{padding:16px;min-height:210px;max-height:360px;overflow-y:auto;background:#fff}
+.msg{margin-bottom:11px;animation:msgIn .3s cubic-bezier(.16,1,.3,1) both}
+.msg-u{display:flex;justify-content:flex-end}
+.msg-u .bub{background:var(--orange);color:#fff;border-radius:14px 14px 3px 14px;padding:9px 13px;font-size:.83rem;max-width:86%;line-height:1.5}
+.msg-m{display:flex;gap:9px;align-items:flex-start}
+.av{width:27px;height:27px;border-radius:50%;background:linear-gradient(135deg,var(--milo-a),var(--milo-b));flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.62rem;font-weight:800;color:#fff}
+.msg-m .bub{background:var(--bg-soft);border:1px solid var(--rule);border-radius:3px 14px 14px 14px;padding:10px 13px;font-size:.83rem;max-width:88%;color:var(--ink);line-height:1.6}
+.typing{display:flex;align-items:center;gap:4px;padding:8px 11px}
+.td{width:7px;height:7px;border-radius:50%;background:#c2ccd2}
+.td:nth-child(1){animation:typeDot 1.2s 0s infinite}.td:nth-child(2){animation:typeDot 1.2s .2s infinite}.td:nth-child(3){animation:typeDot 1.2s .4s infinite}
+.bar-row{display:flex;align-items:center;gap:8px;margin-bottom:7px;font-size:.74rem}
+.b-label{width:152px;flex-shrink:0;color:var(--ink-soft);font-weight:500;text-align:right;font-size:.71rem;line-height:1.3}
+.b-track{flex:1;background:#eef1f3;border-radius:5px;height:18px;overflow:hidden}
+.b-fill{height:100%;border-radius:5px;width:var(--w);animation:barGrow .55s cubic-bezier(.16,1,.3,1) both}
+.b-fill.pos{background:var(--lime)}
+.b-fill.neg{background:var(--orange)}
+.b-delta{width:54px;flex-shrink:0;font-size:.7rem;font-weight:700}
+.b-delta.p{color:var(--lime-deep)}.b-delta.n{color:var(--orange-deep)}
+.chat-foot{padding:10px 13px;background:#fff;border-top:1px solid var(--rule);display:flex;align-items:center;gap:8px}
+.chat-inp{flex:1;background:var(--bg-soft);border-radius:20px;border:1px solid var(--rule);padding:8px 14px;font-size:.78rem;color:var(--ink-mute)}
+.send-btn{width:31px;height:31px;border-radius:50%;background:var(--orange);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.send-btn svg{width:13px;height:13px}
+
+/* ─── STATS ───────────────────────────────────── */
+.stats-strip{background:var(--navy);padding:40px;display:grid;grid-template-columns:repeat(4,1fr);max-width:none}
+.stats-inner{max-width:980px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.s-num{font-family:'Poppins';font-size:2.3rem;font-weight:700;color:var(--lime);line-height:1;margin-bottom:6px}
+.s-item:nth-child(odd) .s-num{color:var(--orange-mid,#FF7A45)}
+.s-label{font-size:.72rem;color:rgba(255,255,255,.6);font-weight:500;line-height:1.4}
+.s-item{text-align:center;padding:0 14px}
+.s-item+.s-item{border-left:1px solid rgba(255,255,255,.12)}
+
+/* ─── CASES ───────────────────────────────────── */
+.cases{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:8px}
+@media(max-width:760px){.cases{grid-template-columns:1fr}}
+.case-card{background:#fff;border:1px solid var(--rule);border-radius:18px;padding:30px;display:flex;flex-direction:column;box-shadow:0 8px 22px rgba(32,48,63,.05)}
+.case-card.g{background:linear-gradient(180deg,#fff,var(--lime-soft));border-color:var(--lime-pale)}
+.case-card.o{background:linear-gradient(180deg,#fff,var(--orange-soft));border-color:var(--orange-pale)}
+.case-stat{font-family:'Poppins';font-size:1.9rem;font-weight:700;line-height:1;margin-bottom:8px;color:var(--navy)}
+.case-card.g .case-stat{color:var(--lime-deep)}.case-card.o .case-stat{color:var(--orange-deep)}
+.case-label{font-size:.67rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:18px}
+.case-card p{font-size:.86rem;color:var(--ink-soft);line-height:1.65;flex:1}
+.case-card p strong{color:var(--navy)}
+
+/* ─── TEAMS ───────────────────────────────────── */
+.teams-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:8px}
+@media(max-width:760px){.teams-grid{grid-template-columns:1fr}}
+.team-card{background:#fff;border:1px solid var(--rule);border-radius:16px;padding:24px;transition:transform .2s,border-color .2s,box-shadow .2s}
+.team-card:hover{transform:translateY(-3px);border-color:var(--lime-pale);box-shadow:0 12px 26px rgba(32,48,63,.07)}
+.team-card .tg{display:inline-block;font-size:.64rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--lime-deep);background:var(--lime-soft);padding:4px 10px;border-radius:999px;margin-bottom:12px}
+.team-card:nth-child(odd) .tg{color:var(--orange-deep);background:var(--orange-soft)}
+.team-card h4{font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:6px}
+.team-card p{font-size:.85rem;color:var(--ink-soft);line-height:1.6}
+
+/* ─── COMPARISON ──────────────────────────────── */
+.cmp-wrap{border:1px solid var(--rule);border-radius:18px;overflow:hidden;box-shadow:0 10px 30px rgba(32,48,63,.06);margin-top:8px}
+table.cmp{width:100%;border-collapse:collapse;font-size:.83rem}
+.cmp thead th{padding:14px 16px;text-align:left;font-size:.66rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute);background:var(--bg-soft);border-bottom:1px solid var(--rule)}
+.cmp thead th.mc{color:#fff;background:var(--orange)}
+.cmp tbody td{padding:13px 16px;border-bottom:1px solid var(--rule);color:var(--ink-soft);vertical-align:top}
+.cmp tbody td.fc{font-weight:600;color:var(--navy)}
+.cmp tbody td.mc{color:var(--navy);font-weight:600;background:var(--orange-soft)}
+.cmp tbody tr:last-child td{border-bottom:none}
+.ck{color:var(--lime-deep);font-weight:800}.cx{color:var(--orange);font-weight:800}.cp{color:#d9a400;font-weight:800}
+
+/* ─── INTEGRATIONS ────────────────────────────── */
+.int-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:8px}
+@media(max-width:760px){.int-grid{grid-template-columns:repeat(2,1fr)}}
+.int-card{background:#fff;border:1px solid var(--rule);border-radius:13px;padding:16px 18px;text-align:center;font-size:.8rem;font-weight:600;color:var(--navy);transition:transform .2s,border-color .2s}
+.int-card:hover{transform:translateY(-3px);border-color:var(--orange-pale)}
+.int-tag{font-size:.61rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:5px}
+
+/* ─── CTA ─────────────────────────────────────── */
+#cta{background:linear-gradient(135deg,var(--orange) 0%,#F2743F 55%,var(--orange-deep) 100%);position:relative;overflow:hidden}
+#cta::after{content:'';position:absolute;top:-80px;right:-60px;width:320px;height:320px;border-radius:50%;background:rgba(255,255,255,.12);pointer-events:none}
+.cta-inner{max-width:760px;margin:0 auto;padding:84px 40px;text-align:center;position:relative;z-index:1}
+#cta h2{font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:700;color:#fff;margin-bottom:14px;line-height:1.15}
+#cta p{font-size:1rem;color:rgba(255,255,255,.9);max-width:520px;margin:0 auto 34px;line-height:1.7}
+.cta-btn{display:inline-block;background:#fff;color:var(--orange-deep);border:none;border-radius:999px;padding:15px 38px;font-size:1rem;font-weight:700;font-family:'Poppins';cursor:pointer;text-decoration:none;transition:transform .18s,box-shadow .18s;box-shadow:0 12px 28px rgba(0,0,0,.18)}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(0,0,0,.24)}
+.contact-line{margin-top:30px;font-size:.85rem;color:rgba(255,255,255,.78)}
+.contact-line a{color:#fff;font-weight:700;text-decoration:none}
+.footer-mark{margin-top:8px;font-size:.72rem;color:rgba(255,255,255,.6)}
+
+@media(max-width:760px){
+  .topnav-inner,#hero,#video-section,.section,.demo-inner,.cta-inner{padding-left:24px;padding-right:24px}
+  .stats-strip{padding:32px 24px}.stats-inner{grid-template-columns:1fr 1fr;gap:24px}
+  .s-item+.s-item{border-left:none}.s-item:nth-child(3),.s-item:nth-child(4){border-top:1px solid rgba(255,255,255,.12);padding-top:18px}
+  .process-grid{grid-template-columns:1fr}.int-grid{grid-template-columns:repeat(2,1fr)}
+  .cmp thead th,.cmp tbody td{padding:10px;font-size:.74rem}
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ─────────────────────────────────────── -->
+<nav class="topnav">
+  <div class="topnav-inner">
+    <div class="lock">
+      <span class="milo-mark">Milo</span>
+      <span class="lock-sep">for</span>
+      <span class="juice-mark">juice</span>
+    </div>
+    <span class="nav-pill">The AI Data Analyst</span>
+  </div>
+</nav>
+
+<!-- ── HERO ────────────────────────────────────── -->
+<section id="hero">
+  <div class="hero-blob a"></div>
+  <div class="hero-blob b"></div>
+  <div class="hero-inner">
+    <div class="hero-tag">Overview · prepared for the Juice team</div>
+    <h1>Ask your data anything.<br>Get answers in <span class="hl">seconds.</span></h1>
+    <p class="hero-sub">Milo connects to the systems you already run on, <span class="hl">Xero</span>, your <span class="hl">banking data</span>, your CRM, and answers questions in plain English with a chart, a number, or a written analysis. No SQL. No analyst queue. No three-day wait for a report.</p>
+    <div class="hero-badges">
+      <span class="badge a">700+ integrations</span>
+      <span class="badge">Browser · Slack · Teams · WhatsApp</span>
+      <span class="badge">SOC 2 · ISO 27001 · GDPR</span>
+      <span class="badge">Live in days, not months</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── VIDEO ────────────────────────────────────── -->
+<div id="video-section">
+  <div class="video-wrap">
+    <iframe src="https://player.vimeo.com/video/1196983997?background=1&autoplay=1&loop=1&muted=1" allow="autoplay; fullscreen" allowfullscreen></iframe>
+  </div>
+</div>
+
+<!-- ── TICKER ────────────────────────────────────── -->
+<div class="ticker-wrap">
+  <div class="ticker-track" id="ticker"></div>
+</div>
+
+<!-- ── VALUE CARDS (Juice-style illustrations) ──── -->
+<div class="section center reveal">
+  <div class="sec-label">What Milo Does</div>
+  <div class="sec-title">Your data team, always on.</div>
+  <div class="sec-sub">The same data intelligence that usually lives with one stretched analyst, or a CFO who never has the time. Now available to every team, in plain English.</div>
+
+  <div class="val-grid">
+    <!-- 1 -->
+    <div class="val-card">
+      <div class="val-illus">
+        <svg viewBox="0 0 260 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="6" y="6" width="248" height="138" rx="12" stroke="#20303F" stroke-width="2.5"/>
+          <circle cx="24" cy="24" r="4" fill="#20303F"/><circle cx="38" cy="24" r="4" stroke="#20303F" stroke-width="1.6"/><circle cx="52" cy="24" r="4" stroke="#20303F" stroke-width="1.6"/>
+          <line x1="6" y1="40" x2="254" y2="40" stroke="#20303F" stroke-width="1.6"/>
+          <circle cx="48" cy="74" r="17" fill="#A5CE3A"/>
+          <path d="M41 74h14M48 67v14" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>
+          <rect x="34" y="104" width="64" height="26" rx="7" stroke="#20303F" stroke-width="2"/>
+          <path d="M130 122 L150 100 L168 110 L196 72" stroke="#20303F" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M188 70 h16 v12 h-16 z" fill="#EF5A28"/>
+          <path d="M196 70 v40" stroke="#20303F" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M188 122 l8 -8 8 8" stroke="#20303F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <circle cx="222" cy="118" r="6" fill="#EF5A28"/>
+        </svg>
+      </div>
+      <h4>Ask in plain English</h4>
+      <p>Type a question the way you'd ask a colleague. Milo works out the right query across <span class="hl">the right systems</span>. No SQL, no setup, no going to the accountant.</p>
+    </div>
+    <!-- 2 -->
+    <div class="val-card">
+      <div class="val-illus">
+        <svg viewBox="0 0 260 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="6" y="6" width="248" height="138" rx="12" stroke="#20303F" stroke-width="2.5"/>
+          <circle cx="24" cy="24" r="4" fill="#20303F"/><circle cx="38" cy="24" r="4" stroke="#20303F" stroke-width="1.6"/><circle cx="52" cy="24" r="4" stroke="#20303F" stroke-width="1.6"/>
+          <line x1="6" y1="40" x2="254" y2="40" stroke="#20303F" stroke-width="1.6"/>
+          <circle cx="80" cy="92" r="34" stroke="#20303F" stroke-width="2.4"/>
+          <circle cx="80" cy="92" r="21" fill="#A5CE3A"/>
+          <circle cx="80" cy="92" r="6" fill="#20303F"/>
+          <path d="M80 92 L128 58" stroke="#20303F" stroke-width="2.6" stroke-linecap="round"/>
+          <path d="M120 50 l12 -2 -2 12" stroke="#20303F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <rect x="150" y="66" width="80" height="13" rx="6" stroke="#20303F" stroke-width="2"/>
+          <circle cx="163" cy="72" r="4" fill="#20303F"/>
+          <rect x="150" y="92" width="62" height="6" rx="3" fill="#20303F" opacity=".25"/>
+          <rect x="150" y="106" width="80" height="5" rx="2.5" fill="#EF5A28"/>
+        </svg>
+      </div>
+      <h4>Answers, not dashboards</h4>
+      <p>Net cash flow, margins, CAGR, ROI, returned as <span class="hl">a clear answer</span> with the working shown, so you can trust it and act on it the same minute.</p>
+    </div>
+    <!-- 3 -->
+    <div class="val-card">
+      <div class="val-illus">
+        <svg viewBox="0 0 260 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="6" y="6" width="248" height="138" rx="12" stroke="#20303F" stroke-width="2.5"/>
+          <circle cx="24" cy="24" r="4" fill="#20303F"/><circle cx="38" cy="24" r="4" stroke="#20303F" stroke-width="1.6"/><circle cx="52" cy="24" r="4" stroke="#20303F" stroke-width="1.6"/>
+          <line x1="6" y1="40" x2="254" y2="40" stroke="#20303F" stroke-width="1.6"/>
+          <circle cx="224" cy="62" r="11" fill="#EF5A28"/>
+          <rect x="40" y="90" width="30" height="34" rx="5" fill="#A5CE3A"/>
+          <rect x="82" y="70" width="30" height="54" rx="5" stroke="#20303F" stroke-width="2.2"/>
+          <line x1="86" y1="80" x2="108" y2="80" stroke="#20303F" stroke-width="1.4"/><line x1="86" y1="92" x2="108" y2="92" stroke="#20303F" stroke-width="1.4"/><line x1="86" y1="104" x2="108" y2="104" stroke="#20303F" stroke-width="1.4"/>
+          <rect x="124" y="54" width="30" height="70" rx="5" fill="#20303F"/>
+          <rect x="170" y="84" width="56" height="12" rx="6" stroke="#20303F" stroke-width="2"/>
+          <rect x="170" y="104" width="56" height="12" rx="6" stroke="#20303F" stroke-width="2"/>
+        </svg>
+      </div>
+      <h4>Always informed</h4>
+      <p>Milo watches the numbers and pushes <span class="hg">an alert</span> to Slack or Teams the moment cash flow tightens or a target slips, before anyone thinks to ask.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ── FEATURES ─────────────────────────────────── -->
+<div class="section reveal" style="padding-top:0">
+  <div class="sec-label">The Detail</div>
+  <div class="sec-title">Built for the way you actually work.</div>
+  <div class="feat-grid">
+    <div class="feat-card"><div class="feat-icon">🔗</div><h4>Connects to your stack</h4><p>Xero, open banking, your CRM, your data layer. 700+ supported integrations, plus bespoke connectors built where one doesn't exist yet.</p></div>
+    <div class="feat-card"><div class="feat-icon">⚡</div><h4>Answers in seconds</h4><p>A chart, a number, or a written analysis, with the logic shown so you can trust it and act immediately.</p></div>
+    <div class="feat-card"><div class="feat-icon">🔔</div><h4>Proactive alerts</h4><p>Milo monitors your data and flags what needs attention to Slack or Teams, before you think to ask.</p></div>
+    <div class="feat-card"><div class="feat-icon">📱</div><h4>Works where your team works</h4><p>Browser, Slack, Microsoft Teams, or WhatsApp. Same answer quality on the channel they already use.</p></div>
+    <div class="feat-card"><div class="feat-icon">👥</div><h4>Unlimited users</h4><p>Finance, sales, risk, ops. Bring the whole business onto one platform with no per-seat cost.</p></div>
+    <div class="feat-card"><div class="feat-icon">🔒</div><h4>Secure by default</h4><p>Read-only connections, role-based access, SOC 2 Type II, ISO 27001 and GDPR. The bar a lender needs.</p></div>
+  </div>
+</div>
+
+<!-- ── PROCESS ──────────────────────────────────── -->
+<div class="section reveal" style="padding-top:0">
+  <div class="sec-label">The Process</div>
+  <div class="sec-title">From your data to instant answers in days.</div>
+  <div class="sec-sub">A lightweight setup. No engineering sprint, no months-long implementation.</div>
+  <div class="process-grid">
+    <div class="p-card"><div class="p-num">1</div><h4>Connect your data</h4><p>We plug in the sources you already use, Xero, banking data, CRM, your facility book, so everything flows into one place.</p></div>
+    <div class="p-card"><div class="p-num">2</div><h4>Map your definitions</h4><p>We label every metric in your language, net cash flow, margin, ROI, drawdown, so Milo answers in terms that mean something.</p></div>
+    <div class="p-card"><div class="p-num">3</div><h4>Set access</h4><p>Control who sees what. The CFO gets the full view. Sales gets their patch. Everyone gets exactly what they need.</p></div>
+    <div class="p-card"><div class="p-num">4</div><h4>Milo works for you</h4><p>Your team asks in plain English, by browser, Slack, Teams or WhatsApp, and gets answers in seconds.</p></div>
+  </div>
+</div>
+
+<!-- ── DEMO ─────────────────────────────────────── -->
+<section id="demo">
+  <div class="section center reveal" style="padding-bottom:40px">
+    <div class="sec-label">Live Demo</div>
+    <div class="sec-title">Ask anything about the business. Instantly.</div>
+    <p class="sec-sub">Click a category to see how Milo answers the questions Juice's teams ask every week.</p>
+  </div>
+  <div class="demo-inner reveal">
+    <div class="chat-win">
+      <div class="chat-bar">
+        <div class="cdot" style="background:#ff5f57"></div><div class="cdot" style="background:#febc2e"></div><div class="cdot" style="background:#28c840"></div>
+        <span class="chat-bar-label">Milo · AI Data Analyst</span>
+        <span style="font-size:.66rem;color:#9ca3af;font-weight:500">connected</span>
+        <span class="live-badge">Live</span>
+      </div>
+      <div class="chat-tabs" id="chatTabs"></div>
+      <div class="chat-msgs" id="chatMsgs">
+        <div class="msg msg-m"><div class="av">M</div><div class="bub">Hi, I'm connected across your data. Pick a category above to see what I can tell you right now, or type your own question.</div></div>
+      </div>
+      <div class="chat-foot">
+        <div class="chat-inp">Ask Milo anything about the business…</div>
+        <button class="send-btn" aria-label="Send"><svg viewBox="0 0 12 12" fill="none"><path d="M6 10V2M2 6l4-4 4 4" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── STATS ────────────────────────────────────── -->
+<div class="stats-strip reveal">
+  <div class="stats-inner">
+    <div class="s-item"><div class="s-num">~1s</div><div class="s-label">Average time to insight</div></div>
+    <div class="s-item"><div class="s-num">700+</div><div class="s-label">Supported integrations</div></div>
+    <div class="s-item"><div class="s-num">30 min</div><div class="s-label">A report that used to take 3 days</div></div>
+    <div class="s-item"><div class="s-num">Unlimited</div><div class="s-label">Users across every team, one price</div></div>
+  </div>
+</div>
+
+<!-- ── CASES ────────────────────────────────────── -->
+<div class="section reveal">
+  <div class="sec-label">Proof</div>
+  <div class="sec-title">What it looks like in practice.</div>
+  <div class="sec-sub"></div>
+  <div class="cases">
+    <div class="case-card g">
+      <div class="case-stat">Days → hours</div>
+      <div class="case-label">Coolr · Finance &amp; Reporting</div>
+      <p>Coolr's team were building 20 to 30 reports by hand, and it was taking days. With Milo connected to their data, the same packs come together in hours. <strong>Their finance director cut a three-day report to 30 minutes.</strong> Same numbers, a fraction of the work.</p>
+    </div>
+    <div class="case-card o">
+      <div class="case-stat">~95%</div>
+      <div class="case-label">Multi-Site Operator · Forecast Accuracy</div>
+      <p>A national operator asked us to benchmark Milo against a specialist analytics consultancy's model. We connected Milo to the same data and reproduced their rankings. <strong>Milo matched within 95% of the consultancy's output</strong>, in a fraction of the time, in a setting that is commercial and unforgiving about being wrong.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ── TEAMS ────────────────────────────────────── -->
+<div class="section reveal" style="padding-top:0">
+  <div class="sec-label">Across the Business</div>
+  <div class="sec-title">One tool, every team.</div>
+  <div class="sec-sub">The same Milo instance serves finance, sales, risk and ops. Each asking their own questions, each getting answers in their own language.</div>
+  <div class="teams-grid">
+    <div class="team-card"><div class="tg">Finance / CFO</div><h4>Reporting that builds itself</h4><p>Net cash flow, margins, CAGR and ROI on tap. The monthly pack that eats days of a stretched CFO's time comes together in minutes, with the working shown.</p></div>
+    <div class="team-card"><div class="tg">Sales</div><h4>Know where the gap is</h4><p>Reps track progress against target, see what's actually closing, and benchmark against the rest of the team, without waiting on a RevOps report.</p></div>
+    <div class="team-card"><div class="tg">Risk / Portfolio</div><h4>Spot stress early</h4><p>Surface borrowers showing early signs of strain across the book, before it shows up in arrears. Ask the book a question instead of pulling it apart by hand.</p></div>
+    <div class="team-card"><div class="tg">Ops · Data · Leadership · HR</div><h4>Everyone else, too</h4><p>From sick rates against pay and cost-to-business, to the data pulls leadership would normally queue for. One place to ask, answered the same minute.</p></div>
+  </div>
+</div>
+
+<!-- ── COMPARISON ───────────────────────────────── -->
+<div class="section reveal" style="padding-top:0">
+  <div class="sec-label">Why Milo</div>
+  <div class="sec-title" style="margin-bottom:28px">How Milo compares.</div>
+  <div class="cmp-wrap">
+    <table class="cmp">
+      <thead><tr>
+        <th style="width:33%">Capability</th>
+        <th style="width:22%">Accountant / Manual</th>
+        <th style="width:22%">BI Tools / Dashboards</th>
+        <th class="mc" style="width:23%">Milo</th>
+      </tr></thead>
+      <tbody>
+        <tr><td class="fc">Plain-English answers, instantly</td><td><span class="cp">~</span> Days, by request</td><td><span class="cx">✗</span> Dashboard only</td><td class="mc"><span class="ck">✓</span> Seconds</td></tr>
+        <tr><td class="fc">Cross-source view (Xero + bank + CRM)</td><td><span class="cp">~</span> Manual join</td><td><span class="cp">~</span> Complex setup</td><td class="mc"><span class="ck">✓</span> Native</td></tr>
+        <tr><td class="fc">Proactive alerts when things flag</td><td><span class="cx">✗</span> You find out late</td><td><span class="cx">✗</span> You check it</td><td class="mc"><span class="ck">✓</span> Slack / Teams</td></tr>
+        <tr><td class="fc">Cost to scale to the whole team</td><td><span class="cx">✗</span> More headcount</td><td><span class="cx">✗</span> Per licence</td><td class="mc"><span class="ck">✓</span> Unlimited users</td></tr>
+        <tr><td class="fc">Time to first answer</td><td><span class="cx">✗</span> Days minimum</td><td><span class="cp">~</span> Weeks to build</td><td class="mc"><span class="ck">✓</span> Live in days</td></tr>
+        <tr><td class="fc">Security &amp; compliance</td><td><span class="cp">~</span> Varies</td><td><span class="cp">~</span> Varies</td><td class="mc"><span class="ck">✓</span> SOC 2 · ISO 27001</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ── INTEGRATIONS ─────────────────────────────── -->
+<div class="section reveal" style="padding-top:0">
+  <div class="sec-label">Integrations</div>
+  <div class="sec-title">Works with the tools you already use.</div>
+  <div class="sec-sub">700+ supported connectors out of the box, plus bespoke builds. Codat exposes a standardised REST API over Xero and open banking, so we connect Milo to it directly.</div>
+  <div class="int-grid">
+    <div class="int-card"><div class="int-tag">Finance</div>Xero / Sage / QuickBooks</div>
+    <div class="int-card"><div class="int-tag">Banking</div>Open Banking / Plaid / TrueLayer</div>
+    <div class="int-card"><div class="int-tag">CRM</div>HubSpot / Salesforce</div>
+    <div class="int-card"><div class="int-tag">Data Layer</div>Codat (REST API)</div>
+    <div class="int-card"><div class="int-tag">Warehouse</div>Snowflake / BigQuery</div>
+    <div class="int-card"><div class="int-tag">Comms</div>Slack / Teams / WhatsApp</div>
+    <div class="int-card"><div class="int-tag">Ops / ERP</div>NetSuite / SAP / Oracle</div>
+    <div class="int-card"><div class="int-tag">Custom</div>Any database or API</div>
+  </div>
+</div>
+
+<!-- ── CTA ──────────────────────────────────────── -->
+<section id="cta" class="reveal">
+  <div class="cta-inner">
+    <h2>See it work. Then decide.</h2>
+    <p>30 minutes. We'll walk through a live Milo instance on a comparable data stack and answer your questions in real time.</p>
+    <a href="mailto:liam@milo.ai?subject=Milo%20for%20Juice%20%E2%80%94%20I%27d%20like%20to%20see%20a%20demo" class="cta-btn">See Milo in action →</a>
+    <p class="contact-line">Get in touch · <a href="mailto:liam@milo.ai">liam@milo.ai</a></p>
+    <p class="footer-mark">Milo is an Autonomous Minds product · Prepared for Juice · SOC 2 · ISO 27001 · GDPR</p>
+  </div>
+</section>
+
+<script>
+/* ── TICKER ── */
+(function(){
+  const items=['Plain-English answers','700+ integrations','Xero & open banking','Proactive alerts','Slack & Teams native','Live in days','Unlimited users','Read-only & secure','Net cash flow on tap','Zero SQL required','Margins, CAGR, ROI','Real-time insights'];
+  const t=document.getElementById('ticker');
+  [...items,...items].forEach((txt,i)=>{
+    const s=document.createElement('span');s.className='ticker-item';
+    s.innerHTML='<span class="t-dot '+(i%2?'g':'o')+'"></span>'+txt;t.appendChild(s);
+  });
+})();
+
+/* ── CHAT DEMO ── */
+(function(){
+  const demos=[
+    {label:'CASH FLOW',
+     q:'What\'s our net cash flow trend, and which clients are paying late?',
+     ans:'Net cash flow is positive at £318k this month, but the trend is softening, down 11% on last month. The drag is late payment: 6 clients are more than 30 days overdue, worth £142k combined. Two of them account for over half of that. Worth chasing those two this week before it bites.',
+     chart:[{l:'On-time receipts',p:88,d:'+4%',pos:true},{l:'1–30 days late',p:54,d:'£61k',pos:false},{l:'31–60 days late',p:38,d:'£88k',pos:false},{l:'60+ days late',p:22,d:'£54k',pos:false},{l:'Net position',p:72,d:'−11%',pos:false}]},
+    {label:'SALES',
+     q:'Where am I against target this month, and which deals are most likely to close?',
+     ans:'You\'re at 64% of target with 9 days left, £58k of £90k. Five deals are weighted to close this month worth £71k. Three of those are past the proposal stage and moving; the other two have gone quiet for 8+ days. Nudge the quiet two and you\'re on track.',
+     chart:[{l:'Closed this month',p:64,d:'£58k',pos:true},{l:'Likely to close',p:79,d:'£44k',pos:true},{l:'At risk (quiet)',p:30,d:'£27k',pos:false},{l:'vs. team average',p:86,d:'+6%',pos:true}]},
+    {label:'RISK / BOOK',
+     q:'Which borrowers in the book are showing early signs of stress?',
+     ans:'11 borrowers are flagging early-stress signals: drawing more frequently while repayment is slowing. 4 of those also have receipts falling month on month, which is the combination that usually precedes arrears. None are in arrears yet. I\'d prioritise a review of those 4.',
+     chart:[{l:'Healthy',p:84,d:'Stable',pos:true},{l:'Watch',p:48,d:'7 accounts',pos:false},{l:'Early stress',p:30,d:'4 accounts',pos:false},{l:'In arrears',p:6,d:'0 accounts',pos:true}]},
+    {label:'FINANCE',
+     q:'Where did margin move this quarter, and what\'s the ROI on the Juice facility for our top cohort?',
+     ans:'Gross margin is up 1.8pts on the quarter, driven by lower cost of funds. For the top borrower cohort, every £1 drawn on the Juice facility is associated with £3.40 of revenue growth over the period, a clean ROI story to put in front of them. CAGR across the cohort sits at 22%.',
+     chart:[{l:'Cost of funds',p:32,d:'−1.8pts',pos:true},{l:'Gross margin',p:86,d:'+1.8pts',pos:true},{l:'Facility ROI (top cohort)',p:94,d:'3.4×',pos:true},{l:'Cohort CAGR',p:78,d:'22%',pos:true}]},
+  ];
+  const tabs=document.getElementById('chatTabs'),msgs=document.getElementById('chatMsgs');
+  let active=-1;
+  demos.forEach((d,i)=>{const b=document.createElement('button');b.className='c-tab';b.textContent=d.label;b.onclick=()=>run(i);tabs.appendChild(b);});
+  function run(i){
+    if(active===i)return;active=i;
+    document.querySelectorAll('.c-tab').forEach((b,j)=>b.classList.toggle('on',j===i));
+    msgs.querySelectorAll('.msg:not(:first-child)').forEach(m=>m.remove());
+    const um=document.createElement('div');um.className='msg msg-u';um.innerHTML='<div class="bub">'+esc(demos[i].q)+'</div>';msgs.appendChild(um);scroll();
+    const ty=document.createElement('div');ty.className='msg msg-m';ty.innerHTML='<div class="av">M</div><div class="bub"><div class="typing"><div class="td"></div><div class="td"></div><div class="td"></div></div></div>';msgs.appendChild(ty);scroll();
+    setTimeout(()=>{
+      ty.remove();
+      const am=document.createElement('div');am.className='msg msg-m';am.innerHTML='<div class="av">M</div><div class="bub">'+esc(demos[i].ans)+'</div>';msgs.appendChild(am);
+      if(demos[i].chart){
+        const cw=document.createElement('div');cw.className='msg msg-m';cw.style.animationDelay='.1s';
+        const cv=document.createElement('div');cv.style.cssText='background:#F6F8F9;border:1px solid #E8ECEE;border-radius:3px 14px 14px 14px;padding:12px 13px;max-width:88%';
+        demos[i].chart.forEach((r,idx)=>{const row=document.createElement('div');row.className='bar-row';row.innerHTML=`<div class="b-label">${esc(r.l)}</div><div class="b-track"><div class="b-fill ${r.pos?'pos':'neg'}" style="--w:${r.p}%;animation-delay:${idx*.07}s"></div></div><div class="b-delta ${r.pos?'p':'n'}">${esc(r.d)}</div>`;cv.appendChild(row);});
+        cw.appendChild(cv);msgs.appendChild(cw);
+      }
+      scroll();
+    },1500);
+  }
+  function scroll(){setTimeout(()=>msgs.scrollTop=msgs.scrollHeight,50)}
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+  let autoIdx=0;function autoRun(){run(autoIdx);autoIdx=(autoIdx+1)%demos.length}
+  setTimeout(()=>{autoRun();setInterval(autoRun,6000)},2000);
+})();
+
+/* ── SCROLL REVEAL ── */
+(function(){
+  const o=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');o.unobserve(e.target)}})},{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(el=>o.observe(el));
+})();
+</script>
+</body>
+</html>
