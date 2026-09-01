@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Milo × Marussia Beverages</title>
+<meta name="description" content="Who we are, what we do, and how we can help. An introduction to Milo for Marussia Beverages UK.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --navy:#001F34;
+  --navy-2:#002A47;
+  --navy-3:#013455;
+  --cream:#EEEADD;
+  --cream-lt:#F6F4EC;
+  --cream-dk:#DFD9C6;
+  --paper:#FCFBF7;
+  --sky:#29ABE2;
+  --sky-lt:#9AD6ED;
+  --blush:#E4D1D1;
+  --lilac:#D1D1E4;
+  --mint:#D1E4DD;
+  --accent:#002A47;
+  --accent-rgb:0,42,71;
+  --muted:rgba(0,31,52,.62);
+  --dim:rgba(0,31,52,.42);
+  --line:rgba(0,31,52,.13);
+}
+
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:'Montserrat',system-ui,-apple-system,sans-serif;
+  background:var(--paper);color:var(--navy);
+  line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+section{position:relative;overflow:hidden}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px;position:relative;z-index:30}
+
+/* ── texture ────────────────────────────────────── */
+.tex{position:absolute;inset:0;pointer-events:none}
+.noise{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");opacity:.05;mix-blend-mode:multiply}
+.grid{background-image:linear-gradient(rgba(var(--accent-rgb),.05) 1px,transparent 1px),linear-gradient(90deg,rgba(var(--accent-rgb),.05) 1px,transparent 1px);background-size:82px 82px}
+.grid-dark{background-image:linear-gradient(rgba(41,171,226,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(41,171,226,.07) 1px,transparent 1px);background-size:82px 82px}
+.scan{position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(41,171,226,.4) 40%,rgba(41,171,226,.95) 50%,rgba(41,171,226,.4) 60%,transparent);animation:scan 9s linear infinite}
+@keyframes scan{0%{top:-1px;opacity:0}4%{opacity:1}96%{opacity:.7}100%{top:100%;opacity:0}}
+.particle{position:absolute;border-radius:50%;animation:drift var(--dur) linear var(--delay) infinite}
+@keyframes drift{0%{transform:translateY(0) translateX(0);opacity:0}8%{opacity:1}90%{opacity:.4}100%{transform:translateY(-110vh) translateX(var(--drift));opacity:0}}
+
+/* ── top bar ────────────────────────────────────── */
+.bar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:26px 0 0}
+.logo{font-weight:800;font-size:1.3rem;letter-spacing:-.045em;justify-self:start;color:var(--navy)}
+.bar .who{font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);text-align:center}
+.bar .cli{justify-self:end;font-family:'EB Garamond',serif;font-weight:500;font-size:1.05rem;letter-spacing:.34em;color:var(--navy);text-transform:uppercase}
+
+/* ── type ───────────────────────────────────────── */
+h1{font-family:'EB Garamond',Georgia,serif;font-size:clamp(3rem,9.4vw,6.8rem);line-height:.94;letter-spacing:-.03em;font-weight:500;margin-top:60px}
+h1 .thin{font-family:'Montserrat',sans-serif;font-weight:300;letter-spacing:.2em;text-transform:uppercase;display:block;font-size:.15em;line-height:1;margin-bottom:22px;color:var(--dim)}
+h2{font-family:'EB Garamond',Georgia,serif;font-size:clamp(2.1rem,5.2vw,3.7rem);line-height:1.04;letter-spacing:-.02em;font-weight:500;margin-bottom:18px;max-width:22ch}
+h2 .lt{color:var(--muted)}
+h2 .ac{color:var(--navy-3);font-style:italic}
+
+/* ── hero ───────────────────────────────────────── */
+.hero{background:var(--cream);padding-bottom:76px}
+.hero-q{margin-top:40px;font-size:clamp(1.4rem,3.9vw,2.6rem);line-height:1.16;letter-spacing:-.02em;font-weight:400;max-width:19ch;font-family:'EB Garamond',Georgia,serif}
+.hero-q span{display:inline-block;opacity:0;animation:wordIn .7s ease forwards}
+.hero-q .hl{color:var(--navy-3);font-style:italic}
+@keyframes wordIn{from{opacity:0;transform:translateY(18px);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
+.hero-note{margin-top:28px;max-width:56ch;color:var(--muted);font-size:.97rem}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:34px}
+.chip{font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;padding:8px 14px;border-radius:999px;border:1px solid rgba(var(--accent-rgb),.26);color:var(--navy-2);background:rgba(255,255,255,.5);font-weight:500}
+.chip.solid{background:var(--navy);color:var(--sky-lt);border-color:var(--navy)}
+
+/* ── ticker ─────────────────────────────────────── */
+.ticker{background:var(--navy);padding:15px 0;overflow:hidden}
+.tk{display:flex;width:max-content;animation:ticker 42s linear infinite}
+.tk span{padding:0 24px;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(238,234,221,.4);white-space:nowrap;font-weight:500}
+.tk span.on{color:var(--sky-lt)}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── section furniture ──────────────────────────── */
+.sec{padding:100px 0}
+.kicker{font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;color:var(--navy-3);font-weight:600;margin-bottom:20px}
+.kicker.on-dark{color:var(--sky)}
+.lede{color:var(--muted);max-width:62ch;font-size:1rem}
+.dark .lede,.navysec .lede{color:rgba(238,234,221,.66)}
+
+/* ── cards ──────────────────────────────────────── */
+.g4{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:15px;margin-top:46px}
+.pcard{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:28px;transition:transform .3s,box-shadow .3s}
+.pcard:hover{transform:translateY(-4px);box-shadow:0 18px 44px rgba(0,31,52,.09)}
+.pcard .lbl{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;padding:5px 10px;border-radius:3px;display:inline-block;margin-bottom:16px;background:rgba(var(--accent-rgb),.08);color:var(--navy-3)}
+.pcard h3{font-family:'EB Garamond',Georgia,serif;font-size:1.24rem;font-weight:600;letter-spacing:-.01em;margin-bottom:9px;line-height:1.22}
+.pcard p{font-size:.88rem;color:var(--muted);line-height:1.62}
+.fix{margin-top:17px;padding-top:15px;border-top:1px solid var(--line);font-size:.83rem;font-weight:600;color:var(--navy-3);display:flex;gap:9px}
+
+/* ── demo ───────────────────────────────────────── */
+.demo{margin-top:48px;background:#00131F;border-radius:6px;overflow:hidden;box-shadow:0 50px 100px rgba(0,31,52,.3);position:relative}
+.demo .tex{opacity:.5}
+.demo-bar{display:flex;align-items:center;gap:9px;padding:16px 22px;border-bottom:1px solid rgba(238,234,221,.1);position:relative;z-index:2}
+.dot{width:9px;height:9px;border-radius:50%;background:rgba(238,234,221,.2)}
+.demo-bar .t{margin-left:10px;font-size:.72rem;letter-spacing:.1em;color:rgba(238,234,221,.4);text-transform:uppercase}
+.livedot{margin-left:auto;display:flex;align-items:center;gap:7px;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--sky);font-weight:600}
+.livedot i{width:6px;height:6px;border-radius:50%;background:var(--sky);animation:pulse 1.8s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+.tabs{display:flex;gap:8px;padding:18px 22px 0;flex-wrap:wrap;position:relative;z-index:2}
+input.tabradio{position:absolute;opacity:0;pointer-events:none}
+.tabs label{font-size:.73rem;font-weight:600;letter-spacing:-.005em;padding:9px 16px;border-radius:999px;border:1px solid rgba(238,234,221,.16);color:rgba(238,234,221,.55);cursor:pointer;transition:.2s;user-select:none}
+.tabs label:hover{color:var(--cream);border-color:rgba(238,234,221,.4)}
+.pane{display:none;padding:26px 22px 30px;position:relative;z-index:2;animation:msgSlide .45s ease}
+@keyframes msgSlide{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+#t0:checked~.tabs label[for=t0],#t1:checked~.tabs label[for=t1],#t2:checked~.tabs label[for=t2],#t3:checked~.tabs label[for=t3]{background:var(--sky);color:#00131F;border-color:var(--sky)}
+#t0:checked~.panes .p0,#t1:checked~.panes .p1,#t2:checked~.panes .p2,#t3:checked~.panes .p3{display:block}
+.msg{display:flex;gap:13px;margin-bottom:20px}
+.av{width:29px;height:29px;border-radius:50%;flex-shrink:0;display:grid;place-items:center;font-size:.66rem;font-weight:800}
+.av-u{background:rgba(238,234,221,.12);color:rgba(238,234,221,.6)}
+.av-m{background:var(--sky);color:#00131F}
+.msg .txt{padding-top:2px;font-size:.98rem;color:var(--cream);letter-spacing:-.005em}
+.msg.a .txt{color:rgba(238,234,221,.68);font-size:.93rem;line-height:1.62}
+.msg.a .txt b{color:var(--cream);font-weight:600}
+table.dt{width:100%;border-collapse:collapse;margin:16px 0;font-size:.84rem}
+table.dt th{text-align:left;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(238,234,221,.38);font-weight:600;padding:0 12px 10px 0;border-bottom:1px solid rgba(238,234,221,.12)}
+table.dt td{padding:11px 12px 11px 0;border-bottom:1px solid rgba(238,234,221,.08);color:var(--cream)}
+table.dt td.n{font-family:'JetBrains Mono',monospace;font-size:.79rem}
+.up{color:var(--sky-lt)}.dn{color:#F09A8E}
+.bars{margin:16px 0}
+.brow{display:grid;grid-template-columns:172px 1fr 78px;align-items:center;gap:14px;margin-bottom:11px;font-size:.83rem;color:var(--cream)}
+.btrack{height:7px;background:rgba(238,234,221,.1);border-radius:99px;overflow:hidden}
+.bfill{height:100%;background:var(--sky);border-radius:99px;animation:grow 1.1s cubic-bezier(.2,.8,.2,1) both}
+.bfill.g{background:rgba(238,234,221,.32)}
+@keyframes grow{from{width:0}}
+.bval{font-family:'JetBrains Mono',monospace;font-size:.76rem;text-align:right;color:rgba(238,234,221,.6)}
+.srcs{display:flex;gap:7px;flex-wrap:wrap;margin-top:16px}
+.src{font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;padding:5px 10px;border-radius:3px;background:rgba(41,171,226,.13);color:var(--sky-lt);font-weight:600}
+.askbar{margin:2px 22px 22px;border:1px solid rgba(238,234,221,.14);border-radius:4px;padding:14px 18px;color:rgba(238,234,221,.32);font-size:.88rem;display:flex;align-items:center;gap:10px;position:relative;z-index:2}
+.askbar i{width:2px;height:15px;background:var(--sky);animation:pulse 1.1s steps(1) infinite;display:inline-block}
+
+/* ── dark / navy sections ───────────────────────── */
+.dark{background:var(--navy);color:var(--cream)}
+.dark h2{color:var(--cream)}
+.dark h2 .lt{color:rgba(238,234,221,.5)}
+.dark h2 .ac{color:var(--sky-lt)}
+.navysec{background:var(--navy-2);color:var(--cream)}
+.navysec h2{color:var(--paper)}
+.navysec h2 .lt{color:rgba(252,251,247,.55)}
+
+/* ── story ──────────────────────────────────────── */
+.story{max-width:56ch;margin-top:8px}
+.story p{font-size:1.06rem;color:rgba(238,234,221,.74);margin-bottom:20px;line-height:1.62}
+.story p.pull{font-family:'EB Garamond',Georgia,serif;font-size:1.5rem;font-style:italic;color:var(--sky-lt);line-height:1.34}
+.story p:last-child{margin-bottom:0}
+
+/* ── steps ──────────────────────────────────────── */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;margin-top:48px;background:rgba(252,251,247,.15);border:1px solid rgba(252,251,247,.15);border-radius:5px;overflow:hidden}
+.step{background:var(--navy-2);padding:29px 27px;transition:background .3s}
+.step:hover{background:var(--navy-3)}
+.step .n{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--sky);margin-bottom:15px}
+.step h3{font-family:'EB Garamond',Georgia,serif;font-size:1.2rem;font-weight:600;margin-bottom:8px;color:var(--paper)}
+.step p{font-size:.87rem;color:rgba(252,251,247,.66);line-height:1.6}
+.steps-lt{background:var(--line);border-color:var(--line)}
+.steps-lt .step{background:var(--cream-lt)}
+.steps-lt .step:hover{background:var(--cream-dk)}
+.steps-lt .step .n{color:var(--navy-3)}
+.steps-lt .step h3{color:var(--navy)}
+.steps-lt .step p{color:var(--muted)}
+
+/* ── customers ──────────────────────────────────── */
+.cust{display:grid;grid-template-columns:repeat(auto-fit,minmax(288px,1fr));gap:15px;margin-top:46px}
+.ccard{border:1px solid rgba(238,234,221,.16);border-radius:5px;padding:29px;background:rgba(238,234,221,.03);display:flex;flex-direction:column;transition:border-color .3s,transform .3s}
+.ccard:hover{border-color:var(--sky);transform:translateY(-4px)}
+.ccard .nm{font-family:'EB Garamond',Georgia,serif;font-size:1.6rem;font-weight:500;letter-spacing:-.01em;color:var(--paper)}
+.ccard .sub{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--sky);margin:8px 0 16px;font-weight:600}
+.ccard p{font-size:.88rem;color:rgba(238,234,221,.66);flex:1;line-height:1.62}
+.stats{display:flex;gap:22px;margin-top:20px;padding-top:18px;border-top:1px solid rgba(238,234,221,.14)}
+.stat .v{font-family:'EB Garamond',Georgia,serif;font-size:1.55rem;font-weight:500;color:var(--sky-lt);line-height:1}
+.stat .l{font-size:.66rem;color:rgba(238,234,221,.5);margin-top:5px;letter-spacing:.04em}
+.quote{margin-top:48px;border-left:2px solid var(--sky);padding:4px 0 4px 24px;max-width:60ch}
+.quote p{font-family:'EB Garamond',Georgia,serif;font-size:1.34rem;font-style:italic;color:var(--paper);line-height:1.4}
+.quote cite{display:block;font-style:normal;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(238,234,221,.45);margin-top:13px;font-family:'Montserrat',sans-serif}
+.trust{margin-top:46px;display:flex;flex-wrap:wrap;gap:13px 32px;align-items:center}
+.trust .t-l{font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(238,234,221,.4);width:100%}
+.trust span{font-size:.9rem;font-weight:600;color:rgba(238,234,221,.72)}
+
+/* ── compare ────────────────────────────────────── */
+.cmp{margin-top:44px;border:1px solid var(--line);border-radius:5px;overflow-x:auto;background:var(--paper)}
+table.ct{width:100%;border-collapse:collapse;min-width:740px}
+table.ct th,table.ct td{padding:17px 21px;text-align:left;border-bottom:1px solid var(--line);font-size:.87rem;vertical-align:top}
+table.ct thead th{background:var(--cream-lt);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);font-weight:700}
+table.ct thead th.m{color:var(--navy-3)}
+table.ct td{color:var(--muted)}
+table.ct td.f{color:var(--navy);font-weight:600;width:26%}
+table.ct td.m{background:rgba(var(--accent-rgb),.05);color:var(--navy)}
+.yes{color:var(--navy-3);font-weight:800}
+.no{color:#B4442C;font-weight:700}
+
+/* ── pricing ────────────────────────────────────── */
+.pgrid{display:grid;grid-template-columns:1.05fr .95fr;gap:16px;margin-top:44px}
+.plan{background:var(--navy);color:var(--cream);border-radius:5px;padding:36px;position:relative;overflow:hidden}
+.plan .tex{opacity:.6}
+.plan>*{position:relative;z-index:2}
+.rec{display:inline-block;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;padding:6px 13px;border-radius:999px;background:var(--sky);color:#00131F;font-weight:800;margin-bottom:20px}
+.amt{font-family:'EB Garamond',Georgia,serif;font-size:3.4rem;font-weight:500;letter-spacing:-.02em;line-height:1;color:var(--paper)}
+.amt small{font-family:'Montserrat',sans-serif;font-size:.88rem;font-weight:400;color:rgba(238,234,221,.5);margin-left:8px}
+.plan ul{list-style:none;margin-top:26px;display:grid;gap:14px}
+.plan li{display:grid;grid-template-columns:16px 1fr;gap:12px;align-items:start;font-size:.9rem;line-height:1.5;color:rgba(238,234,221,.66)}
+.plan li::before{content:"→";color:var(--sky);font-weight:700;line-height:1.5}
+.plan li b{color:var(--paper);font-weight:600}
+.side{background:var(--cream-lt);border:1px solid var(--line);border-radius:5px;padding:36px}
+.side .h{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);font-weight:700;margin-bottom:18px}
+.side .amt2{font-family:'EB Garamond',Georgia,serif;font-size:2.4rem;font-weight:500;line-height:1}
+.side .amt2 small{font-family:'Montserrat',sans-serif;font-size:.85rem;font-weight:400;color:var(--muted)}
+.side p{color:var(--muted);font-size:.9rem;margin-top:18px;line-height:1.62}
+
+/* ── phases ─────────────────────────────────────── */
+.phases{margin-top:44px;display:grid;gap:13px}
+.ph{display:grid;grid-template-columns:190px 1fr;gap:28px;background:var(--paper);border:1px solid var(--line);border-radius:5px;padding:28px;transition:border-color .3s}
+.ph:hover{border-color:var(--navy-3)}
+.ph .w{font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--navy-3);font-weight:700}
+.ph .w span{display:block;color:var(--dim);margin-top:7px;letter-spacing:.1em;font-weight:500}
+.ph h3{font-family:'EB Garamond',Georgia,serif;font-size:1.3rem;font-weight:600;margin-bottom:8px}
+.ph p{color:var(--muted);font-size:.9rem;line-height:1.62}
+
+/* ── cta ────────────────────────────────────────── */
+.cta{background:var(--navy);padding:120px 0 96px;text-align:center}
+.cta h2{margin:0 auto 20px;max-width:16ch;color:var(--paper)}
+.cta p{color:rgba(238,234,221,.6);max-width:52ch;margin:0 auto 36px;font-size:.97rem}
+.btn{display:inline-block;padding:15px 32px;border-radius:999px;font-weight:600;text-decoration:none;font-size:.9rem;transition:transform .2s,background .2s}
+.btn-p{background:var(--sky);color:#00131F}
+.btn-p:hover{transform:translateY(-2px)}
+footer{background:var(--navy);border-top:1px solid rgba(238,234,221,.12);padding:32px 0;text-align:center;color:rgba(238,234,221,.4);font-size:.76rem;letter-spacing:.05em}
+footer a{color:var(--sky-lt);text-decoration:none}
+
+@media(max-width:860px){
+  .pgrid{grid-template-columns:1fr}
+  .ph{grid-template-columns:1fr;gap:13px}
+  .bar{grid-template-columns:1fr auto}
+  .bar .who{display:none}
+  .sec{padding:72px 0}
+  .brow{grid-template-columns:120px 1fr 66px;font-size:.77rem}
+}
+
+/* ── facts row ──────────────────────────────────── */
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1px;margin-top:44px;background:rgba(238,234,221,.16);border:1px solid rgba(238,234,221,.16);border-radius:5px;overflow:hidden}
+.fact{background:var(--navy);padding:26px 24px}
+.fact .v{font-family:'EB Garamond',Georgia,serif;font-size:2.1rem;font-weight:500;line-height:1;color:var(--sky-lt)}
+.fact .l{font-size:.74rem;color:rgba(238,234,221,.6);margin-top:10px;line-height:1.5}
+
+/* ── plain two-column ───────────────────────────── */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:52px;margin-top:42px}
+.two h3{font-family:'EB Garamond',Georgia,serif;font-size:1.5rem;font-weight:600;margin-bottom:12px}
+.two p{color:var(--muted);font-size:.95rem;line-height:1.68;margin-bottom:14px}
+.two p:last-child{margin-bottom:0}
+.two .dk h3{color:var(--paper)}
+.two .dk p{color:rgba(238,234,221,.68)}
+
+/* ── plain list ─────────────────────────────────── */
+.plist{list-style:none;display:grid;gap:13px;margin-top:22px}
+.plist li{display:grid;grid-template-columns:15px 1fr;gap:12px;align-items:start;font-size:.93rem;line-height:1.6;color:var(--muted)}
+.plist li::before{content:"→";color:var(--navy-3);font-weight:700}
+.plist li b{color:var(--navy);font-weight:600}
+.dk .plist li{color:rgba(238,234,221,.68)}
+.dk .plist li::before{color:var(--sky)}
+.dk .plist li b{color:var(--paper)}
+
+@media(max-width:760px){.two{grid-template-columns:1fr;gap:34px}}
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="tex noise"></div>
+  <div class="tex grid"></div>
+  <div class="scan"></div>
+  <div class="tex" aria-hidden="true">
+    <span class="particle" style="left:7%;bottom:-4px;width:3px;height:3px;background:#002A47;opacity:.5;--dur:7s;--delay:0s;--drift:32px"></span>
+    <span class="particle" style="left:19%;bottom:-4px;width:2px;height:2px;background:#002A47;opacity:.5;--dur:9s;--delay:1.1s;--drift:-26px"></span>
+    <span class="particle" style="left:33%;bottom:-4px;width:3px;height:3px;background:#002A47;opacity:.5;--dur:6s;--delay:2.4s;--drift:20px"></span>
+    <span class="particle" style="left:49%;bottom:-4px;width:2px;height:2px;background:#002A47;opacity:.5;--dur:11s;--delay:.3s;--drift:-24px"></span>
+    <span class="particle" style="left:64%;bottom:-4px;width:3px;height:3px;background:#002A47;opacity:.5;--dur:8s;--delay:1.7s;--drift:28px"></span>
+    <span class="particle" style="left:77%;bottom:-4px;width:2px;height:2px;background:#002A47;opacity:.5;--dur:7s;--delay:3.2s;--drift:-32px"></span>
+    <span class="particle" style="left:90%;bottom:-4px;width:3px;height:3px;background:#002A47;opacity:.5;--dur:10s;--delay:.6s;--drift:14px"></span>
+  </div>
+
+  <div class="wrap">
+    <div class="bar">
+      <div class="logo">Milo</div>
+      <div class="who">An overview for Marussia Beverages UK</div>
+      <div class="cli">Marussia</div>
+    </div>
+
+    <h1><span class="thin">An introduction to Milo for</span>Marussia<br>Beverages</h1>
+
+    <div class="hero-q">
+      <span style="animation-delay:.15s">Sell-in</span>
+      <span style="animation-delay:.25s">is</span>
+      <span style="animation-delay:.35s">easy.</span>
+      <span style="animation-delay:.55s" class="hl">Sell-out</span>
+      <span style="animation-delay:.65s" class="hl">takes</span>
+      <span style="animation-delay:.75s" class="hl">three</span>
+      <span style="animation-delay:.85s" class="hl">weeks</span>
+      <span style="animation-delay:.95s" class="hl">and</span>
+      <span style="animation-delay:1.05s" class="hl">four</span>
+      <span style="animation-delay:1.15s" class="hl">people.</span>
+    </div>
+
+    <p class="hero-note">Three sections. Who we are, what we do, and where we think we could help Marussia. Written so it makes sense to anyone in the business, whether or not you have heard of us before.</p>
+
+    <div class="chips">
+      <span class="chip solid">Who we are</span>
+      <span class="chip solid">What we do</span>
+      <span class="chip solid">How we can help</span>
+    </div>
+  </div>
+</section>
+
+<div class="ticker">
+  <div class="tk">
+    <span class="on">Milo</span><span>AI for business data</span><span class="on">700+ connectors</span><span>Already built</span><span class="on">Kellogg's</span><span class="on">National Lottery</span><span class="on">Two Tribes</span><span>ISO 27001</span><span>SOC 2</span><span>Independently pen-tested</span><span>Sources on every number</span>
+    <span class="on">Milo</span><span>AI for business data</span><span class="on">700+ connectors</span><span>Already built</span><span class="on">Kellogg's</span><span class="on">National Lottery</span><span class="on">Two Tribes</span><span>ISO 27001</span><span>SOC 2</span><span>Independently pen-tested</span><span>Sources on every number</span>
+  </div>
+</div>
+
+<!-- ═══ 01 · WHO WE ARE ═══ -->
+<section class="sec dark">
+  <div class="tex noise"></div>
+  <div class="tex grid-dark"></div>
+  <div class="wrap">
+    <div class="kicker on-dark">01 · Who we are</div>
+    <h2>Milo is an AI layer that sits <span class="ac">on top of the systems you already use.</span></h2>
+    <div class="two">
+      <div class="dk">
+        <h3>The short version</h3>
+        <p>We are a UK-based product company. Milo is our product, built by Autonomous Minds. It connects to the systems a business already runs on, then lets anyone ask questions of that data in plain English and get an answer with the source attached.</p>
+        <p>We are not a consultancy and we are not a reporting project. There is no warehouse to build and no analyst to hire. Most of the connectors already exist.</p>
+      </div>
+      <div class="dk">
+        <h3>Who uses it</h3>
+        <p>A mix of large FMCG and smaller operators who never had a data team in the first place. Kellogg's and the National Lottery at one end. Breweries, drinks wholesalers and hospitality groups at the other.</p>
+        <p>The common thread is not size. It is that the numbers exist somewhere and take too long to get hold of.</p>
+      </div>
+    </div>
+
+    <div class="facts">
+      <div class="fact"><div class="v">700+</div><div class="l">Pre-built connectors to finance, CRM, retail and operational systems</div></div>
+      <div class="fact"><div class="v">2 – 4 wks</div><div class="l">From first connection to answering real questions</div></div>
+      <div class="fact"><div class="v">Unlimited</div><div class="l">Seats and users. Not priced per head</div></div>
+      <div class="fact"><div class="v">ISO / SOC 2</div><div class="l">ISO 27001, SOC 2, independently pen-tested, processor only</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 02 · WHAT WE DO ═══ -->
+<section class="sec" style="background:var(--cream-lt)">
+  <div class="tex noise"></div>
+  <div class="wrap">
+    <div class="kicker">02 · What we do</div>
+    <h2>Connect the systems. <span class="lt">Then answer the question.</span></h2>
+    <p class="lede">Three things, in order. None of them require anyone to change how they work.</p>
+
+    <div class="g4" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+      <div class="pcard">
+        <span class="lbl">One</span>
+        <h3>We connect your systems</h3>
+        <p>Finance and sales ledger, CRM, stock, spreadsheets, supplier and customer reports. Read-only. Nothing moves and nothing gets replaced. The systems carry on exactly as they are.</p>
+      </div>
+      <div class="pcard">
+        <span class="lbl">Two</span>
+        <h3>Anyone can ask it a question</h3>
+        <p>Typed in normal English, in a browser or in Teams, Slack or WhatsApp. No report to build, no query to write. Every answer shows which systems the numbers came from, so it can be checked.</p>
+      </div>
+      <div class="pcard">
+        <span class="lbl">Three</span>
+        <h3>It works while you don't</h3>
+        <p>Dashboards stay live. Reports send themselves on a schedule. Alerts fire when something moves, so a problem finds you rather than waiting to be noticed in a monthly review.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ DEMO ═══ -->
+<section class="sec" style="background:var(--paper);padding-top:0">
+  <div class="wrap" style="padding-top:100px">
+    <div class="kicker">What it looks like</div>
+    <h2>Four questions, <span class="lt">asked the way you would ask them.</span></h2>
+    <p class="lede">These are written for a drinks distributor, using Marussia brands and the kind of trade customers you sell through. The numbers are illustrative. The shape of the answer is not.</p>
+
+    <div class="demo">
+      <div class="tex noise"></div>
+      <div class="tex grid-dark"></div>
+
+      <div class="demo-bar">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        <span class="t">Milo · Marussia UK workspace</span>
+        <span class="livedot"><i></i>Live</span>
+      </div>
+
+      <input class="tabradio" type="radio" name="tab" id="t0" checked>
+      <input class="tabradio" type="radio" name="tab" id="t1">
+      <input class="tabradio" type="radio" name="tab" id="t2">
+      <input class="tabradio" type="radio" name="tab" id="t3">
+
+      <div class="tabs">
+        <label for="t0">Brand performance</label>
+        <label for="t1">Shipments vs depletions</label>
+        <label for="t2">Accounts gone quiet</label>
+        <label for="t3">What the promo returned</label>
+      </div>
+
+      <div class="panes">
+        <div class="pane p0">
+          <div class="msg"><span class="av av-u">Q</span><div class="txt">Which brands grew this year, by channel, and where did the growth actually come from?</div></div>
+          <div class="msg a"><span class="av av-m">M</span><div class="txt">
+            <b>UK net revenue is £12.4m year to date, 8.1% ahead of last year.</b> Sake and Japanese whisky are carrying it. Liqueurs are behind.
+            <table class="dt">
+              <thead><tr><th>Brand</th><th>Net rev YTD</th><th>vs LY</th><th>Channel driving it</th></tr></thead>
+              <tbody>
+                <tr><td>Akashi-Tai</td><td class="n">£2.94m</td><td class="n up">+22.4%</td><td>On-trade</td></tr>
+                <tr><td>Torabhaig</td><td class="n">£2.11m</td><td class="n up">+14.1%</td><td>Specialist retail</td></tr>
+                <tr><td>Foursquare</td><td class="n">£1.83m</td><td class="n up">+9.2%</td><td>Off-trade</td></tr>
+                <tr><td>Mozart</td><td class="n">£1.42m</td><td class="n dn">−4.3%</td><td>On-trade</td></tr>
+              </tbody>
+            </table>
+            Worth knowing before a target gets set: 71% of Akashi-Tai's growth is from accounts opened in the last eighteen months, not from existing accounts buying more. A percentage uplift applied to the whole base assumes something that is not happening.
+            <div class="srcs"><span class="src">Sales ledger</span><span class="src">Depletion reports</span><span class="src">CRM</span></div>
+          </div></div>
+        </div>
+
+        <div class="pane p1">
+          <div class="msg"><span class="av av-u">Q</span><div class="txt">Show me shipments against depletions for Akashi-Tai over the last six months.</div></div>
+          <div class="msg a"><span class="av av-m">M</span><div class="txt">
+            <b>You shipped 4,180 cases. Wholesalers depleted 3,240.</b> Around 940 cases are sitting in the trade, which is 2.6 months of cover at the current rate of sale.
+            <div class="bars">
+              <div class="brow"><span>Enotria &amp; Coe</span><span class="btrack"><span class="bfill" style="width:88%"></span></span><span class="bval">1.9 mo</span></div>
+              <div class="brow"><span>Amathus</span><span class="btrack"><span class="bfill" style="width:100%;animation-delay:.1s"></span></span><span class="bval">4.1 mo</span></div>
+              <div class="brow"><span>Lea &amp; Sandman</span><span class="btrack"><span class="bfill g" style="width:52%;animation-delay:.2s"></span></span><span class="bval">1.4 mo</span></div>
+              <div class="brow"><span>Direct on-trade</span><span class="btrack"><span class="bfill g" style="width:41%;animation-delay:.3s"></span></span><span class="bval">1.1 mo</span></div>
+            </div>
+            Amathus is the outlier. If next quarter's volume is planned off last year's shipment number rather than the depletion number, you ship into stock that is already there.
+            <div class="srcs"><span class="src">Sales ledger</span><span class="src">Depletion reports</span></div>
+          </div></div>
+        </div>
+
+        <div class="pane p2">
+          <div class="msg"><span class="av av-u">Q</span><div class="txt">Which on-trade accounts have stopped ordering in the last ninety days?</div></div>
+          <div class="msg a"><span class="av av-m">M</span><div class="txt">
+            <b>64 accounts, worth £312k annualised.</b> 41 are single-brand accounts, and 28 of those were Mozart.
+            <table class="dt">
+              <thead><tr><th>Account type</th><th>Accounts</th><th>Annualised</th><th>Last visit</th></tr></thead>
+              <tbody>
+                <tr><td>Hotel groups</td><td class="n">18</td><td class="n">£141k</td><td class="n dn">Feb</td></tr>
+                <tr><td>Independent bars</td><td class="n">31</td><td class="n">£118k</td><td class="n dn">Mar</td></tr>
+                <tr><td>Restaurants</td><td class="n">15</td><td class="n">£53k</td><td class="n">May</td></tr>
+              </tbody>
+            </table>
+            Mozart is not losing rate of sale. It is losing distribution. Nobody has been in front of those 28 accounts since February, and in a monthly pack the decline reads as a brand problem instead.
+            <div class="srcs"><span class="src">Sales ledger</span><span class="src">CRM</span><span class="src">Depletion reports</span></div>
+          </div></div>
+        </div>
+
+        <div class="pane p3">
+          <div class="msg"><span class="av av-u">Q</span><div class="txt">What did the Torabhaig retail promotion actually return?</div></div>
+          <div class="msg a"><span class="av av-m">M</span><div class="txt">
+            <b>Units were up 214% across the four weeks. Net revenue was up 38%.</b> The eight weeks afterwards ran 11% below the pre-promo baseline, so a chunk of it was forward buying.
+            <table class="dt">
+              <thead><tr><th>Period</th><th>Units</th><th>Net revenue</th><th>vs baseline</th></tr></thead>
+              <tbody>
+                <tr><td>4 weeks on promo</td><td class="n">3,910</td><td class="n">£61,200</td><td class="n up">+38%</td></tr>
+                <tr><td>8 weeks after</td><td class="n">2,240</td><td class="n">£48,900</td><td class="n dn">−11%</td></tr>
+                <tr><td>Full period, net</td><td class="n">6,150</td><td class="n">£110,100</td><td class="n up">+£14k</td></tr>
+              </tbody>
+            </table>
+            Over the same twelve weeks the ecommerce listing grew 31% with no funding behind it. That comparison is usually the one that changes where next year's money goes.
+            <div class="srcs"><span class="src">Retail EPOS</span><span class="src">Sales ledger</span><span class="src">Marketing spend</span></div>
+          </div></div>
+        </div>
+      </div>
+
+      <div class="askbar">Ask Milo anything about the business<i></i></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 03 · HOW WE CAN HELP ═══ -->
+<section class="sec" style="background:var(--cream)">
+  <div class="tex noise"></div>
+  <div class="tex grid"></div>
+  <div class="wrap">
+    <div class="kicker">03 · How we can help</div>
+    <h2>What you shipped is clear. <span class="ac">What sold is not.</span></h2>
+    <p class="lede">Marussia sells a dozen brands through wholesalers, retailers, ecommerce and the on-trade. Sell-in is one clean number in the ledger. Everything after that arrives in pieces. Four places where time goes.</p>
+
+    <div class="g4">
+      <div class="pcard">
+        <span class="lbl">Depletions</span>
+        <h3>You know what you shipped, not what sold</h3>
+        <p>Cases out to Enotria, Amathus and the rest are clean in the ledger. What happened next arrives monthly, in whatever format each wholesaler happens to use.</p>
+        <div class="fix"><span>→</span> Every depletion file read into one view, by brand and account.</div>
+      </div>
+      <div class="pcard">
+        <span class="lbl">Retail</span>
+        <h3>A portal per customer</h3>
+        <p>Waitrose, Ocado, Master of Malt and Harvey Nichols each report their own way. Rate of sale, distribution and stock cover sit in four places and never on the same page.</p>
+        <div class="fix"><span>→</span> One line per SKU across every retail customer.</div>
+      </div>
+      <div class="pcard">
+        <span class="lbl">Brands</span>
+        <h3>Own brands and agency brands, measured apart</h3>
+        <p>Torabhaig and Akashi-Tai are a different commercial question to Foursquare or High West. Both get rebuilt by hand whenever someone asks how a brand is really doing.</p>
+        <div class="fix"><span>→</span> Live brand view, own and agency, on the same basis.</div>
+      </div>
+      <div class="pcard">
+        <span class="lbl">Field sales</span>
+        <h3>Call reports that never meet the invoices</h3>
+        <p>The team already knows which accounts have gone quiet. That sits in the CRM, nowhere near the ledger data that would prove it and put a number on it.</p>
+        <div class="fix"><span>→</span> Account activity and account revenue in a single answer.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ KELLOGG'S STORY ═══ -->
+<section class="sec navysec">
+  <div class="tex noise"></div>
+  <div class="tex grid-dark"></div>
+  <div class="wrap">
+    <div class="kicker on-dark">Why it matters</div>
+    <h2>Kellogg's had a sales dip. <span class="lt">It was Coco Pops.</span></h2>
+    <div class="story">
+      <p>A region in the Middle East was down and nobody could explain it. The theories were the ones you would expect. Pricing, competitors, the economy.</p>
+      <p class="pull">Coco Pops simply were not on enough shelves.</p>
+      <p>Not a strategy problem. A distribution problem, and a question nobody could answer quickly enough to catch it.</p>
+      <p>Every drinks business has the same question wearing a different hat. When a brand softens, is it rate of sale or is it distribution? The answer is already in the data. It just takes three weeks and four people to get it out, by which point the quarter has gone.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ HOW IT WORKS ═══ -->
+<section class="sec" style="background:var(--paper)">
+  <div class="tex noise"></div>
+  <div class="wrap">
+    <div class="kicker">Getting started</div>
+    <h2>How it <span class="lt">actually works.</span></h2>
+    <p class="lede">An account manager does this with your team. Most of it is configuration rather than a project, and the heavy lifting is ours.</p>
+    <div class="steps steps-lt">
+      <div class="step"><div class="n">01</div><h3>Connect the sources</h3><p>Finance and sales ledger, CRM, wholesaler depletion files, retail and ecommerce reporting. Read-only or sandbox first, never live production data for a trial.</p></div>
+      <div class="step"><div class="n">02</div><h3>Agree the definitions</h3><p>A case is a case and a depletion is a depletion, across every wholesaler format. Done with your team rather than to them.</p></div>
+      <div class="step"><div class="n">03</div><h3>Set the permissions</h3><p>Role-based from day one. Brand managers see their brands, the field team sees their accounts, finance data stays with finance.</p></div>
+      <div class="step"><div class="n">04</div><h3>Rebuild what is built by hand</h3><p>The brand pack, the depletion summary, the planning numbers. Run in parallel against twelve months of history so everything ties out before anyone relies on it.</p></div>
+      <div class="step"><div class="n">05</div><h3>Then it runs itself</h3><p>Weekly depletion summary to the sales team. Monthly brand pack to the board. An alert when an account goes quiet. Nobody rebuilds anything.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CUSTOMERS ═══ -->
+<section class="sec dark">
+  <div class="tex noise"></div>
+  <div class="wrap">
+    <div class="kicker on-dark">Good company</div>
+    <h2>Drinks businesses are <span class="ac">already on Milo.</span></h2>
+    <p class="lede">Producers and distributors share the same shape of problem: what leaves the warehouse is easy, what happens after it leaves is not.</p>
+
+    <div class="cust">
+      <div class="ccard">
+        <div class="nm">Two Tribes</div>
+        <div class="sub">Brewery, taproom &amp; wholesale · London</div>
+        <p>Four businesses inside one company across seven systems that had never spoken to each other: wholesale, 831 Tesco stores, a King's Cross taproom and a distribution arm. Seven weeks later twelve people across sales, finance, production, QA and HR were building their own dashboards. Nobody ran a rollout.</p>
+        <div class="stats">
+          <div class="stat"><div class="v">7 wks</div><div class="l">All departments live</div></div>
+          <div class="stat"><div class="v">20</div><div class="l">Dashboards built</div></div>
+          <div class="stat"><div class="v">1 → 12</div><div class="l">Users in six weeks</div></div>
+        </div>
+      </div>
+
+      <div class="ccard">
+        <div class="nm">Two more breweries</div>
+        <div class="sub">London &amp; Coventry · signing now</div>
+        <p>Both came to us for the same reason. They can see what they invoiced. They cannot see what sold, where, or which accounts quietly stopped reordering. One is a wholesale-led business, the other runs its own sites. Same question, different shape.</p>
+        <div class="stats">
+          <div class="stat"><div class="v">Sell-out</div><div class="l">The reason both signed</div></div>
+          <div class="stat"><div class="v">2026</div><div class="l">Live this quarter</div></div>
+        </div>
+      </div>
+
+      <div class="ccard">
+        <div class="nm">Kellogg's</div>
+        <div class="sub">FMCG · multi-market</div>
+        <p>The Coco Pops story above. A global FMCG business with far more analyst resource than most, still unable to answer a distribution question fast enough to act on it. The tooling is rarely the constraint. The time between question and answer is.</p>
+        <div class="stats">
+          <div class="stat"><div class="v">Multi</div><div class="l">Market &amp; category</div></div>
+          <div class="stat"><div class="v">Retail</div><div class="l">Distribution &amp; rate of sale</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="quote">
+      <p>“The Monday spreadsheet doesn't get built any more. Nobody rebuilt the process, it just stopped being necessary.”</p>
+      <cite>Operations, Urban Leisure Group</cite>
+    </div>
+
+    <div class="trust">
+      <span class="t-l">And on the boring but necessary</span>
+      <span>National Lottery</span><span>ISO 27001</span><span>SOC 2</span><span>Independently pen-tested</span><span>Processor only, we never store customer data</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ COMPARE ═══ -->
+<section class="sec" style="background:var(--cream-lt)">
+  <div class="tex noise"></div>
+  <div class="tex grid"></div>
+  <div class="wrap">
+    <div class="kicker">The obvious question</div>
+    <h2>Why not Copilot, <span class="lt">or a BI tool?</span></h2>
+    <p class="lede">Most businesses have one or both already. The honest difference for a distributor running a dozen brands across four channels.</p>
+    <div class="cmp">
+      <table class="ct">
+        <thead>
+          <tr><th>Capability</th><th>Copilot / ChatGPT</th><th>Traditional BI</th><th class="m">Milo</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="f">Reads the ledger, CRM, depletions and EPOS</td><td><span class="no">✗</span> No native connection</td><td>Yes, after a warehouse project</td><td class="m"><span class="yes">✓</span> 700+ connectors, live</td></tr>
+          <tr><td class="f">Handles a different file format per wholesaler</td><td><span class="no">✗</span> One file at a time</td><td>Yes, once someone builds the mapping</td><td class="m"><span class="yes">✓</span> Mapped once, then automatic</td></tr>
+          <tr><td class="f">Ask in plain English</td><td><span class="yes">✓</span> Yes, with no data behind it</td><td><span class="no">✗</span> Build a report, or ask an analyst</td><td class="m"><span class="yes">✓</span> Yes, plus Teams, Slack, WhatsApp</td></tr>
+          <tr><td class="f">Time to a working dashboard</td><td>Not applicable</td><td>Weeks to months</td><td class="m"><span class="yes">✓</span> Minutes, built with you in month one</td></tr>
+          <tr><td class="f">Tells you when an account goes quiet</td><td><span class="no">✗</span> You go and look</td><td><span class="no">✗</span> You go and look</td><td class="m"><span class="yes">✓</span> Scheduled and triggered alerts</td></tr>
+          <tr><td class="f">Shows its sources</td><td><span class="no">✗</span> Generative, unverifiable</td><td><span class="yes">✓</span> Yes</td><td class="m"><span class="yes">✓</span> Every number, traceable</td></tr>
+          <tr><td class="f">Cost per user</td><td>Per seat</td><td>Per seat, plus build cost</td><td class="m"><span class="yes">✓</span> Unlimited seats, one flat fee</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ NEXT ═══ -->
+<section class="sec" style="background:var(--paper)">
+  <div class="tex noise"></div>
+  <div class="wrap">
+    <div class="kicker">Next steps</div>
+    <h2>Twenty minutes, <span class="ac">then you know.</span></h2>
+    <p class="lede">No obligation at any point, and nothing here needs a project team to explore.</p>
+    <div class="phases">
+      <div class="ph">
+        <div class="w">Step 1<span>Twenty minutes</span></div>
+        <div><h3>A call, with something specific to Marussia</h3><p>Not a generic walkthrough. We come with the questions we think matter for a distributor running own brands and agency brands across on-trade, off-trade and ecommerce, and you tell us which ones are actually the painful ones.</p></div>
+      </div>
+      <div class="ph">
+        <div class="w">Step 2<span>Two to four weeks</span></div>
+        <div><h3>A proof of concept on your own data</h3><p>We connect two or three sources and answer the questions you picked. We do the connecting and the building, not your team, and it runs on read-only or sandbox access rather than production. If the answers are not better and faster than what you get today, that is a clean no.</p></div>
+      </div>
+      <div class="ph">
+        <div class="w">Step 3<span>If it works</span></div>
+        <div><h3>The rest of the business</h3><p>Brand performance, depletions, distribution and promotional payback, all current and all traceable. Unlimited seats, so it spreads on its own rather than through a rollout.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section class="cta">
+  <div class="tex noise"></div>
+  <div class="tex grid-dark"></div>
+  <div class="wrap">
+    <h2>Twenty minutes.</h2>
+    <p>Happy to work around whatever the diary looks like. We will come with something specific to Marussia rather than a generic walkthrough.</p>
+    <a class="btn btn-p" href="mailto:liam@milo.ai?subject=Marussia%20%C3%97%20Milo">Get in touch</a>
+  </div>
+</section>
+
+<footer>Liam Rabone · <a href="mailto:liam@milo.ai">liam@milo.ai</a> · Milo is an Autonomous Minds product</footer>
+
+</body>
+</html>
