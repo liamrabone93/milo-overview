@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Milo × Webbs Garden Centres</title>
+<meta name="description" content="Two routes to the same answer. A four-week Milo pilot, prepared for the Webbs Garden Centres board."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,300..800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  /* ── Webbs brand tokens, lifted from webbsdirect.co.uk live CSS + logo SVG ── */
+  --aubergine:#310D4F;      /* primary brand purple, 45 uses in their stylesheet */
+  --aubergine-lift:#42206A;
+  --aubergine-deep:#22093A;
+  --logo:#2D1B50;           /* fill of webbslogo.svg */
+  --ink:#1F1511;            /* warm near-black, their body colour */
+  --ink-70:#5C504A;
+  --ink-45:#8C8480;
+  --ink-25:#BEB8B3;
+  --paper:#EDEBE7;          /* their warm off-white */
+  --paper-lift:#F6F4F1;
+  --card:#FFFFFF;
+  --rule:#E1DDD6;
+  --rule-soft:#EBE8E2;
+  --pink:#FF0045;           /* their accent / sale red-pink */
+  --green:#00A924;
+  --green-deep:#004A24;
+  --lavender:#DCD4E8;
+  --mint:#E1EEE4;
+  --blush:#F9E6EE;
+  /* Milo */
+  --milo-a:#5B8DEF; --milo-b:#B57BF3;
+  --maxw:1120px;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+
+html{font-size:16px;scroll-behavior:smooth;scroll-padding-top:78px}
+body{
+  font-family:'Archivo',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-variation-settings:'wdth' 100;
+  background:var(--paper);color:var(--ink);line-height:1.62;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden;
+}
+::selection{background:var(--lavender);color:var(--aubergine)}
+a{color:inherit}
+img,svg{max-width:100%}
+
+/* ── Motion ───────────────────────────────────────────────────────────────── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes growBar{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes msgIn{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
+@keyframes typeDot{0%,80%,100%{transform:translateY(0);opacity:.3}40%{transform:translateY(-4px);opacity:1}}
+@keyframes softPulse{0%,100%{opacity:.5}50%{opacity:1}}
+@keyframes seedRise{from{opacity:0;transform:translateY(8px) scale(.96)}to{opacity:1;transform:none}}
+@keyframes dash{to{stroke-dashoffset:0}}
+
+.js .reveal{opacity:0;transform:translateY(22px);transition:opacity .72s var(--ease),transform .72s var(--ease)}
+.reveal.on{opacity:1;transform:none}
+.d1{transition-delay:.07s}.d2{transition-delay:.14s}.d3{transition-delay:.21s}.d4{transition-delay:.28s}.d5{transition-delay:.35s}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
+
+/* ── Type ─────────────────────────────────────────────────────────────────── */
+h1,h2,h3{font-weight:600;letter-spacing:-.035em;line-height:1.04;font-variation-settings:'wdth' 112}
+h1{font-size:clamp(2.5rem,6vw,4.8rem);letter-spacing:-.045em}
+h2{font-size:clamp(1.95rem,4.2vw,3.15rem);line-height:1.06}
+h3{font-size:clamp(1.2rem,2.1vw,1.55rem);line-height:1.16;letter-spacing:-.03em;font-variation-settings:'wdth' 106}
+h4{font-size:1rem;font-weight:600;letter-spacing:-.012em;line-height:1.32;font-variation-settings:'wdth' 104}
+p{font-size:.97rem;color:var(--ink-70);line-height:1.68}
+.lead{font-size:clamp(1.02rem,1.6vw,1.22rem);color:var(--ink-70);line-height:1.58;letter-spacing:-.012em}
+em{font-style:normal;color:var(--aubergine)}
+b,strong{font-weight:600;color:var(--ink)}
+
+.eyebrow{font-family:var(--mono);font-size:.67rem;font-weight:500;letter-spacing:.17em;text-transform:uppercase;color:var(--ink-45)}
+.eyebrow .dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--pink);margin-right:9px;vertical-align:middle;animation:softPulse 2.6s ease-in-out infinite}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+
+/* ── Layout ───────────────────────────────────────────────────────────────── */
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 30px}
+section{position:relative}
+.sec{padding:100px 0}
+.sec-tight{padding:68px 0}
+.sec-head{max-width:740px;margin-bottom:48px}
+.sec-head h2{margin:14px 0 16px}
+.dark{background:var(--aubergine);color:#fff}
+.dark h2,.dark h3,.dark h4{color:#fff}
+.dark p{color:rgba(255,255,255,.66)}
+.dark .eyebrow{color:rgba(220,212,232,.7)}
+.dark .lead{color:rgba(255,255,255,.72)}
+.dark b,.dark strong{color:#fff}
+.dark em{color:var(--lavender)}
+.leaf-grid{background-image:radial-gradient(var(--rule) 1px,transparent 1px);background-size:22px 22px}
+
+/* ── Nav ──────────────────────────────────────────────────────────────────── */
+#progress{position:fixed;top:0;left:0;height:2px;width:0;background:linear-gradient(90deg,var(--aubergine),var(--pink));z-index:100;transition:width .1s linear}
+nav{position:fixed;top:0;left:0;right:0;z-index:90;background:rgba(237,235,231,.86);backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid transparent;transition:border-color .3s}
+nav.stuck{border-bottom-color:var(--rule)}
+.nav-in{max-width:var(--maxw);margin:0 auto;padding:13px 30px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.lockup{display:flex;align-items:center;gap:12px;flex-shrink:0}
+.lock-x{color:var(--ink-25);font-size:.8rem}
+.webbs-mark{height:26px;width:auto;color:var(--aubergine);display:block}
+.milo-mark{height:24px;width:auto;display:block}
+.nav-links{display:flex;gap:22px;align-items:center}
+.nav-links a{font-size:.8rem;font-weight:500;color:var(--ink-70);text-decoration:none;position:relative;padding:2px 0;transition:color .2s;white-space:nowrap}
+.nav-links a::after{content:'';position:absolute;left:0;bottom:-2px;height:1.5px;width:0;background:var(--aubergine);transition:width .25s var(--ease)}
+.nav-links a:hover{color:var(--aubergine)}.nav-links a:hover::after{width:100%}
+.nav-cta{font-size:.8rem;font-weight:600;background:var(--aubergine);color:#fff!important;padding:9px 17px;border-radius:999px;text-decoration:none;transition:transform .2s var(--ease),background .2s;white-space:nowrap}
+.nav-cta:hover{transform:translateY(-1px);background:var(--aubergine-lift)}
+.nav-cta::after{display:none!important}
+@media(max-width:1000px){.nav-links{display:none}}
+
+/* ── Hero ─────────────────────────────────────────────────────────────────── */
+#hero{padding:150px 0 74px;position:relative;overflow:hidden}
+#hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(var(--rule) 1px,transparent 1px);background-size:24px 24px;-webkit-mask-image:radial-gradient(ellipse 72% 60% at 42% 36%,#000 0%,transparent 76%);mask-image:radial-gradient(ellipse 72% 60% at 42% 36%,#000 0%,transparent 76%);opacity:.8;pointer-events:none}
+#hero .wrap{position:relative;z-index:2}
+.hero-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:28px;animation:fadeUp .7s var(--ease) both}
+.chip{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:.68rem;font-weight:400;letter-spacing:.04em;color:var(--ink-70);background:var(--card);border:1px solid var(--rule);border-radius:999px;padding:6px 13px}
+.chip.solid{background:var(--aubergine);color:#fff;border-color:var(--aubergine)}
+.chip.pink{background:var(--blush);border-color:rgba(255,0,69,.28);color:#B10030}
+h1 .ln{display:block;overflow:hidden}
+h1 .ln>span{display:block;animation:fadeUp .95s var(--ease) both}
+h1 .ln:nth-child(1)>span{animation-delay:.08s}
+h1 .ln:nth-child(2)>span{animation-delay:.2s}
+h1 .ln:nth-child(3)>span{animation-delay:.32s}
+.hero-answer{max-width:660px;margin:26px 0 0;font-size:clamp(1.1rem,2vw,1.45rem);font-weight:600;letter-spacing:-.025em;line-height:1.32;color:var(--aubergine);font-variation-settings:'wdth' 106;animation:fadeUp .8s .34s var(--ease) both}
+.hero-sub{max-width:640px;margin:18px 0 0;animation:fadeUp .8s .44s var(--ease) both}
+.hero-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:38px;animation:fadeUp .8s .52s var(--ease) both}
+.btn{display:inline-flex;align-items:center;gap:9px;font-size:.88rem;font-weight:600;padding:13px 22px;border-radius:999px;text-decoration:none;transition:transform .2s var(--ease),box-shadow .2s}
+.btn-p{background:var(--aubergine);color:#fff;box-shadow:0 8px 24px rgba(49,13,79,.22)}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(49,13,79,.3)}
+.btn-s{background:transparent;color:var(--ink);border:1px solid var(--ink-25)}
+.btn-s:hover{transform:translateY(-2px);border-color:var(--aubergine);color:var(--aubergine)}
+
+/* ── Tools marquee ───────────────────────────────────────────────────────── */
+#tools{padding:74px 0 0;overflow:hidden}
+.tools-head{max-width:660px;margin-bottom:24px}
+.tools-head h3{margin-bottom:8px}
+.tools-head p{font-size:.9rem;color:var(--ink-45)}
+.marquee{position:relative;overflow:hidden;padding:5px 0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.mq-track{display:flex;gap:10px;width:max-content;animation:mqScroll var(--dur,54s) linear infinite}
+.mq-track.rev{animation-direction:reverse}
+.marquee:hover .mq-track,.marquee:focus-within .mq-track{animation-play-state:paused}
+@keyframes mqScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.tool{display:inline-flex;align-items:center;gap:9px;flex-shrink:0;background:var(--card);border:1px solid var(--rule);border-radius:999px;padding:9px 16px;font-size:.84rem;font-weight:500;color:var(--ink-70);white-space:nowrap;transition:border-color .2s,color .2s}
+.tool:hover{border-color:var(--ink-25);color:var(--ink)}
+.tool i{width:7px;height:7px;border-radius:2px;flex-shrink:0;font-style:normal}
+.tools-foot{margin-top:22px;display:flex;align-items:flex-start;gap:11px;background:var(--paper-lift);border:1px solid var(--rule);border-radius:13px;padding:15px 17px}
+.tools-foot p{font-size:.86rem;color:var(--ink-70);line-height:1.6;margin:0}
+@media(prefers-reduced-motion:reduce){.mq-track{animation:none;flex-wrap:wrap;width:auto}.marquee{-webkit-mask-image:none;mask-image:none}}
+
+/* ── Letter ───────────────────────────────────────────────────────────────── */
+.letter{background:var(--card);border:1px solid var(--rule);border-radius:18px;padding:44px 46px;position:relative;box-shadow:0 1px 2px rgba(31,21,17,.03),0 12px 32px rgba(31,21,17,.04)}
+.letter::before{content:'';position:absolute;left:0;top:24px;bottom:24px;width:3px;background:var(--pink);border-radius:0 3px 3px 0}
+.letter p{font-size:1rem;margin-bottom:16px}
+.letter p:last-of-type{margin-bottom:0}
+.sig{display:flex;align-items:center;gap:13px;margin-top:30px;padding-top:24px;border-top:1px solid var(--rule)}
+.sig-av{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--milo-a),var(--milo-b));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:.85rem;flex-shrink:0}
+.sig-n{font-size:.9rem;font-weight:600}
+.sig-r{font-size:.77rem;color:var(--ink-45)}
+@media(max-width:640px){.letter{padding:32px 24px}}
+
+/* ── Pull quote ───────────────────────────────────────────────────────────── */
+.pull{padding:92px 0;text-align:center}
+.pull .big{font-size:clamp(1.6rem,3.6vw,2.6rem);font-weight:600;letter-spacing:-.04em;line-height:1.18;max-width:960px;margin:0 auto;display:block;font-variation-settings:'wdth' 110}
+.pull .attrib{margin-top:24px;font-family:var(--mono);font-size:.7rem;color:var(--ink-45);letter-spacing:.1em;text-transform:uppercase}
+
+/* ── Cards / grid ─────────────────────────────────────────────────────────── */
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:900px){.g3,.g4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.g2,.g3,.g4{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--rule);border-radius:16px;padding:26px 24px;transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s}
+.card:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(31,21,17,.07);border-color:var(--ink-25)}
+.card h4{margin-bottom:8px}
+.card p{font-size:.875rem;line-height:1.6}
+.c-num{font-family:var(--mono);font-size:.67rem;letter-spacing:.14em;color:var(--pink);margin-bottom:12px}
+.dark .card{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.13)}
+.dark .card:hover{border-color:rgba(220,212,232,.45);box-shadow:0 16px 40px rgba(0,0,0,.28)}
+.dark .card p{color:rgba(255,255,255,.64)}
+.dark .c-num{color:var(--lavender)}
+
+/* ── Stack diagram ────────────────────────────────────────────────────────── */
+.stack{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:1000px){.stack{grid-template-columns:1fr 1fr}}
+@media(max-width:700px){.stack{grid-template-columns:1fr}}
+.stk.plan{background:var(--paper-lift)}
+.stk{background:var(--card);border:1px solid var(--rule);border-radius:16px;padding:26px 24px 24px}
+.stk.now{background:var(--paper-lift)}
+.stk-hd{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid var(--rule)}
+.stk-hd h4{font-size:.95rem}
+.stk-tag{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;padding:4px 9px;border-radius:5px;white-space:nowrap}
+.stk-tag.a{background:var(--blush);color:#B10030}
+.stk-tag.b{background:var(--mint);color:var(--green-deep)}
+.node{display:flex;align-items:flex-start;gap:12px;padding:11px 13px;border-radius:10px;background:#fff;border:1px solid var(--rule);margin-bottom:0}
+.stk.now .node{background:#fff}
+.node .ic{width:26px;height:26px;border-radius:7px;background:var(--paper);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:var(--mono);font-size:.6rem;font-weight:500;color:var(--ink-45)}
+.node .nt{font-size:.85rem;font-weight:600;line-height:1.35}
+.node .ns{font-size:.76rem;color:var(--ink-45);line-height:1.45;margin-top:2px}
+.node.milo{border-color:rgba(181,123,243,.5);background:linear-gradient(180deg,rgba(181,123,243,.07),rgba(91,141,239,.05))}
+.node.milo .ic{background:linear-gradient(135deg,var(--milo-a),var(--milo-b));color:#fff}
+.arrow-d{height:20px;display:flex;align-items:center;justify-content:center;position:relative}
+.arrow-d::before{content:'';width:1px;height:100%;background:var(--ink-25)}
+.arrow-d::after{content:'';position:absolute;bottom:0;width:0;height:0;border-left:3.5px solid transparent;border-right:3.5px solid transparent;border-top:5px solid var(--ink-25)}
+.friction{display:flex;align-items:flex-start;gap:8px;margin-top:12px;padding:10px 12px;border-radius:9px;background:rgba(255,0,69,.055);border:1px solid rgba(255,0,69,.17)}
+.friction p{font-size:.79rem;color:#8C0027;line-height:1.5;margin:0}
+.gain{display:flex;align-items:flex-start;gap:8px;margin-top:12px;padding:10px 12px;border-radius:9px;background:rgba(0,169,36,.06);border:1px solid rgba(0,169,36,.2)}
+.gain p{font-size:.79rem;color:var(--green-deep);line-height:1.5;margin:0}
+
+/* ── Routes / the fork ────────────────────────────────────────────────────── */
+.rt-switch{display:inline-flex;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:4px;gap:3px;margin-bottom:30px;flex-wrap:wrap}
+.rt-btn{font-family:'Archivo',sans-serif;font-size:.83rem;font-weight:500;color:rgba(255,255,255,.66);background:none;border:0;padding:9px 18px;border-radius:999px;cursor:pointer;transition:all .25s var(--ease);white-space:nowrap}
+.rt-btn:hover{color:#fff}
+.rt-btn.act{background:#fff;color:var(--aubergine);font-weight:600}
+.rt-board{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:18px;overflow:hidden}
+.rt-top{padding:24px 26px;border-bottom:1px solid rgba(255,255,255,.12);display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap}
+.rt-top h3{margin-bottom:6px}
+.rt-top p{font-size:.88rem;max-width:560px}
+.rt-badge{font-family:var(--mono);font-size:.63rem;letter-spacing:.12em;text-transform:uppercase;padding:6px 12px;border-radius:999px;background:rgba(220,212,232,.16);color:var(--lavender);white-space:nowrap}
+.rt-track{padding:26px;display:grid;gap:2px;grid-template-columns:repeat(6,1fr)}
+@media(max-width:1080px){.rt-track{grid-template-columns:repeat(3,1fr);gap:8px}}
+@media(max-width:780px){.rt-track{grid-template-columns:repeat(2,1fr);gap:10px}}
+.rt-cell{padding:14px 12px;background:rgba(255,255,255,.04);border-radius:8px;min-height:112px;display:flex;flex-direction:column;gap:6px;animation:seedRise .45s var(--ease) both}
+.rt-cell .m{font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(220,212,232,.62)}
+.rt-cell .t{font-size:.8rem;font-weight:600;color:#fff;line-height:1.32}
+.rt-cell .s{font-size:.74rem;color:rgba(255,255,255,.55);line-height:1.42}
+.rt-cell.hot{background:rgba(0,169,36,.16);box-shadow:inset 0 0 0 1px rgba(0,169,36,.38)}
+.rt-cell.warn{background:rgba(255,0,69,.14);box-shadow:inset 0 0 0 1px rgba(255,0,69,.34)}
+.rt-foot{padding:18px 26px;border-top:1px solid rgba(255,255,255,.12);display:flex;gap:24px;flex-wrap:wrap}
+.rt-kv{display:flex;flex-direction:column;gap:2px}
+.rt-kv .k{font-family:var(--mono);font-size:.58rem;letter-spacing:.13em;text-transform:uppercase;color:rgba(220,212,232,.6)}
+.rt-kv .v{font-size:.92rem;font-weight:600;color:#fff}
+
+/* ── Demo ─────────────────────────────────────────────────────────────────── */
+.demo-shell{background:var(--aubergine-deep);border-radius:16px;overflow:hidden;box-shadow:0 30px 80px rgba(34,9,58,.34);border:1px solid rgba(255,255,255,.1)}
+.demo-bar{display:flex;align-items:center;gap:8px;padding:11px 16px;background:rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.08)}
+.cdot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.demo-bar .title{margin-left:8px;font-family:var(--mono);font-size:.68rem;color:rgba(255,255,255,.5);letter-spacing:.03em}
+.demo-bar .live{margin-left:auto;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:.62rem;color:#6FE08C;letter-spacing:.08em}
+.demo-bar .live i{width:5px;height:5px;border-radius:50%;background:#6FE08C;animation:softPulse 2s infinite}
+.demo-tabs{display:flex;gap:4px;padding:12px 14px 0;overflow-x:auto;scrollbar-width:none}
+.demo-tabs::-webkit-scrollbar{display:none}
+.dtab{font-family:'Archivo',sans-serif;font-size:.76rem;font-weight:500;color:rgba(255,255,255,.55);background:rgba(255,255,255,.05);border:1px solid transparent;padding:7px 14px;border-radius:8px;cursor:pointer;white-space:nowrap;transition:all .2s}
+.dtab:hover{color:#fff;background:rgba(255,255,255,.1)}
+.dtab.act{background:#fff;color:var(--aubergine);font-weight:600}
+.demo-body{padding:20px 20px 8px;min-height:412px}
+.msg{display:flex;gap:12px;margin-bottom:18px;animation:msgIn .42s var(--ease) both}
+.av{width:28px;height:28px;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:600}
+.av.u{background:var(--lavender);color:var(--aubergine)}
+.av.m{background:linear-gradient(135deg,var(--milo-a),var(--milo-b));color:#fff}
+.bub{flex:1;min-width:0}
+.who{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-bottom:5px}
+.q{font-size:.94rem;color:#fff;font-weight:500;line-height:1.45}
+.a{font-size:.9rem;color:rgba(255,255,255,.76);line-height:1.66}
+.a b{color:#fff}
+.up{color:#6FE08C;font-weight:600}
+.dn{color:#FF6B8F;font-weight:600}
+.typing{display:flex;gap:4px;padding:7px 0}
+.typing i{width:6px;height:6px;border-radius:50%;background:#fff;animation:typeDot 1.3s infinite}
+.typing i:nth-child(2){animation-delay:.16s}.typing i:nth-child(3){animation-delay:.32s}
+.chart{margin-top:14px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09);border-radius:11px;padding:16px 16px 12px}
+.chart-t{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:13px}
+.row{display:grid;grid-template-columns:132px 1fr 62px;align-items:center;gap:11px;margin-bottom:8px}
+@media(max-width:600px){.row{grid-template-columns:96px 1fr 56px;gap:8px}}
+.rl{font-size:.78rem;color:rgba(255,255,255,.72);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.track{height:7px;border-radius:4px;background:rgba(255,255,255,.09);overflow:hidden}
+.fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--milo-a),var(--milo-b));transform-origin:left;transform:scaleX(0)}
+.fill.neg{background:linear-gradient(90deg,#FF6B8F,#FF0045)}
+.fill.pos{background:linear-gradient(90deg,#4FD06B,#00A924)}
+.fill.go{animation:growBar .82s var(--ease) both}
+.rv{font-family:var(--mono);font-size:.76rem;text-align:right}
+.rv.pos{color:#6FE08C}.rv.neg{color:#FF6B8F}.rv.neu{color:rgba(255,255,255,.6)}
+.insight{margin-top:13px;display:flex;gap:9px;padding:12px 13px;border-radius:10px;background:linear-gradient(135deg,rgba(91,141,239,.14),rgba(181,123,243,.12));border:1px solid rgba(181,123,243,.3)}
+.ib{font-size:.83rem;color:rgba(255,255,255,.82);line-height:1.55}
+.ib b{color:#fff}
+.deny{margin-top:14px;display:flex;gap:10px;padding:13px 14px;border-radius:10px;background:rgba(255,0,69,.1);border:1px solid rgba(255,0,69,.32)}
+.deny .db{font-size:.83rem;color:#FFC2D2;line-height:1.55}
+.deny .db b{color:#fff}
+.src{margin-top:11px;font-family:var(--mono);font-size:.62rem;color:rgba(255,255,255,.3);letter-spacing:.04em;line-height:1.7}
+.demo-foot{display:flex;align-items:center;gap:10px;padding:14px 18px;border-top:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03)}
+.fake-input{flex:1;font-size:.84rem;color:rgba(255,255,255,.32)}
+.send{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--milo-a),var(--milo-b));display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.mocknote{margin-top:16px;font-size:.78rem;color:var(--ink-45);line-height:1.55;text-align:center}
+.dark .mocknote{color:rgba(255,255,255,.45)}
+
+/* ── Permissions matrix ───────────────────────────────────────────────────── */
+.perm{background:var(--card);border:1px solid var(--rule);border-radius:18px;overflow:hidden}
+.perm-top{display:flex;gap:6px;padding:16px;border-bottom:1px solid var(--rule);overflow-x:auto;scrollbar-width:none}
+.perm-top::-webkit-scrollbar{display:none}
+.pbtn{font-family:'Archivo',sans-serif;font-size:.79rem;font-weight:500;color:var(--ink-70);background:var(--paper);border:1px solid var(--rule);padding:9px 15px;border-radius:9px;cursor:pointer;white-space:nowrap;transition:all .2s}
+.pbtn:hover{border-color:var(--ink-25)}
+.pbtn.act{background:var(--aubergine);color:#fff;border-color:var(--aubergine);font-weight:600}
+.perm-body{padding:22px 24px}
+.perm-who{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.perm-who h4{font-size:1.05rem}
+.perm-who span{font-size:.83rem;color:var(--ink-45)}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+@media(max-width:760px){.pgrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.pgrid{grid-template-columns:1fr}}
+.pcell{display:flex;align-items:center;gap:10px;padding:12px 13px;border-radius:10px;font-size:.82rem;font-weight:500;animation:seedRise .4s var(--ease) both;border:1px solid transparent}
+.pcell .pi{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.7rem;font-weight:700}
+.pcell.y{background:rgba(0,169,36,.08);border-color:rgba(0,169,36,.24);color:var(--green-deep)}
+.pcell.y .pi{background:var(--green);color:#fff}
+.pcell.n{background:rgba(255,0,69,.055);border-color:rgba(255,0,69,.2);color:#8C0027}
+.pcell.n .pi{background:var(--pink);color:#fff}
+.pcell.s{background:var(--paper-lift);border-color:var(--rule);color:var(--ink-70)}
+.pcell.s .pi{background:var(--ink-25);color:#fff}
+.pcell .px{display:block;font-size:.72rem;font-weight:400;opacity:.8;margin-top:1px}
+.audit{margin-top:18px;padding:14px 15px;border-radius:11px;background:var(--paper-lift);border:1px solid var(--rule);font-family:var(--mono);font-size:.7rem;color:var(--ink-70);line-height:1.85;overflow-x:auto;white-space:nowrap}
+.audit .ok{color:var(--green-deep)}
+.audit .no{color:#B10030}
+.audit .dim{color:var(--ink-45)}
+
+/* ── Calculator ───────────────────────────────────────────────────────────── */
+.calc{background:var(--card);border:1px solid var(--rule);border-radius:18px;overflow:hidden;box-shadow:0 14px 40px rgba(31,21,17,.05)}
+.calc-grid{display:grid;grid-template-columns:1fr 1fr}
+@media(max-width:860px){.calc-grid{grid-template-columns:1fr}}
+.calc-in{padding:28px 28px 30px;border-right:1px solid var(--rule)}
+@media(max-width:860px){.calc-in{border-right:0;border-bottom:1px solid var(--rule)}}
+.fld{margin-top:22px}
+.fld-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:9px}
+.fld-lab{font-size:.85rem;font-weight:500;color:var(--ink)}
+.fld-val{font-family:var(--mono);font-size:.84rem;color:var(--aubergine);font-weight:500;white-space:nowrap}
+.fld-hint{font-size:.74rem;color:var(--ink-45);margin-top:7px;line-height:1.45}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:4px;border-radius:3px;background:var(--rule);outline:none;cursor:pointer}
+:focus-visible{outline:2px solid var(--pink);outline-offset:3px;border-radius:4px}
+input[type=range]:focus-visible{outline-offset:6px}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:17px;height:17px;border-radius:50%;background:var(--aubergine);cursor:pointer;border:2.5px solid #fff;box-shadow:0 1px 5px rgba(49,13,79,.35);transition:transform .15s}
+input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.14)}
+input[type=range]::-moz-range-thumb{width:17px;height:17px;border-radius:50%;background:var(--aubergine);cursor:pointer;border:2.5px solid #fff;box-shadow:0 1px 5px rgba(49,13,79,.35)}
+.calc-out{padding:28px;background:var(--aubergine);color:#fff}
+.calc-out .eyebrow{color:rgba(220,212,232,.72)}
+.co-row{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.13)}
+.co-lab{font-size:.86rem;color:rgba(255,255,255,.74);line-height:1.4}
+.co-lab small{display:block;font-size:.72rem;color:rgba(255,255,255,.42);margin-top:2px;line-height:1.4}
+.co-val{font-family:var(--mono);font-size:.94rem;white-space:nowrap;color:#fff}
+.co-val.big{font-size:1.16rem;font-weight:500}
+.co-final{margin-top:20px;padding:18px 18px;border-radius:13px;background:rgba(255,255,255,.08);display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.cf-l b{display:block;font-size:.88rem;color:#fff;font-weight:600}
+.cf-l span{display:block;font-size:.75rem;color:rgba(255,255,255,.55);margin-top:3px;max-width:290px;line-height:1.45}
+.cf-v{font-family:var(--mono);font-size:clamp(1.5rem,3vw,2rem);font-weight:500;letter-spacing:-.02em;background:linear-gradient(96deg,#C9B6F0,#F2A8C0);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;white-space:nowrap}
+.calc-note{margin-top:16px;font-size:.76rem;color:rgba(255,255,255,.5);line-height:1.55}
+
+/* comparison table */
+.cmp{border:1px solid var(--rule);border-radius:16px;overflow:hidden;background:var(--card)}
+.cmp-r{display:grid;grid-template-columns:1.05fr 1fr 1fr;border-bottom:1px solid var(--rule)}
+.cmp-r:last-child{border-bottom:0}
+.cmp-r>div{padding:15px 17px;font-size:.83rem;color:var(--ink-70);line-height:1.5;border-right:1px solid var(--rule)}
+.cmp-r>div:last-child{border-right:0}
+.cmp-r>div:first-child{font-weight:600;color:var(--ink);background:var(--paper-lift)}
+.cmp-r.hd>div{font-family:var(--mono);font-size:.64rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-45);background:var(--paper-lift);font-weight:500}
+.cmp-r .c-milo{background:rgba(181,123,243,.05)}
+.cmp-r.hd .c-milo{color:var(--aubergine)}
+@media(max-width:760px){.cmp-r{grid-template-columns:1fr}.cmp-r>div{border-right:0;border-bottom:1px solid var(--rule-soft)}.cmp-r.hd{display:none}.cmp-r>div:first-child{font-size:.78rem}}
+
+/* ── Role tabs ────────────────────────────────────────────────────────────── */
+.rtabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:22px}
+.rtb{font-family:'Archivo',sans-serif;font-size:.81rem;font-weight:500;color:var(--ink-70);background:var(--card);border:1px solid var(--rule);padding:9px 16px;border-radius:999px;cursor:pointer;transition:all .2s}
+.rtb:hover{border-color:var(--ink-25)}
+.rtb.act{background:var(--aubergine);color:#fff;border-color:var(--aubergine);font-weight:600}
+.rpanel{display:none}.rpanel.act{display:block;animation:seedRise .4s var(--ease) both}
+.rcard{background:var(--card);border:1px solid var(--rule);border-radius:18px;overflow:hidden}
+.rhd{display:flex;justify-content:space-between;gap:22px;padding:26px 26px 22px;border-bottom:1px solid var(--rule);flex-wrap:wrap}
+.rhd h3{margin-bottom:7px}
+.rhd p{font-size:.88rem;max-width:560px}
+.rwho{text-align:right;flex-shrink:0}
+.rwho .lbl{font-family:var(--mono);font-size:.58rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-25)}
+.rwho .nm{font-size:.92rem;font-weight:600;margin-top:4px}
+.rwho .lc{font-size:.76rem;color:var(--ink-45)}
+@media(max-width:620px){.rwho{text-align:left}}
+.qrow{display:grid;grid-template-columns:1fr 1.25fr;border-bottom:1px solid var(--rule-soft)}
+.qrow:last-child{border-bottom:0}
+.qrow>div{padding:18px 24px}
+.qq{border-right:1px solid var(--rule-soft);background:var(--paper-lift)}
+@media(max-width:720px){.qrow{grid-template-columns:1fr}.qq{border-right:0;border-bottom:1px solid var(--rule-soft)}}
+.qlab{font-family:var(--mono);font-size:.58rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-25);margin-bottom:7px}
+.qq p{font-size:.87rem;color:var(--ink);font-weight:500;line-height:1.5}
+.qa p{font-size:.85rem;line-height:1.58}
+
+/* ── Pilot weeks ──────────────────────────────────────────────────────────── */
+.weeks{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid rgba(255,255,255,.14);border-radius:16px;overflow:hidden}
+@media(max-width:900px){.weeks{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.weeks{grid-template-columns:1fr}}
+.wk{padding:24px 22px;border-right:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04)}
+.wk:last-child{border-right:0}
+.wk .wn{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--lavender);margin-bottom:11px}
+.wk h4{font-size:.95rem;margin-bottom:9px}
+.wk p{font-size:.82rem;line-height:1.55}
+.wk ul{list-style:none;margin-top:12px;display:flex;flex-direction:column;gap:7px}
+.wk li{font-size:.79rem;color:rgba(255,255,255,.6);padding-left:15px;position:relative;line-height:1.45}
+.wk li::before{content:'';position:absolute;left:0;top:7px;width:5px;height:5px;border-radius:50%;background:var(--lavender)}
+@media(max-width:900px){.wk:nth-child(2){border-right:0}}
+
+/* ── Timeline ─────────────────────────────────────────────────────────────── */
+.tl{position:relative;padding-left:26px}
+.tl::before{content:'';position:absolute;left:5px;top:8px;bottom:8px;width:1px;background:var(--rule)}
+.tli{position:relative;padding-bottom:26px}
+.tli:last-child{padding-bottom:0}
+.tli::before{content:'';position:absolute;left:-26px;top:5px;width:11px;height:11px;border-radius:50%;background:var(--card);border:2px solid var(--ink-25)}
+.tli.now::before{background:var(--pink);border-color:var(--pink);box-shadow:0 0 0 4px rgba(255,0,69,.16)}
+.tli.milo::before{background:var(--aubergine);border-color:var(--aubergine)}
+.tli .td{font-family:var(--mono);font-size:.64rem;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-45);margin-bottom:4px}
+.tli h4{margin-bottom:4px}
+.tli p{font-size:.85rem;line-height:1.55}
+
+/* ── Pricing ──────────────────────────────────────────────────────────────── */
+.price{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:760px){.price{grid-template-columns:1fr}}
+.pc{background:var(--card);border:1px solid var(--rule);border-radius:18px;padding:30px 28px;position:relative;overflow:hidden}
+.pc.hero{background:var(--aubergine);border-color:var(--aubergine);color:#fff}
+.pc .pk{font-family:var(--mono);font-size:.63rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-45);margin-bottom:14px}
+.pc.hero .pk{color:var(--lavender)}
+.pc .pv{font-size:clamp(2.1rem,4.4vw,2.9rem);font-weight:600;letter-spacing:-.05em;line-height:1;font-variation-settings:'wdth' 110}
+.pc .pu{font-size:.85rem;color:var(--ink-45);margin-top:8px}
+.pc.hero .pu{color:rgba(255,255,255,.6)}
+.pc ul{list-style:none;margin-top:20px;padding-top:18px;border-top:1px solid var(--rule);display:flex;flex-direction:column;gap:9px}
+.pc.hero ul{border-top-color:rgba(255,255,255,.16)}
+.pc li{font-size:.84rem;color:var(--ink-70);padding-left:20px;position:relative;line-height:1.5}
+.pc.hero li{color:rgba(255,255,255,.72)}
+.pc li::before{content:'';position:absolute;left:0;top:6px;width:9px;height:6px;border-left:1.8px solid var(--green);border-bottom:1.8px solid var(--green);transform:rotate(-45deg)}
+.pc.hero li::before{border-color:#8FE8A5}
+.pnote{margin-top:16px;font-size:.79rem;color:var(--ink-70);line-height:1.6}
+
+/* ── Board pack ───────────────────────────────────────────────────────────── */
+.bp{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:860px){.bp{grid-template-columns:1fr}}
+.bpc{background:var(--card);border:1px solid var(--rule);border-radius:16px;padding:0;overflow:hidden;display:flex;flex-direction:column}
+.bpc-t{padding:18px 22px;background:var(--aubergine);color:#fff}
+.bpc-t .n{font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;color:var(--lavender);margin-bottom:6px}
+.bpc-t h4{font-size:1rem;color:#fff}
+.bpc-b{padding:20px 22px;flex:1}
+.bpc-b p{font-size:.85rem;line-height:1.6;margin-bottom:12px}
+.bpc-b p:last-child{margin-bottom:0}
+.bpc-b .kv{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--rule-soft);font-size:.82rem}
+.bpc-b .kv:last-child{border-bottom:0}
+.bpc-b .kv b{font-family:var(--mono);font-weight:500;color:var(--aubergine);white-space:nowrap}
+
+/* ── CTA + footer ─────────────────────────────────────────────────────────── */
+#cta{background:var(--aubergine);color:#fff;padding:96px 0 88px;text-align:center;position:relative;overflow:hidden}
+#cta::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.09) 1px,transparent 1px);background-size:26px 26px;-webkit-mask-image:radial-gradient(ellipse 60% 70% at 50% 42%,#000,transparent 74%);mask-image:radial-gradient(ellipse 60% 70% at 50% 42%,#000,transparent 74%)}
+#cta .wrap{position:relative;z-index:2}
+#cta h2{max-width:780px;margin:16px auto 18px}
+#cta p{max-width:600px;margin:0 auto;color:rgba(255,255,255,.68)}
+.cta-row{display:flex;gap:13px;justify-content:center;flex-wrap:wrap;margin-top:34px}
+.btn-w{background:#fff;color:var(--aubergine)}
+.btn-w:hover{transform:translateY(-2px)}
+.btn-o{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.34)}
+.btn-o:hover{transform:translateY(-2px);border-color:#fff}
+footer{padding:40px 0 48px;border-top:1px solid var(--rule)}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.foot-l{display:flex;align-items:center;gap:11px}
+.foot p{font-size:.76rem;color:var(--ink-45)}
+.disclaim{margin-top:22px;font-size:.72rem;color:var(--ink-45);line-height:1.65;max-width:820px}
+
+.clients{display:flex;flex-direction:column;gap:8px}
+.cl{display:flex;flex-direction:column;gap:1px;font-size:.85rem;font-weight:600;color:var(--ink);padding:9px 12px;border-radius:9px;background:var(--paper-lift);border:1px solid var(--rule)}
+.cl i{font-style:normal;font-size:.76rem;font-weight:400;color:var(--ink-45)}
+.tag-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.tg{font-family:var(--mono);font-size:.65rem;letter-spacing:.08em;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);color:rgba(255,255,255,.82)}
+</style>
+</head>
+<body>
+<script>document.documentElement.className='js'</script>
+
+<div id="progress"></div>
+
+<nav id="nav">
+  <div class="nav-in">
+    <a href="#hero" class="lockup" style="text-decoration:none">
+      <svg class="milo-mark" viewBox="0 0 50 40" aria-label="Milo">
+        <defs><linearGradient id="mg" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#5B8DEF"/><stop offset="1" stop-color="#B57BF3"/></linearGradient></defs>
+        <path d="M7 31 L19 19 L31 26 L43 12" fill="none" stroke="url(#mg)" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="7" cy="31" r="4" fill="url(#mg)"/><circle cx="19" cy="19" r="4" fill="url(#mg)"/><circle cx="31" cy="26" r="4" fill="url(#mg)"/><circle cx="43" cy="12" r="4" fill="url(#mg)"/>
+        <path d="M22 5.3 Q22.5 7.5 24.7 8 Q22.5 8.5 22 10.7 Q21.5 8.5 19.3 8 Q21.5 7.5 22 5.3Z" fill="url(#mg)"/>
+        <path d="M36 1 Q36.8 4.2 40 5 Q36.8 5.8 36 9 Q35.2 5.8 32 5 Q35.2 4.2 36 1Z" fill="url(#mg)"/>
+      </svg>
+      <span class="lock-x">×</span>
+      <svg class="webbs-mark" viewBox="0 0 328.96 102.26" aria-label="Webbs Garden Centres"><path fill="currentColor" d="M86.99,6.95c3.53,3.59,7.77,8.54,6.39,13.95c-0.58,2.27-1.96,4.24-3.54,5.97c-3.1,3.39-7.14,5.45-11.24,7.37 c-2.57,1.2-5.57,2.47-8.84,4.07c0,0-2.54-9.61-2.99-11.3c-0.59-2.2-1.18-4.47-1.69-6.44c-0.16-0.6-0.28-1.19-0.38-1.78 c-0.19-1.09-0.24-2.16,0.16-3.28c0.48-1.31,1.47-2.36,2.44-3.37c0.81-0.87,1.65-1.72,2.47-2.57c0.41-0.43,0.82-0.86,1.23-1.29 c0.4-0.42,0.9-0.86,1.26-1.32L44.42,6.95c1.48,1.58,3.11,3.21,4.63,4.73c1.34,1.34,2.64,2.73,3.67,4.31 c0.68,1.04,1.15,2.2,1.42,3.41c0.46,2.06,1.01,4.1,1.52,6.14c0.64,2.54,1.28,5.08,1.93,7.61c0.59,2.31,1.17,4.63,1.76,6.94l0.9,3.57 c-0.31,0.21-0.63,0.42-0.95,0.63c-6.99,4.45-12.2,8.99-15.77,13.79c-2.09,2.7-3.7,5.49-4.81,8.31c0,0-0.35,0.9-0.35,0.9 c0,0-13.14-47.92-13.35-49.04c-0.27-1.44,0.21-2.84,0.99-4.08c0.64-1.02,1.48-1.9,2.31-2.77c0.73-0.76,1.46-1.53,2.18-2.29 c0.67-0.71,1.45-1.49,2.13-2.19c0,0-27.72-0.01-27.97-0.01c0,0,0.02,0.01,0.05,0.03C4.9,7.08,5.32,7.5,5.39,7.58 C5.98,8.21,6.61,8.81,7.24,9.4c0.62,0.6,1.22,1.22,1.8,1.85c0.01,0.01,0.01,0.01,0.02,0.02c2.06,2.23,4.34,4.67,5.15,7.65 l20.3,74.84h8.41c0,0-0.41-2.55-0.44-2.74c-0.21-1.56-0.43-3.11-0.57-4.68c-0.28-3.35-0.51-6.72-0.37-10.09 c0.16-3.86,0.76-7.74,2.46-11.24c1.67-3.47,4.31-6.48,7.09-9.12c1.77-1.69,3.67-3.24,5.64-4.69c1.52-1.12,3.09-2.18,4.69-3.19 l11.73,45.75h8.45v-2.51c0-5.5,0.7-10.97,2.07-16.29c0,0,13.85-53.61,13.85-53.61c0.61-2.38,1.71-4.59,3.11-6.61 c1.41-2.04,3.12-3.8,4.77-5.62c0.65-0.72,1.29-1.46,1.94-2.18H86.99z M79.58,75.34l-8.69-32.73c0,0-0.06-0.26-0.06-0.26 c6.35-3.11,13.25-5.34,18.85-9.79c0.41-0.33,0.8-0.67,1.19-1.02c0.04-0.03,0.07-0.06,0.11-0.1L79.58,75.34z M249.51,30.12 c-8,0-14.21,4.56-17.38,7.51c0,0,0.01-30.18,0.01-30.44l-18.07,5.76c0,0,1.04,0.55,2.17,1.53l0,0c2.18,1.91,3.48,4.38,3.91,7.29 c0.38,2.53-0.07,5.09-1.25,7.36c-2.06,3.96-5.74,6.03-9.53,6.41c-2.94,0.3-5.66-0.58-8.32-1.89c-0.03-0.02-0.08-0.04-0.13-0.06 c-1.33-0.68-2.71-1.27-4.13-1.76c-3.8-1.3-7.84-2.01-11.86-1.58c-3.39,0.37-6.64,1.55-9.57,3.26c-1.99,1.16-3.85,2.56-5.54,4.12 V7.19l-18.21,5.74c1.42,0.94,2.4,1.72,3.67,3.17c1.54,1.76,2.93,3.68,3.65,5.9c0.73,2.26,0.66,4.55,0.66,6.88 c0,6-0.02,11.99-0.02,17.99c0,2.92,0.08,5.85-0.16,8.76c-0.24,2.83-0.68,5.64-1.39,8.39c-0.52,2-1.18,3.97-1.99,5.88 c-1.89,4.43-4.68,8.51-8.49,11.5c-0.37,0.29-0.74,0.57-1.13,0.84c-4.85,3.39-10.86,4.97-16.73,5.06 c-7.32,0.12-13.88-3.12-18.63-8.61c-4.47-5.16-7.09-11.87-7.36-18.69c-0.02-0.39-0.02-0.78-0.02-1.18c0-2.8,0.38-5.39,1.13-7.83 c0,0,49.09,0.01,49.61,0.01c0-0.16-0.43-1.76-0.54-2.14c-0.31-1.04-0.7-2.06-1.15-3.04c-1.99-4.29-5.38-8.01-9.29-10.64 c-6.32-4.25-14.28-5.89-21.8-5.04c-3.55,0.4-7.04,1.36-10.25,2.94C104,36.66,98.32,43.14,95.51,50.8c-1.4,3.82-2.1,7.89-2.1,11.96 c0,6.43,2.01,12.73,5.88,17.87c3.63,4.82,8.69,8.47,14.27,10.72c5.18,2.09,10.84,2.9,16.41,2.42c5.2-0.45,10.44-1.93,14.97-4.56 c1.22-0.71,2.4-1.5,3.52-2.37c3.95-3.06,7.17-7.07,9.32-11.58c0.71-1.5,1.29-3.11,1.8-4.7v23.21h6.81l1.99-8.58 c3.77,4.11,9.86,8.53,20.13,8.53c15.82,0,28.69-14.27,28.69-31.8c0-1.95-0.15-3.9-0.46-5.83c-0.3-1.87-0.76-3.72-1.36-5.52 c-0.6-1.76-1.34-3.47-2.24-5.11c-0.92-1.68-1.97-3.28-3.23-4.72c-0.49-0.56-1.03-1.09-1.56-1.61c4.16,0.32,7.28-0.97,9.34-2.45 c1.72-1.24,3.15-2.86,4.23-4.7c0.05,6.36-0.02,59.3-0.02,61.76c0,0.01,0,0.01,0,0.02h7.35l1.86-8.46c3.77,4.11,9.45,8.43,19.73,8.43 c15.82,0,28.69-14.27,28.69-31.8C279.52,43.8,266.62,30.12,249.51,30.12z M114.45,38.29c4.09-2.8,8.24-3.33,12-3.1 c3.12,0.19,6.17,1.13,8.78,2.87c0.34,0.22,0.66,0.46,0.98,0.71c2.33,1.8,4.17,4.22,5.28,6.94c0.19,0.46,0.35,0.92,0.51,1.39 l-35.72-0.01C107.94,44.27,110.48,41.01,114.45,38.29z M187.07,89.36h-0.02c-4.5,0-8.72-1.38-12.31-4.11 c-0.93-0.71-1.81-1.49-2.63-2.32c-0.43-0.43-0.84-0.88-1.23-1.34c-0.33-0.39-1.23-1.5-1.25-1.52l0.19-36.54 c2.16-2.87,4.98-5.24,8.17-6.89c3.18-1.64,6.93-2.73,10.53-2.28c3.76,0.47,6.91,2.68,9.37,5.47c0.47,0.53,0.91,1.08,1.33,1.64 c0.67,0.9,1.28,1.84,1.84,2.81c1.98,3.45,3.26,7.29,3.94,11.21c0.36,2.12,0.55,4.28,0.55,6.43 C205.53,78.34,195.99,89.36,187.07,89.36z M249.39,89.36l-0.35,0c-6.73,0-12.42-3.08-16.91-9.15v-36.7 c4.24-5.64,11.04-9.27,17.38-9.27c9.77,0,18.34,12.93,18.34,27.67C267.85,78.34,258.3,89.36,249.39,89.36z M304.28,56.02 c8.8,3.77,19.74,8.46,19.7,21.99c-0.01,4.79-2.39,9.15-6.24,11.95c-3.1,2.21-6.67,3.26-10.43,3.64c-4.32,0.43-8.7,0.24-12.96-0.55 c-2.13-0.4-4.24-0.94-6.29-1.63c-0.8-0.27-1.6-0.56-2.39-0.88c-0.22-0.09-0.44-0.18-0.66-0.27c-1.12-0.48-2.26-1.06-2.26-1.06 l-1.44-15.81c0,0,0.08,0.1,0.08,0.1c0.61,0.8,1.16,1.67,1.8,2.47c0.67,0.84,1.37,1.66,2.09,2.45c1.44,1.59,2.99,3.08,4.67,4.41 c2.9,2.3,6.21,4.13,9.8,5.08c4.24,1.12,8.86,1.34,13.04-0.14c1.32-0.47,2.6-1.07,3.69-1.94c1.09-0.87,1.98-2.04,2.35-3.39 c0.2-0.74,0.24-1.52,0.14-2.28c-0.49-3.69-3.9-6.23-6.8-8.11c-3.3-2.13-6.88-3.81-10.43-5.48c0,0-0.58-0.27-0.58-0.27 c-7.06-3.1-18.92-9.94-18.89-20.82c0-0.52,0.02-1.04,0.07-1.55c0.49-5.35,3.97-9.77,8.93-11.74c3.18-1.26,6.68-1.54,10.09-1.38 c5.48,0.26,10.72,1.82,15.67,4.14c0.14,0.07,1.21,0.58,1.21,0.58l1.87,13.89c0,0-0.49-0.52-0.6-0.64 c-4.44-4.7-8.76-10.11-15.02-12.41c-3.71-1.37-7.89-1.74-11.64-0.46c-1.49,0.51-2.64,1.22-3.73,2.35c-2.07,2.14-2.4,4.8-0.83,7.23 c3.12,4.86,9.27,7.69,14.38,9.85C302.7,55.34,304.28,56.02,304.28,56.02z"/></svg>
+    </a>
+    <div class="nav-links">
+      <a href="#today">Today</a>
+      <a href="#routes">Your options</a>
+      <a href="#demo">Demo</a>
+      <a href="#governance">Governance</a>
+      <a href="#proof">Proof</a>
+      <a href="#model">Cost model</a>
+      <a href="#pilot">The pilot</a>
+      <a href="#board">For Monday</a>
+    </div>
+    <a href="#cta" class="nav-cta">Start the pilot</a>
+  </div>
+</nav>
+
+<!-- ══════════ HERO ══════════ -->
+<section id="hero">
+  <div class="wrap">
+    <div class="hero-meta">
+      <span class="chip solid">For Monday&rsquo;s board discussion</span>
+      <span class="chip">Business Central v19 · on-prem</span>
+      <span class="chip">4 garden centres</span>
+      <span class="chip pink"><span style="width:5px;height:5px;border-radius:50%;background:var(--pink);display:inline-block"></span>Informal board · Mon 14 Sep</span>
+    </div>
+
+    <h1>
+      <span class="ln"><span>&ldquo;So we wouldn&rsquo;t</span></span>
+      <span class="ln"><span>necessarily need</span></span>
+      <span class="ln"><span><em>Microsoft&nbsp;Fabric?&rdquo;</em></span></span>
+    </h1>
+
+    <p class="hero-answer">That was your question on the call. The answer is no. Not for the reason Fabric is on your roadmap.</p>
+
+    <p class="lead hero-sub">
+      Fabric is on the plan because the hybrid upgrade changes how reporting works. Milo is two products in one: <strong>a data platform</strong> that brings Business Central and your separate payroll system into a single warehouse <strong>you own</strong>, and <strong>an analytics agent</strong> on top that anyone at Webbs can ask a question in plain English. The platform costs nothing on top of a Milo subscription, there is no charge for data transfer or storage at any volume, and we would expect your data in one place inside two weeks.
+    </p>
+
+    <div class="hero-row">
+      <a href="#routes" class="btn btn-p">Compare the two routes
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a href="#board" class="btn btn-s">Three slides for Monday</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════ TOOLS ══════════ -->
+<section id="tools">
+  <div class="wrap">
+    <div class="tools-head reveal">
+      <span class="eyebrow" style="display:block;margin-bottom:11px">What it plugs into</span>
+      <h3>It connects to what Webbs already runs.</h3>
+      <p>Business Central first, then payroll, then everything else that holds a number someone asks about. A sample of what we connect to, and we build the ones that are missing.</p>
+    </div>
+  </div>
+  <div class="marquee reveal d1" style="--dur:58s"><div class="mq-track" id="mq1"></div></div>
+  <div class="marquee reveal d1" style="--dur:72s;margin-top:10px"><div class="mq-track rev" id="mq2"></div></div>
+  <div class="wrap">
+    <div class="tools-foot reveal d2">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink:0;margin-top:3px"><circle cx="8" cy="8" r="6.4" stroke="#310D4F" stroke-width="1.4"/><path d="M8 5.2v.1M8 7.4v3.4" stroke="#310D4F" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <p>These are examples, not an audit of your stack. <b>Send us the list of tools across the four sites and head office</b> and we will mark up exactly which we connect on day one, and which we build for you during the pilot. Building the connector is our work, not yours.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ LETTER ══════════ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="letter reveal">
+      <p>You set the position out clearly, so this answers the question you actually asked rather than the one we&rsquo;d prefer to answer. Business Central v19 on&#8209;prem, a sales cube and a stock cube, Power BI off the back of them, and users held to the parameters you set. Change one and it changes for everybody, so anything genuinely ad hoc goes back to Excel. The hybrid upgrade changes how reporting works, and Fabric is on the roadmap because of that.</p>
+      <p><strong>So: no, you would not also need Fabric.</strong> Milo is two products. A data platform that consolidates Business Central and your separate payroll system into one warehouse, and the analytics agent that sits on top of it. The warehouse is yours, with full access to your data and Milo only facilitating the transfer, and it plugs into Power BI or anything else just as Fabric would. The difference is that we have already built the connectors, and that it costs nothing on top of Milo.</p>
+      <p>You asked the sharpest question of the call: when you upgrade and Business Central renames its tables, do you rebuild the whole thing? <strong>No.</strong> Keeping connectors working through version changes is our engineering work, monitored for schema drift and fixed in days rather than months. That is the part that cost you in 2022, and it is the part you are handing over.</p>
+      <p>Below: the data platform plan with timescales, what building it in Fabric would cost you instead, the federated access model, who else we work with, and three slides you can take into Monday. Costings are on the page so you don&rsquo;t have to chase them.</p>
+      <div class="sig">
+        <div class="sig-av">LR</div>
+        <div><div class="sig-n">Liam Rabone</div><div class="sig-r">Milo &middot; liam@milo.ai &middot; with Philip and the data platform team</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ TODAY ══════════ -->
+<section id="today" class="sec-tight leaf-grid" style="border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);background-color:var(--paper-lift)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="dot"></span>What we heard</span>
+      <h2>Where the reporting stops working.</h2>
+      <p class="lead">Not a criticism of the stack. The cubes were the right build and the check&#8209;report migration into BI is nearly done. The problem is what happens the moment a question falls outside a preset parameter.</p>
+    </div>
+
+    <div class="stack">
+      <div class="stk now reveal d1">
+        <div class="stk-hd"><h4>Today</h4><span class="stk-tag a">Preset parameters</span></div>
+        <div class="node"><div class="ic">BC</div><div><div class="nt">Business Central v19</div><div class="ns">Fully on&#8209;premise. Four sites, tills, stock, purchasing, finance.</div></div></div>
+        <div class="arrow-d"></div>
+        <div class="node"><div class="ic">▦</div><div><div class="nt">Sales cube &middot; Stock cube</div><div class="ns">Good build, working well. Users held to the parameters you set. Change one and it changes for everyone.</div></div></div>
+        <div class="arrow-d"></div>
+        <div class="node"><div class="ic">X</div><div><div class="nt">Excel pivot</div><div class="ns">Where every ad&#8209;hoc request ends up, because BI can&rsquo;t start it.</div></div></div>
+        <div class="arrow-d"></div>
+        <div class="node"><div class="ic">PBI</div><div><div class="nt">Power BI</div><div class="ns">Dashboards off the cubes. Check reports for management accounts nearly migrated.</div></div></div>
+        <div class="friction">
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" style="flex-shrink:0;margin-top:2px"><circle cx="8" cy="8" r="6.4" stroke="#FF0045" stroke-width="1.4"/><path d="M8 4.8v3.6M8 10.9v.1" stroke="#FF0045" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <p><b>Payroll sits outside all of it.</b> A separate system you want combined with trade, securely.</p>
+        </div>
+      </div>
+
+      <div class="stk plan reveal d2">
+        <div class="stk-hd"><h4>If you build it in Fabric</h4><span class="stk-tag a">12&ndash;18 months</span></div>
+        <div class="node"><div class="ic">↑</div><div><div class="nt">Hybrid BC upgrade first</div><div class="ns">Back office to SaaS, tills and front end stay on&#8209;prem. Licensing cost, plus a testing cycle every six months.</div></div></div>
+        <div class="arrow-d"></div>
+        <div class="node"><div class="ic">▤</div><div><div class="nt">Build the Fabric warehouse</div><div class="ns">Pipelines for Business Central, then a second one for payroll. Someone specifies, builds and governs all of it.</div></div></div>
+        <div class="arrow-d"></div>
+        <div class="node"><div class="ic">▦</div><div><div class="nt">Re&#8209;express the cubes</div><div class="ns">Semantic models to replace what the sales and stock cubes already do. Work you have paid for once.</div></div></div>
+        <div class="arrow-d"></div>
+        <div class="node"><div class="ic">AI</div><div><div class="nt">Then choose an AI layer</div><div class="ns">Copilot or a third party, evaluated on top, because the warehouse on its own answers nobody&rsquo;s question.</div></div></div>
+        <div class="friction">
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" style="flex-shrink:0;margin-top:2px"><circle cx="8" cy="8" r="6.4" stroke="#FF0045" stroke-width="1.4"/><path d="M8 4.8v3.6M8 10.9v.1" stroke="#FF0045" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <p><b>Two jobs, both yours.</b> The pipes and the tool on top, against a team you told us is already stretched.</p>
+        </div>
+      </div>
+
+      <div class="stk reveal d3">
+        <div class="stk-hd"><h4>With Milo</h4><span class="stk-tag b">Two weeks</span></div>
+        <div class="node"><div class="ic">BC</div><div><div class="nt">Business Central v19</div><div class="ns">Unchanged, on&#8209;prem. An agent on the server pushes data out. No upgrade required first.</div></div></div>
+        <div class="arrow-d"></div>
+        <div class="node milo"><div class="ic">◆</div><div><div class="nt">Milo data platform</div><div class="ns">Your warehouse, in place of the Fabric build. BC plus payroll plus anything else. Full access, your data. We only facilitate the transfer.</div></div></div>
+        <div class="arrow-d"></div>
+        <div class="node milo"><div class="ic">M</div><div><div class="nt">Milo analytics agent</div><div class="ns">Plain&#8209;English questions, cited answers, dashboards anyone can build, automations from any query you ask twice.</div></div></div>
+        <div class="arrow-d"></div>
+        <div class="node"><div class="ic">PBI</div><div><div class="nt">Power BI, if you want it</div><div class="ns">The warehouse is a normal data source. Keep Power BI, or let Milo take the dashboards too.</div></div></div>
+        <div class="gain">
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" style="flex-shrink:0;margin-top:2px"><path d="M3 8.4l3.2 3.2L13 4.9" stroke="#00A924" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <p><b>Both jobs, ours.</b> The connectors and the tool on top are already built. Upgrade when it suits you, not to unblock reporting.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ PULL ══════════ -->
+<section class="pull">
+  <div class="wrap">
+    <span class="big reveal">&ldquo;The chairman could be: <em>I&rsquo;m in a meeting, I need this information, but I can&rsquo;t get it from BI.</em> He&rsquo;s quite spontaneous in terms of what he wants. He just wants to be able to ask individual questions.&rdquo;</span>
+    <div class="attrib reveal d1">From the call, and the single clearest use case on it</div>
+  </div>
+</section>
+
+<!-- ══════════ ROUTES ══════════ -->
+<section id="routes" class="sec dark">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="dot"></span>The two options you asked for</span>
+      <h2>Same Milo. Two ways to feed it.</h2>
+      <p class="lead">Milo is the analytics layer either way, so the only real question is where the warehouse underneath it comes from. Ours is already built. Fabric is a programme you scope, procure, build, rebuild and then maintain. Switch between them, the axis is the same.</p>
+    </div>
+
+    <div class="rt-switch reveal d1" id="rtswitch"></div>
+    <div class="rt-board reveal d2">
+      <div class="rt-top">
+        <div><h3 id="rt-title">&hellip;</h3><p id="rt-sub">&hellip;</p></div>
+        <span class="rt-badge" id="rt-badge">&hellip;</span>
+      </div>
+      <div class="rt-track" id="rt-track"></div>
+      <div class="rt-foot" id="rt-foot"></div>
+    </div>
+
+    <div class="grid g3" style="margin-top:20px">
+      <div class="card reveal d1"><div class="c-num">THE WORK</div><h4>Months of it, or none of it</h4><p>Fabric is scoping, procurement, a prerequisite upgrade, two pipelines and a set of semantic models that duplicate cubes you already have. Ours is an agent installed on your server. You told us you only have so many people.</p></div>
+      <div class="card reveal d2"><div class="c-num">THE MAINTENANCE</div><h4>The cost that never ends</h4><p>A warehouse you own is a warehouse you keep alive. Pipelines break, Business Central renames tables at every upgrade, and someone has to be watching. On our platform that is our engineering work, forever, at no extra charge.</p></div>
+      <div class="card reveal d3"><div class="c-num">THE COST</div><h4>Implementation and capacity, or &pound;0</h4><p>Fabric costs consultancy days, then reserved capacity and licences every month, before anyone gets an answer. Our platform costs nothing on top of your Milo subscription, including transfer and storage at any volume.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ DEMO ══════════ -->
+<section id="demo" class="sec" style="background:var(--paper-lift);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+  <div class="wrap">
+    <div class="sec-head reveal" style="max-width:660px">
+      <span class="eyebrow"><span class="dot"></span>Interactive &middot; click a question</span>
+      <h2>Six questions from a Webbs week.</h2>
+      <p class="lead">No dashboard to open, no parameter to pick, no request to raise. Including the one that should get refused, because governance is the part everyone demos last and you flagged first.</p>
+    </div>
+
+    <div class="demo-shell reveal d1">
+      <div class="demo-bar">
+        <span class="cdot" style="background:#FF5F57"></span>
+        <span class="cdot" style="background:#FEBC2E"></span>
+        <span class="cdot" style="background:#28C840"></span>
+        <span class="title">Milo &middot; Webbs Garden Centres workspace</span>
+        <span class="live"><i></i>Connected</span>
+      </div>
+      <div class="demo-tabs" id="dtabs"></div>
+      <div class="demo-body" id="dbody"></div>
+      <div class="demo-foot">
+        <div class="fake-input" id="dinput">Ask Milo anything about Webbs&hellip;</div>
+        <div class="send"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M2 8h11M9 4l4 4-4 4" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </div>
+    </div>
+    <p class="mocknote">Every figure above is illustrative, from a sample dataset built to match the shape of a four&#8209;site garden centre. <strong>Milo has not been connected to Webbs data.</strong><br/>Week one of the pilot is where these same questions get asked of your real numbers, and where some of them come back differently.</p>
+  </div>
+</section>
+
+<!-- ══════════ GOVERNANCE ══════════ -->
+<section id="governance" class="sec">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="dot"></span>The non&#8209;negotiable</span>
+      <h2>Who sees what. Pick a role.</h2>
+      <p class="lead">You were explicit: sales sees CRM, sales does not see payroll. Permissions are federated to the role, not to the licence, so the answer changes depending on who is asking, and every question is logged either way. Click through the roles below.</p>
+    </div>
+
+    <div class="perm reveal d1">
+      <div class="perm-top" id="permtabs"></div>
+      <div class="perm-body">
+        <div class="perm-who"><h4 id="perm-n">&hellip;</h4><span id="perm-d">&hellip;</span></div>
+        <div class="pgrid" id="permgrid"></div>
+        <div class="audit" id="permaudit"></div>
+      </div>
+    </div>
+
+    <div class="grid g4" style="margin-top:20px">
+      <div class="card reveal d1"><div class="c-num">ENFORCEMENT</div><h4>Role&#8209;based, not licence&#8209;based</h4><p>A store manager at Cheltenham sees Cheltenham. That isn&rsquo;t a view we build for them. It&rsquo;s enforced at the data layer before the answer is composed.</p></div>
+      <div class="card reveal d2"><div class="c-num">AUDITABILITY</div><h4>Full audit log</h4><p>Every question, every answer, every refusal, timestamped and attributable. Shown in the demo because it is the first thing an auditor asks for.</p></div>
+      <div class="card reveal d3"><div class="c-num">ACCREDITATION</div><h4>Built for regulated data</h4><p>Milo was built originally for iGaming, where data security is the first conversation rather than the last. EU hosted, SOC&nbsp;2 Type&nbsp;II, ISO&nbsp;27001, pen&#8209;tested.</p></div>
+      <div class="card reveal d4"><div class="c-num">OWNERSHIP</div><h4>Webbs owns the data</h4><p>The platform is yours. We facilitate the transfer and maintain the connectors. There is no charge for data transfer or storage under the Milo plan.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ UPGRADE ══════════ -->
+<section class="sec-tight dark" style="background:var(--aubergine-deep)">
+  <div class="wrap">
+    <div class="sec-head reveal" style="margin-bottom:32px">
+      <span class="eyebrow">The question you got stuck on before</span>
+      <h2>&ldquo;Would we have to go through the whole thing again?&rdquo;</h2>
+      <p class="lead">When Business Central upgrades, table names change and move. You have been here before: 2022, and you described it as pulling teeth. It is the fairest objection on the call, so it gets a straight answer rather than a paragraph of reassurance.</p>
+    </div>
+
+    <div class="grid g3">
+      <div class="card reveal d1">
+        <div class="c-num">THE ANSWER</div>
+        <h4 style="margin-bottom:9px">No. You do not rebuild it.</h4>
+        <p>Connectors are monitored for schema drift (renamed tables, moved fields, changed types), and the change is detected rather than discovered by someone opening a broken report.</p>
+      </div>
+      <div class="card reveal d2">
+        <div class="c-num">WHO DOES THE WORK</div>
+        <h4 style="margin-bottom:9px">Our engineers, in days</h4>
+        <p>What isn&rsquo;t handled automatically is fixed by us, AI&#8209;assisted, in a day or two rather than a month or two. It never becomes a line on your test plan or a change request with a partner.</p>
+      </div>
+      <div class="card reveal d3">
+        <div class="c-num">AND BEFORE THAT</div>
+        <h4 style="margin-bottom:9px">You don&rsquo;t upgrade first</h4>
+        <p>Milo reads Business Central v19 on&#8209;prem as it stands today. The hybrid upgrade stops being a prerequisite for better reporting and goes back to being an IT decision you take when it suits you.</p>
+      </div>
+    </div>
+
+    <div class="grid g2" style="margin-top:14px">
+      <div class="card reveal d2">
+        <h4 style="margin-bottom:9px">On the six&#8209;monthly SaaS upgrades</h4>
+        <p>Once the back office is SaaS, Microsoft ships twice a year and someone at Webbs tests it. Milo does not remove that, and anyone who says otherwise is selling. What changes is that <strong>reporting is no longer the thing at risk on upgrade day</strong>.</p>
+      </div>
+      <div class="card reveal d3">
+        <h4 style="margin-bottom:9px">On getting hold of someone</h4>
+        <p>You said the hard part was locking a partner down to timescales and getting a response when one person was away. From day one you get a shared channel on WhatsApp, Slack or Teams with <strong>Philip, Andrew, Raksha</strong>, our head of customer success and your account manager in it. Not a ticket queue, and not one person.</p>
+      </div>
+    </div>
+
+    <div class="tag-row reveal d3">
+      <span class="tg">EU hosted</span><span class="tg">SOC 2 Type II</span><span class="tg">ISO 27001</span><span class="tg">Pen&#8209;tested</span><span class="tg">Federated access</span><span class="tg">Full audit log</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ PROOF ══════════ -->
+<section id="proof" class="sec-tight" style="border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">You asked who else we work with</span>
+      <h2>On&#8209;prem, high volume, regulated. All three, already.</h2>
+    </div>
+
+    <div class="grid g2" style="gap:16px;align-items:start">
+      <div class="card reveal d1" style="border-color:var(--ink-25)">
+        <div class="c-num">CLOSEST TO WEBBS</div>
+        <h4 style="margin-bottom:10px">A Sage 50 estate, on&#8209;prem, nobody could move</h4>
+        <p style="margin-bottom:12px">A customer had been trying for the best part of a year to get Sage 50 data off an on&#8209;premise server and into a data warehouse. They had effectively given up on it.</p>
+        <p style="margin-bottom:12px">We installed an agent on the server that pushes data out to their warehouse, and it was running <strong>in a week</strong>. Not because the problem was easy, but because the connector work was already done and only needed adapting.</p>
+        <p style="font-size:.82rem;color:var(--ink-45)">Same shape as Business Central v19 on&#8209;prem. It is the reason we are confident about two weeks.</p>
+      </div>
+
+      <div>
+        <div class="card reveal d2" style="margin-bottom:16px">
+          <div class="c-num">YOU ASKED ABOUT VOLUME</div>
+          <h4 style="margin-bottom:10px">Many millions of transactions is not a pricing problem</h4>
+          <p>Our largest customer has ingested <strong>over 10TB</strong>, running at millions of transactions an hour. Webbs&rsquo; volume is comfortably inside that. <strong>We do not charge for data transfer or data storage</strong> while you subscribe to Milo, so the bill does not move with your trade.</p>
+        </div>
+        <div class="card reveal d3">
+          <div class="c-num">WHO WE WORK WITH</div>
+          <h4 style="margin-bottom:12px">A cross&#8209;section, and two case studies ready to send</h4>
+          <div class="clients">
+            <span class="cl">Two Tribes Brewing<i>UK brewer &middot; stock &amp; production</i></span>
+            <span class="cl">Marussia Beverages<i>Drinks distribution &middot; inventory</i></span>
+            <span class="cl">Urban Leisure Group<i>UK multi&#8209;site hospitality</i></span>
+            <span class="cl">SeeTickets<i>Ticketing &middot; high volume</i></span>
+            <span class="cl">BetGames<i>iGaming &middot; regulated, 300+ tools</i></span>
+            <span class="cl">Perlas Network &middot; loto.lt<i>Lithuanian national lottery</i></span>
+          </div>
+          <p style="margin-top:14px;font-size:.82rem;color:var(--ink-45)">Milo was hardened in iGaming first: hundreds of tools, multiple languages and currencies, and data security as the opening conversation rather than the closing one. Written case studies for BetGames and loto.lt are ready to send.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ COST MODEL ══════════ -->
+<section id="model" class="sec leaf-grid" style="background-color:var(--card);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">For the formal board at the end of September</span>
+      <h2>What Fabric costs that our platform does not.</h2>
+      <p class="lead">Milo sits on both totals below, so it cancels out. Everything left is what building and keeping a Fabric warehouse adds: the days to build it, the capacity you license from day one, the maintenance that never stops, and the reporting still done by hand while you wait. Move the sliders to your own numbers.</p>
+    </div>
+
+    <div class="calc reveal d1">
+      <div class="calc-grid">
+        <div class="calc-in">
+          <div class="eyebrow">Your assumptions</div>
+
+          <div class="fld">
+            <div class="fld-top"><span class="fld-lab">Consultancy days to build the Fabric warehouse</span><span class="fld-val" id="v-days">45 days</span></div>
+            <input type="range" id="s-days" min="10" max="140" step="5" value="45"/>
+            <div class="fld-hint">Design, Business Central and payroll pipelines, semantic models, rebuilding what the cubes do today.</div>
+          </div>
+
+          <div class="fld">
+            <div class="fld-top"><span class="fld-lab">Day rate</span><span class="fld-val" id="v-rate">&pound;850</span></div>
+            <input type="range" id="s-rate" min="400" max="1500" step="50" value="850"/>
+            <div class="fld-hint">Partner or contractor rate for Fabric and Business Central work.</div>
+          </div>
+
+          <div class="fld">
+            <div class="fld-top"><span class="fld-lab">Fabric capacity and licensing</span><span class="fld-val" id="v-cap">&pound;1,400/mo</span></div>
+            <input type="range" id="s-cap" min="0" max="6000" step="100" value="1400"/>
+            <div class="fld-hint">Reserved capacity plus seats. Set it to zero if it is already committed elsewhere.</div>
+          </div>
+
+          <div class="fld">
+            <div class="fld-top"><span class="fld-lab">Maintenance days a year, once it is live</span><span class="fld-val" id="v-maint">12 days</span></div>
+            <input type="range" id="s-maint" min="0" max="60" step="2" value="12"/>
+            <div class="fld-hint">Broken pipelines, schema changes, and the table renames every Business Central upgrade brings. This one does not stop.</div>
+          </div>
+
+          <div class="fld">
+            <div class="fld-top"><span class="fld-lab">Months until it answers its first question</span><span class="fld-val" id="v-mo">9 months</span></div>
+            <input type="range" id="s-mo" min="2" max="18" step="1" value="9"/>
+            <div class="fld-hint">Not go&#8209;live, but the point at which someone who is not in IT gets an answer they trust.</div>
+          </div>
+
+          <div class="fld">
+            <div class="fld-top"><span class="fld-lab">Internal hours a week on reporting today</span><span class="fld-val" id="v-hrs">14 hrs/wk</span></div>
+            <input type="range" id="s-hrs" min="2" max="60" step="2" value="14"/>
+            <div class="fld-hint">Finance pulling the pack, IT servicing requests, managers rebuilding pivots. It continues until the new platform answers.</div>
+          </div>
+
+          <div class="fld">
+            <div class="fld-top"><span class="fld-lab">Blended cost of that hour</span><span class="fld-val" id="v-cost">&pound;42/hr</span></div>
+            <input type="range" id="s-cost" min="15" max="100" step="1" value="42"/>
+          </div>
+        </div>
+
+        <div class="calc-out">
+          <div class="eyebrow" style="margin-bottom:18px">Year one</div>
+          <div class="co-row"><div class="co-lab">Milo subscription<small>The same on both routes, so it is not the difference</small></div><div class="co-val" id="o-sub">&hellip;</div></div>
+          <div class="co-row"><div class="co-lab">Fabric implementation<small>Consultancy days at your rate</small></div><div class="co-val" id="o-impl">&hellip;</div></div>
+          <div class="co-row"><div class="co-lab">Fabric capacity and licensing<small>Twelve months, running from day one</small></div><div class="co-val" id="o-cap">&hellip;</div></div>
+          <div class="co-row"><div class="co-lab">Keeping it alive<small>Maintenance days, and this repeats every year</small></div><div class="co-val" id="o-maint">&hellip;</div></div>
+          <div class="co-row"><div class="co-lab">Reporting by hand while you wait<small>The cost that does not stop during the build</small></div><div class="co-val" id="o-manual">&hellip;</div></div>
+          <div class="co-row"><div class="co-lab" style="font-weight:600;color:#fff">With a Fabric warehouse, year one</div><div class="co-val big" id="o-total">&hellip;</div></div>
+          <div class="co-row"><div class="co-lab" style="font-weight:600;color:#fff">With our data platform, year one<small>Warehouse, transfer and storage included at &pound;0</small></div><div class="co-val big" id="o-milo">&hellip;</div></div>
+          <div class="co-final">
+            <div class="cf-l"><b id="f-label">&hellip;</b><span id="f-sub">&hellip;</span></div>
+            <div class="cf-v" id="f-val">&hellip;</div>
+          </div>
+          <p class="calc-note">Deliberately generous to Fabric: no internal project management time, no testing effort, no contingency, and the prerequisite hybrid upgrade costed at zero. The maintenance line is the one to watch, because it is the only one that comes back every year.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:20px" class="reveal d2">
+      <div class="cmp">
+        <div class="cmp-r hd"><div>&nbsp;</div><div>If you built it in Fabric</div><div class="c-milo">Milo + our data platform</div></div>
+        <div class="cmp-r"><div>First useful answer</div><div>After the warehouse, the pipelines and the semantic models. Months.</div><div class="c-milo"><b>Week one of four.</b> Connectors first, questions immediately after.</div></div>
+        <div class="cmp-r"><div>Who builds a new dashboard</div><div>Whoever owns the semantic model. Everyone else raises a request.</div><div class="c-milo"><b>Anyone who can type a question.</b> Finance, buying, store managers.</div></div>
+        <div class="cmp-r"><div>The chairman&rsquo;s ad hoc in the room</div><div>Only if someone anticipated it and built the view.</div><div class="c-milo"><b>Asked and answered live</b>, with the rows it came from.</div></div>
+        <div class="cmp-r"><div>Who maintains the BC connector through upgrades</div><div>You, or the partner you pay to.</div><div class="c-milo"><b>Us.</b> We build every connector from scratch and keep it working.</div></div>
+        <div class="cmp-r"><div>Payroll joined to trade</div><div>Yes, once the second pipeline is built and governed.</div><div class="c-milo"><b>Yes, in the pilot</b>, ringfenced to named people from day one.</div></div>
+        <div class="cmp-r"><div>When Business Central renames its tables</div><div>Anomalies to chase, and a rebuild conversation with your partner.</div><div class="c-milo"><b>Our engineering work.</b> Monitored for drift, fixed in days.</div></div>
+        <div class="cmp-r"><div>Cost of the warehouse itself</div><div>Implementation, then capacity and licensing every month.</div><div class="c-milo"><b>&pound;0 on top of Milo</b>, including transfer and storage at any volume.</div></div>
+        <div class="cmp-r"><div>Keeping it alive, year after year</div><div>A standing maintenance line on a team of four, or a partner day rate.</div><div class="c-milo"><b>Zero days from Webbs.</b> Monitoring and repair are our engineering work.</div></div>
+        <div class="cmp-r"><div>Prerequisite work before it starts</div><div>The hybrid BC upgrade has to land first.</div><div class="c-milo"><b>None.</b> It reads Business Central v19 on&#8209;prem as it stands.</div></div>
+        <div class="cmp-r"><div>If it turns out not to be worth it</div><div>The programme and the headcount are already spent.</div><div class="c-milo"><b>You stop after four weeks.</b> No term, nothing to unwind.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ ROLES ══════════ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Role by role</span>
+      <h2>Who opens it, and what they ask.</h2>
+      <p class="lead">Milo earns its place one person at a time. These are the people at Webbs most likely to use it in week one, and the questions they are already asking somebody else.</p>
+    </div>
+    <div class="rtabs reveal d1" id="rtabs"></div>
+    <div id="rpanels"></div>
+  </div>
+</section>
+
+<!-- ══════════ PILOT ══════════ -->
+<section id="pilot" class="sec dark">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="dot"></span>The proof of concept</span>
+      <h2>Four weeks. Your data, your rules, no term.</h2>
+      <p class="lead">We expect your data in one place inside <strong>two weeks</strong>; the month is the buffer, not the plan. Milo does the engineering and the connector work. The effort on your side is onboarding, telling us what the rules mean. If you don&rsquo;t like it, there is no commitment beyond the pilot fee.</p>
+    </div>
+
+    <div class="weeks reveal d1">
+      <div class="wk"><div class="wn">Week 01</div><h4>Data in one place</h4><p>An agent on your server pushes Business Central out; payroll connects separately. Your warehouse, your data, full access.</p><ul><li>BC v19 on&#8209;prem, read&#8209;only</li><li>Payroll, ringfenced from the start</li><li>Sales and stock cubes mapped</li></ul></div>
+      <div class="wk"><div class="wn">Week 02</div><h4>Encode the rules</h4><p>The definitions that live in Ollie&rsquo;s head become platform logic. Once, not every time someone asks.</p><ul><li>Category hierarchy and trading calendar</li><li>Payroll joined to trade, ringfenced</li><li>Margin and availability definitions</li><li>Role&#8209;based permission model signed off</li></ul></div>
+      <div class="wk"><div class="wn">Week 03</div><h4>Put it in front of people</h4><p>In&#8209;person session in London or at Wychbold, across finance, buying, marketing and store management.</p><ul><li>Everyone builds their own first dashboard</li><li>Chairman&rsquo;s ad&#8209;hoc questions, live</li><li>Monday digest automated per site</li></ul></div>
+      <div class="wk"><div class="wn">Week 04</div><h4>Decide with evidence</h4><p>A written read&#8209;out you can take straight to the board: what worked, what didn&rsquo;t, what it would cost at scale.</p><ul><li>Usage by team and by question</li><li>Honest list of what Milo couldn&rsquo;t answer</li><li>Extend, pause, or stop: your call</li></ul></div>
+    </div>
+
+    <div class="grid g3" style="margin-top:20px">
+      <div class="card reveal d1"><h4 style="margin-bottom:9px">What we need from Webbs</h4><p>Access handed over, an hour a week from whoever knows the definitions, and four to six people willing to ask it real questions. The build is done by Philip&rsquo;s team, not yours. You told us you only have so many people.</p></div>
+      <div class="card reveal d2"><h4 style="margin-bottom:9px">Who you&rsquo;re dealing with</h4><p>A shared channel with <strong>Philip, Andrew, Raksha</strong> and your account manager from day one. Same people through the pilot and after it.</p></div>
+      <div class="card reveal d3"><h4 style="margin-bottom:9px">Your IT consultant is welcome in it</h4><p>Genuinely. They should pressure&#8209;test this. Running the pilot first means they roadmap around something Webbs has tested, instead of choosing between two sets of claims.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ TIMELINE + PRICING ══════════ -->
+<section class="sec" style="background:var(--paper-lift);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+  <div class="wrap">
+    <div class="grid g2" style="gap:44px;align-items:start">
+      <div>
+        <div class="sec-head reveal" style="margin-bottom:28px">
+          <span class="eyebrow">Against your calendar</span>
+          <h2 style="font-size:clamp(1.6rem,3vw,2.2rem)">How it fits the three months.</h2>
+        </div>
+        <div class="tl reveal d1">
+          <div class="tli now"><div class="td">Monday 14 September</div><h4>Informal board</h4><p>Not a formal board meeting, but data and AI are on the agenda. Milo goes in as the alternative to the Fabric build, with costings attached.</p></div>
+          <div class="tli milo"><div class="td">Week of 15 September</div><h4>Pilot starts, if you want it to</h4><p>Connector work begins immediately. Four weeks from a yes on Monday lands before the second week of October.</p></div>
+          <div class="tli"><div class="td">End of September</div><h4>Formal board</h4><p>Two weeks in. You&rsquo;d be presenting a working connection and early answers rather than a proposal deck.</p></div>
+          <div class="tli"><div class="td">October</div><h4>Read&#8209;out and decision</h4><p>Evidence in hand, well inside the three&#8209;month window, and something concrete for the IT consultant to roadmap around.</p></div>
+          <div class="tli"><div class="td">12&ndash;18 months out</div><h4>Hybrid upgrade, on your terms</h4><p>Upgrade when it suits IT, not to unblock reporting. Tables get renamed, we fix the connectors, and you do not rebuild.</p></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="sec-head reveal" style="margin-bottom:28px">
+          <span class="eyebrow">On the page, so nobody has to chase it</span>
+          <h2 style="font-size:clamp(1.6rem,3vw,2.2rem)">The numbers.</h2>
+        </div>
+        <div class="price reveal d1" style="grid-template-columns:1fr">
+          <div class="pc hero">
+            <div class="pk">Four&#8209;week proof of concept</div>
+            <div class="pv">&pound;1,500</div>
+            <div class="pu">All&#8209;in, one&#8209;off. No term, no notice period, no commitment to what follows.</div>
+            <ul><li>Connector build and integration work</li><li>Rules encoding and permission model</li><li>In&#8209;person training session, London or Wychbold</li><li>Unlimited interactions for the four weeks</li></ul>
+          </div>
+          <div class="pc">
+            <div class="pk">Then, monthly</div>
+            <div class="pv" style="color:var(--aubergine)">&pound;2,000<span style="font-size:1rem;font-weight:500;letter-spacing:0"> / mo</span></div>
+            <div class="pu">Twelve&#8209;month term, starting only if you extend after the pilot.</div>
+            <ul><li><strong>Unlimited users</strong> across all four sites</li><li>1,000 question interactions a month included</li><li>&pound;250 per extra 200 if you ever exceed it</li><li><strong>Data platform included</strong>, no charge for transfer or storage</li></ul>
+          </div>
+        </div>
+        <p class="pnote reveal d2">The data lake and the analytics agent are a two&#8209;part product, bundled here at no extra cost under the Milo plan. Standalone data&#8209;platform pricing, if you ever wanted the lake without the agent, is still being finalised. We&rsquo;ll confirm it rather than guess at it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ BOARD PACK ══════════ -->
+<section id="board" class="sec">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="dot"></span>For Monday</span>
+      <h2>Three slides, if that&rsquo;s all you get.</h2>
+      <p class="lead">Monday isn&rsquo;t a formal board meeting, so it won&rsquo;t take a paper. Here is the whole argument in three cards, written from your side of the table. Read out loud, about ninety seconds.</p>
+    </div>
+    <div class="bp">
+      <div class="bpc reveal d1">
+        <div class="bpc-t"><div class="n">SLIDE 01</div><h4>Same tool, cheaper plumbing</h4></div>
+        <div class="bpc-b">
+          <p>Either way we run Milo. The question is only where the warehouse under it comes from. Build it in Fabric and we scope, procure, build and then maintain it. Take theirs and it is already built, included, and maintained by them.</p>
+          <div class="kv"><span>Fabric warehouse build</span><b>12&ndash;18 mo</b></div>
+          <div class="kv"><span>Their platform</span><b>2 weeks</b></div>
+          <div class="kv"><span>Maintenance owner</span><b>Them, not us</b></div>
+        </div>
+      </div>
+      <div class="bpc reveal d2">
+        <div class="bpc-t"><div class="n">SLIDE 02</div><h4>What it costs us to find out</h4></div>
+        <div class="bpc-b">
+          <p>A one&#8209;month proof of concept on our own data, payroll ringfenced, with their engineers doing the build. No commitment past the month. If we don&rsquo;t like it we have lost the pilot fee and nothing else.</p>
+          <div class="kv"><span>Proof of concept</span><b>&pound;1,500 one&#8209;off</b></div>
+          <div class="kv"><span>Data platform, transfer, storage</span><b>&pound;0</b></div>
+          <div class="kv"><span>Effort from our team</span><b>~1 hr / week</b></div>
+        </div>
+      </div>
+      <div class="bpc reveal d3">
+        <div class="bpc-t"><div class="n">SLIDE 03</div><h4>Why now rather than later</h4></div>
+        <div class="bpc-b">
+          <p>The IT consultant is about to roadmap the estate. Doing this first means they roadmap around something we have actually tested, rather than choosing between two sets of claims.</p>
+          <div class="kv"><span>Read&#8209;out to the board</span><b>October</b></div>
+          <div class="kv"><span>Inside the three&#8209;month window</span><b>Yes</b></div>
+          <div class="kv"><span>If we upgrade BC later</span><b>No rebuild</b></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CTA ══════════ -->
+<section id="cta">
+  <div class="wrap">
+    <span class="eyebrow" style="color:var(--lavender)">Next step</span>
+    <h2>Say yes to four weeks, not to a platform.</h2>
+    <p>If Monday goes well, we can have the Business Central connector in progress the same week. If it doesn&rsquo;t, we&rsquo;d still rather hear why than not hear.</p>
+    <div class="cta-row">
+      <a href="mailto:liam@milo.ai?subject=Webbs%20%C3%97%20Milo%20%E2%80%94%20pilot" class="btn btn-w">Start the pilot
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a href="mailto:liam@milo.ai?subject=Webbs%20%C3%97%20Milo%20%E2%80%94%20questions%20before%20the%20board" class="btn btn-o">Send questions before Monday</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div class="foot-l">
+        <svg class="milo-mark" viewBox="0 0 50 40" aria-label="Milo" style="height:22px">
+          <path d="M7 31 L19 19 L31 26 L43 12" fill="none" stroke="url(#mg)" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="7" cy="31" r="4" fill="url(#mg)"/><circle cx="19" cy="19" r="4" fill="url(#mg)"/><circle cx="31" cy="26" r="4" fill="url(#mg)"/><circle cx="43" cy="12" r="4" fill="url(#mg)"/>
+          <path d="M22 5.3 Q22.5 7.5 24.7 8 Q22.5 8.5 22 10.7 Q21.5 8.5 19.3 8 Q21.5 7.5 22 5.3Z" fill="url(#mg)"/>
+          <path d="M36 1 Q36.8 4.2 40 5 Q36.8 5.8 36 9 Q35.2 5.8 32 5 Q35.2 4.2 36 1Z" fill="url(#mg)"/>
+        </svg>
+        <p>Prepared for Webbs Garden Centres by Liam Rabone &middot; <a href="mailto:liam@milo.ai" style="color:var(--aubergine)">liam@milo.ai</a></p>
+      </div>
+      <p class="num">September 2026</p>
+    </div>
+    <p class="disclaim">Webbs and the Webbs Garden Centres wordmark are trademarks of Webbs Garden Centres and are used here only to identify the recipient of this proposal. Brand colours and the wordmark are referenced from webbsdirect.co.uk so this document reads in your house style; the typeface is a close substitute for the licensed original. Every figure in the interactive demo is illustrative sample data. Milo has not been connected to Webbs systems. Cost&#8209;model outputs depend entirely on the assumptions you set.</p>
+  </div>
+</footer>
+
+<script>
+/* ══════════ TOOLS MARQUEE ══════════ */
+const T1=[['Business Central','#0078D4'],['Dynamics 365','#002050'],['Power BI','#F2C811'],['SQL Server','#CC2927'],['Excel','#217346'],['SharePoint','#0078D4'],['Microsoft Teams','#6264A7'],['Google Search Console','#458CF5'],['Sage','#00D639'],['Xero','#13B5EA'],['QuickBooks','#2CA01C'],['Klaviyo','#232323'],['Mailchimp','#FFE01B'],['Google Analytics 4','#E37400'],['Google Tag Manager','#4285F4'],['PayPal','#003087'],['Worldpay','#C8102E'],['Stripe','#635BFF']];
+const T2=[['Salesforce','#00A1E0'],['HubSpot','#FF7A59'],['Snowflake','#29B5E8'],['BigQuery','#4285F4'],['PostgreSQL','#4169E1'],['Shopify','#7AB55C'],['Magento','#EE672F'],['Epos Now','#E4002B'],['Google Sheets','#0F9D58'],['Google Ads','#EA4335'],['Meta Ads','#0866FF'],['TikTok Ads','#111213'],['Zendesk','#03363D'],['Slack','#4A154B'],['Workday','#F38B00'],['CSV and flat files','#8C8480'],['Your payroll system','#310D4F']];
+function fillMq(id,items){
+  const el=document.getElementById(id);if(!el)return;
+  const html=items.map(([n,c])=>'<span class="tool"><i style="background:'+c+'"></i>'+n+'</span>').join('');
+  el.innerHTML=html+html; /* duplicated so the -50% loop is seamless */
+}
+fillMq('mq1',T1);fillMq('mq2',T2);
+
+/* ══════════ ROUTES ══════════ */
+const ROUTES=[
+{k:'Milo + our data platform',title:'Milo + our data platform',badge:'Plug and play',
+ sub:'Milo runs on top, the warehouse comes with it. We have already built the connectors, so there is nothing to specify, nothing to procure and nothing to maintain. The platform costs nothing on top of your Milo subscription, at any volume.',
+ cells:[
+  ['Week 1','Data in one place','An agent on your server pushes Business Central out. Payroll connects alongside it. Two weeks is the estimate, sometimes days.','hot'],
+  ['Week 2','Governance','Federated access set up before anyone gets a login. Sales sees trade, not salaries.','hot'],
+  ['Week 3','Everyone in','Day session across finance, buying, marketing and store management. Combined payroll and trade analysis is live.',''],
+  ['Week 4','Answers','Dashboards built by the people who wanted them. Monday digests automated per site.','hot'],
+  ['Ongoing','We maintain it','Connectors monitored for schema drift. Zero days a year from your team.','hot'],
+  ['At the BC upgrade','Nothing rebuilt','Tables get renamed, we fix the connectors in days. You do not repeat this work.','hot']],
+ foot:[['Time to first answer','Week 1'],['Build effort from Webbs','~1 hr a week'],['Who maintains it','Milo']]},
+
+{k:'If you built it in Fabric instead',title:'If you built it in Fabric instead',badge:'12 to 18 months',
+ sub:'The same analytics layer, but with a warehouse you scope, procure, build and then keep alive yourself. Every box below is work, and most of it does not stop once it is done. This is what you would be taking on to get to the same place the platform above reaches in week one.',
+ cells:[
+  ['Months 0-3','Scope and procure','Consultant roadmaps it, partner engaged, warehouse designed, capacity licensed. Cost starts before anything works.','warn'],
+  ['Months 3-6','Upgrade first','Fabric needs the back office on SaaS. Licensing cost, migration, and a testing cycle every six months from then on.','warn'],
+  ['Months 6-9','Build the pipelines','Business Central in, then payroll as a second build. Specified, built, tested and governed by someone you pay.','warn'],
+  ['Months 9-12','Rebuild the cubes','Semantic models to re-express what your sales and stock cubes already do today. Work you have paid for once.','warn'],
+  ['Months 12+','First answers','Power BI on the new models. Only now does anyone outside IT get something they can use.',''],
+  ['Forever','You maintain it','Pipelines break, APIs change, BC renames tables at every upgrade. That is a standing cost on a team of four.','warn']],
+ foot:[['Time to first answer','Month 12+'],['Build effort from Webbs','Continuous'],['Who maintains it','You, or a partner you pay']]}
+];
+const rsw=document.getElementById('rtswitch'),rtk=document.getElementById('rt-track'),rft=document.getElementById('rt-foot');
+function renderRoute(n){
+  [...rsw.children].forEach((b,i)=>b.classList.toggle('act',i===n));
+  const r=ROUTES[n];
+  document.getElementById('rt-title').textContent=r.title;
+  document.getElementById('rt-sub').textContent=r.sub;
+  document.getElementById('rt-badge').textContent=r.badge;
+  rtk.innerHTML=r.cells.map((c,i)=>'<div class="rt-cell '+c[3]+'" style="animation-delay:'+(i*.05)+'s"><span class="m">'+c[0]+'</span><span class="t">'+c[1]+'</span><span class="s">'+c[2]+'</span></div>').join('');
+  rft.innerHTML=r.foot.map(f=>'<div class="rt-kv"><span class="k">'+f[0]+'</span><span class="v">'+f[1]+'</span></div>').join('');
+}
+ROUTES.forEach((r,i)=>{const b=document.createElement('button');b.className='rt-btn';b.textContent=r.k;b.onclick=()=>renderRoute(i);rsw.appendChild(b);});
+renderRoute(0);
+
+/* ══════════ DEMO ══════════ */
+const DEMO=[
+{k:'Chairman, in the room',who:'Chairman',
+ q:'Why is Cheltenham behind plan this month? Break it down for me.',
+ a:'Cheltenham is <span class="dn">−7.4%</span> against plan for the month, and it is almost entirely one category. Seeds and bulbs are a long way down against a wet six weeks; plants and bedding softened with it. Everything else (furniture, gifts, the food hall) is on or ahead. Margin held and footfall is actually <span class="up">up 4%</span>, so this reads as weather on a seasonal category rather than anything structural about the site.',
+ c:{t:'Cheltenham · month to date vs plan, by category',rows:[
+   {l:'Food hall',p:78,v:'+6.2%',pos:1},{l:'Furniture',p:64,v:'+2.8%',pos:1},{l:'Gifts & home',p:54,v:'+0.4%',pos:1},
+   {l:'Plants & bedding',p:34,v:'−5.1%',pos:0},{l:'Seeds & bulbs',p:12,v:'−26.3%',pos:0}]},
+ s:'sales_cube · site=cheltenham · txn_lines  |  budget_v1 · weekly  |  stock_cube · category',
+ i:'The same seeds and bulbs dip shows at <b>Wychbold and West Hagley</b> in the same window, at roughly two thirds the severity. If it were a Cheltenham problem it would not be group-wide.'},
+
+{k:'Floor, mid-sale',who:'Sarah · Cheltenham furniture',
+ q:'Cotswold rattan 6-seater. Anything across the group, and when’s the next PO?',
+ a:'Nothing on your floor and nothing in the yard. <b>West Hagley has two</b> on floor stock and Wychbold has one reserved against an existing order, so that one is not available. Next purchase order is <b>14 units landing 18 June</b>, and there are three group-wide pre-orders already against it, leaving eleven uncommitted. Reserving from that PO works.',
+ c:{t:'Cotswold rattan dining 6-seater · live availability',rows:[
+   {l:'West Hagley',p:100,v:'2 free',pos:1},{l:'Wychbold',p:50,v:'1 held',pos:2},{l:'Cheltenham',p:0,v:'0',pos:0},
+   {l:'Millets Farm',p:0,v:'0',pos:0},{l:'Next PO · 18 Jun',p:85,v:'11 free',pos:1}]},
+ s:'BC · item_availability  |  BC · purch_lines · arrival_date  |  BC · sales_reservations',
+ i:'Ten clicks in Business Central and a phone call to another site, replaced by one message. <b>The customer is still standing in front of you</b> when the answer arrives.'},
+
+{k:'Finance, month end',who:'Ollie · Finance',
+ q:'Build the October management pack. Same shape as September, four sites, group consolidation.',
+ a:'Pack built and ready to review. Four site P&amp;Ls, group consolidation, category margin, stock turn and a variance commentary against budget. The check reports you are migrating into BI are reconciled against the same source, so the numbers agree rather than needing explaining. It took <b>under four minutes</b>, and what you would normally spend a fortnight stitching together is now review time.',
+ c:{t:'October pack · built and reconciled',list:[
+   'Four site P&Ls · Wychbold, West Hagley, Cheltenham, Millets Farm',
+   'Group consolidation with intercompany eliminated',
+   'Category margin, weighted, against FY26 actual',
+   'Stock turn and ageing by category',
+   'Variance commentary drafted against budget_v1']},
+ s:'sales_cube · all_sites  |  stock_cube · ageing  |  finance_sql · gl_ledger  |  budget_v1',
+ i:'Set this to build itself on the <b>1st of every month</b> and land in your inbox before you are in. Any query you ask twice can become a schedule.'},
+
+{k:'Buying, seasonal',who:'Buying',
+ q:'Bedding plants across all four sites versus last year. Was it the weather, or was it us?',
+ a:'Both, and the split is separable. Volume is <span class="dn">down 11%</span> year on year, but sell-through on what you did stock is <span class="up">up 3 points</span>, so demand held better than the top line suggests. The shortfall is concentrated in two lines that landed late and missed the first warm weekend. Where stock was on the bench on time, the year-on-year gap closes to under three percent.',
+ c:{t:'Bedding · YoY variance, split by cause',rows:[
+   {l:'On time, in stock',p:88,v:'−2.7%',pos:2},{l:'Late delivery',p:26,v:'−23.1%',pos:0},
+   {l:'Out of stock >3d',p:18,v:'−31.4%',pos:0},{l:'Sell-through rate',p:76,v:'+3.0pt',pos:1}]},
+ s:'sales_cube · category=bedding · yoy  |  BC · purch_lines · receipt_date  |  stock_cube · oos_days',
+ i:'This is the answer the current cubes cannot give you, because <b>cause is not one of the preset parameters</b>. It needs sales, purchasing and stock joined in the same question.'},
+
+{k:'Refused on purpose',who:'Sales team member',
+ q:'Show me the payroll cost for the Cheltenham team alongside their sales performance.',
+ a:'I can show you Cheltenham sales performance, but not payroll. <b>Payroll and HR records are ringfenced</b> to a named group that does not include the sales role, so I am not able to return that part of the question. Not summarised, not aggregated, not by inference from another table.',
+ deny:'Request logged and attributable. If this access is genuinely needed, <b>an administrator can grant it explicitly</b>. Permissions change by decision, never by asking the question a different way.',
+ c:{t:'What this role can reach',list:[
+   'Site and group sales · granted',
+   'CRM and Clubcard · granted',
+   'Stock and purchase orders · granted',
+   'Payroll · denied, ringfenced',
+   'HR records · denied, ringfenced']},
+ s:'auth · role=sales · policy_check → DENY(payroll)  |  audit_log · written',
+ i:'This is the demo most vendors skip. Permission is enforced <b>at the data layer before the answer is composed</b>, so there is no phrasing that gets around it and no summary that leaks it.'},
+
+{k:'Automate it',who:'Paul · IT',
+ q:'Every Monday at 7am, send each site manager their own weekend, versus plan and versus last year.',
+ a:'Scheduled and live. Four separate reports, each scoped to the manager’s own site, so <b>nobody receives another site’s numbers</b>. Weekend trade against plan and against last year, split by category, with footfall and basket size, and anything moving more than fifteen percent flagged rather than left for them to spot.',
+ c:{t:'Scheduled · Mondays 07:00',list:[
+   'Wychbold · site manager · Wychbold data only',
+   'West Hagley · site manager · West Hagley data only',
+   'Cheltenham · site manager · Cheltenham data only',
+   'Millets Farm · site manager · Millets Farm data only',
+   'Group roll-up · Ollie, Paul and the chairman']},
+ s:'schedule · cron=0 7 * * 1  |  auth · row_scope=site  |  sales_cube · weekend_window',
+ i:'Four sites, no extra work, and <b>no request to Paul</b>. Any question worth asking twice becomes a schedule, set up from the query itself, by whoever asked it.'}
+];
+const dtabs=document.getElementById('dtabs'),dbody=document.getElementById('dbody'),dinput=document.getElementById('dinput');
+let dT=[];
+function renderDemo(n){
+  dT.forEach(clearTimeout);dT=[];
+  [...dtabs.children].forEach((b,i)=>b.classList.toggle('act',i===n));
+  const d=DEMO[n];
+  dinput.textContent='Ask Milo anything about Webbs…';
+  dbody.innerHTML='<div class="msg"><div class="av u">W</div><div class="bub"><div class="who">'+d.who+'</div><div class="q">'+d.q+'</div></div></div>'
+    +'<div class="msg" style="animation-delay:.18s"><div class="av m">M</div><div class="bub"><div class="who">Milo</div><div id="ans"><div class="typing"><i></i><i></i><i></i></div></div></div></div>';
+  dT.push(setTimeout(()=>{
+    const ans=document.getElementById('ans');if(!ans)return;
+    let h='<div class="a">'+d.a+'</div>';
+    if(d.deny)h+='<div class="deny"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink:0;margin-top:2px"><rect x="3" y="7" width="10" height="7" rx="1.6" stroke="#FF6B8F" stroke-width="1.4"/><path d="M5.5 7V5.2a2.5 2.5 0 015 0V7" stroke="#FF6B8F" stroke-width="1.4"/></svg><div class="db">'+d.deny+'</div></div>';
+    h+='<div class="chart"><div class="chart-t">'+d.c.t+'</div>';
+    if(d.c.rows){d.c.rows.forEach(r=>{const cls=r.pos===1?'pos':(r.pos===2?'':'neg');const vcls=r.pos===1?'pos':(r.pos===2?'neu':'neg');h+='<div class="row"><div class="rl">'+r.l+'</div><div class="track"><div class="fill '+cls+'" style="width:'+r.p+'%"></div></div><div class="rv '+vcls+'">'+r.v+'</div></div>';});}
+    else{d.c.list.forEach(x=>{const bad=/denied/i.test(x);h+='<div class="row" style="grid-template-columns:18px 1fr;margin-bottom:8px"><div>'+(bad?'<svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M4.4 4.4l7.2 7.2M11.6 4.4l-7.2 7.2" stroke="#FF6B8F" stroke-width="2" stroke-linecap="round"/></svg>':'<svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8.4l3.2 3.2L13 4.9" stroke="#6FE08C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>')+'</div><div class="rl" style="white-space:normal;'+(bad?'color:#FFC2D2':'')+'">'+x+'</div></div>';});}
+    h+='</div><div class="src">'+d.s+'</div>';
+    h+='<div class="insight"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" style="flex-shrink:0;margin-top:3px"><circle cx="8" cy="8" r="3" stroke="#C9B6F0" stroke-width="1.3"/><path d="M8 1.6v1.2M8 13.2v1.2M14.4 8h-1.2M2.8 8H1.6M12.5 3.5l-.8.8M4.3 11.7l-.8.8M12.5 12.5l-.8-.8M4.3 4.3l-.8-.8" stroke="#C9B6F0" stroke-width="1.3" stroke-linecap="round"/></svg><div class="ib">'+d.i+'</div></div>';
+    ans.innerHTML=h;
+    dT.push(setTimeout(()=>{dbody.querySelectorAll('.fill').forEach((f,i)=>{f.style.animationDelay=(i*.08)+'s';f.classList.add('go');});},50));
+  },1050));
+}
+DEMO.forEach((d,i)=>{const b=document.createElement('button');b.className='dtab';b.textContent=d.k;b.onclick=()=>renderDemo(i);dtabs.appendChild(b);});
+renderDemo(0);
+
+/* ══════════ PERMISSIONS ══════════ */
+const DOMAINS=['Group sales','Site sales','Stock & purchase orders','Supplier & cost prices','CRM & Clubcard','Finance ledger','Payroll','HR records'];
+const ROLES=[
+{n:'Chairman / board',d:'Group-level everything, payroll in aggregate only',
+ p:['y','y','y','s|Summary, not line-level','y','y','s|Total cost only, no individuals','n'],
+ log:['GRANT · group sales, all sites · 14:18','GRANT · finance ledger, consolidated · 14:18','SCOPE · payroll → aggregate total, individuals suppressed · 14:19']},
+{n:'Finance · Ollie',d:'Full commercial access; HR records stay with HR',
+ p:['y','y','y','y','y','y','y','s|Cost and headcount only'],
+ log:['GRANT · finance ledger, all entities · 09:41','GRANT · payroll, full · 09:41','SCOPE · HR records → headcount and cost, no personal data · 09:42']},
+{n:'IT · Paul',d:'Administers the permission model without inheriting what it protects',
+ p:['y','y','y','y','y','y','n|Admin rights, no data access','n|Admin rights, no data access'],
+ log:['GRANT · schema and connector administration · 08:05','DENY · payroll read · role=it · policy=ringfence · 08:07','NOTE · admin can grant access; cannot self-grant · 08:07']},
+{n:'Store manager · Cheltenham',d:'Their own site, plus group availability so they can serve a customer',
+ p:['n|Own site only','y|Cheltenham only','y|Own stock + group availability','n','s|Cheltenham customers','n','n','n'],
+ log:['SCOPE · site sales → site=cheltenham · 07:02','GRANT · group item availability, quantities only · 07:02','DENY · other site P&L · role=store_manager · 07:03']},
+{n:'Buying',d:'Sell-through and supplier cost across the group; no people data',
+ p:['y','y','y','y','s|Segment level, no individuals','n','n','n'],
+ log:['GRANT · stock, purchasing, supplier terms · 11:30','SCOPE · CRM → segments, PII suppressed · 11:30','DENY · finance ledger · role=buying · 11:31']},
+{n:'Marketing',d:'Customer and trade data; nothing financial, nothing personal',
+ p:['y','y','s|Availability only','n','y','n','n','n'],
+ log:['GRANT · Clubcard and campaign data · 10:12','SCOPE · stock → availability, no cost prices · 10:12','DENY · payroll · role=marketing · policy=ringfence · 10:14']},
+{n:'HR',d:'The inverse of sales. People data yes, commercial data no',
+ p:['n','n','n','n','n','n','y','y'],
+ log:['GRANT · payroll and HR records, full · 13:55','DENY · group sales · role=hr · 13:56','NOTE · ringfence is bidirectional by design · 13:56']}
+];
+const ptabs=document.getElementById('permtabs'),pgrid=document.getElementById('permgrid'),paudit=document.getElementById('permaudit');
+function renderPerm(n){
+  [...ptabs.children].forEach((b,i)=>b.classList.toggle('act',i===n));
+  const r=ROLES[n];
+  document.getElementById('perm-n').textContent=r.n;
+  document.getElementById('perm-d').textContent=r.d;
+  pgrid.innerHTML=r.p.map((raw,i)=>{
+    const [st,note]=raw.split('|');
+    const mark=st==='y'?'✓':(st==='n'?'✕':'~');
+    return '<div class="pcell '+st+'" style="animation-delay:'+(i*.035)+'s"><span class="pi">'+mark+'</span><span>'+DOMAINS[i]+(note?'<span class="px">'+note+'</span>':'')+'</span></div>';
+  }).join('');
+  paudit.innerHTML='<span class="dim">audit_log &middot; '+r.n.toLowerCase().replace(/[^a-z]+/g,'_')+'</span><br/>'
+    +r.log.map(l=>{
+      const cls=/^DENY/.test(l)?'no':(/^GRANT/.test(l)?'ok':'dim');
+      return '<span class="'+cls+'">'+l+'</span>';
+    }).join('<br/>');
+}
+ROLES.forEach((r,i)=>{const b=document.createElement('button');b.className='pbtn';b.textContent=r.n;b.onclick=()=>renderPerm(i);ptabs.appendChild(b);});
+renderPerm(0);
+
+/* ══════════ COST MODEL ══════════ */
+/* Milo is on both routes, so its subscription sits in both totals and cancels out.
+   What is left is purely what Fabric adds. */
+const gbp=n=>'£'+Math.round(n).toLocaleString('en-GB');
+const IDS=['s-days','s-rate','s-cap','s-maint','s-mo','s-hrs','s-cost'];
+const MILO_YEAR=1500+(2000*12);
+function calc(){
+  const days=+document.getElementById('s-days').value,
+        rate=+document.getElementById('s-rate').value,
+        cap=+document.getElementById('s-cap').value,
+        maintDays=+document.getElementById('s-maint').value,
+        mo=+document.getElementById('s-mo').value,
+        hrs=+document.getElementById('s-hrs').value,
+        cost=+document.getElementById('s-cost').value;
+
+  document.getElementById('v-days').textContent=days+' days';
+  document.getElementById('v-rate').textContent=gbp(rate);
+  document.getElementById('v-cap').textContent=gbp(cap)+'/mo';
+  document.getElementById('v-maint').textContent=maintDays+(maintDays===1?' day':' days');
+  document.getElementById('v-mo').textContent=mo+(mo===1?' month':' months');
+  document.getElementById('v-hrs').textContent=hrs+' hrs/wk';
+  document.getElementById('v-cost').textContent=gbp(cost)+'/hr';
+
+  const weekly=hrs*cost;
+  const impl=days*rate;
+  const capY=cap*12;
+  const maint=maintDays*rate;
+  const manual=weekly*52*(Math.min(mo,12)/12);
+  const fabric=MILO_YEAR+impl+capY+maint+manual;
+  /* our platform: one month of manual reporting during the pilot, then it answers */
+  const ours=MILO_YEAR+(weekly*52/12);
+
+  document.getElementById('o-sub').textContent=gbp(MILO_YEAR);
+  document.getElementById('o-impl').textContent=gbp(impl);
+  document.getElementById('o-cap').textContent=gbp(capY);
+  document.getElementById('o-maint').textContent=gbp(maint);
+  document.getElementById('o-manual').textContent=gbp(manual);
+  document.getElementById('o-total').textContent=gbp(fabric);
+  document.getElementById('o-milo').textContent=gbp(ours);
+
+  const diff=fabric-ours, wait=Math.max(0,mo-1);
+  const fl=document.getElementById('f-label'),fs=document.getElementById('f-sub'),fv=document.getElementById('f-val');
+  if(diff>0){
+    fl.textContent='What Fabric adds in year one';
+    fs.textContent='Plus roughly '+wait+' month'+(wait===1?'':'s')+' of waiting, and '+gbp(maint)+' a year of maintenance that comes back every year after this one.';
+    fv.textContent=gbp(diff);
+    fv.style.background='linear-gradient(96deg,#C9B6F0,#F2A8C0)';
+    fv.style.webkitBackgroundClip='text';fv.style.backgroundClip='text';fv.style.webkitTextFillColor='transparent';
+  }else{
+    fl.textContent='On these assumptions, Fabric comes out lower';
+    fs.textContent='Worth stress-testing with your consultant. Note that the maintenance line repeats every year, and this model only covers year one.';
+    fv.textContent=gbp(Math.abs(diff))+' cheaper';
+    fv.style.background='none';fv.style.webkitTextFillColor='#FFD166';
+  }
+}
+IDS.forEach(id=>document.getElementById(id).addEventListener('input',calc));
+calc();
+
+/* ══════════ ROLE PANELS ══════════ */
+const PEOPLE=[
+{n:'Board',who:'The chairman',loc:'Group',
+ d:'Wants to ask something specific, in the room, and see the answer before the next agenda item. Today that is a request and a wait.',
+ rows:[
+ ['Why is one site behind plan this month?','Variance by category and weekday for that site, held against the group, so the answer separates a site problem from a season.'],
+ ['How did the group trade this weekend?','Group and site-level trade against plan and against last year, asked in a sentence rather than found in a dashboard.'],
+ ['Is that margin movement real or mix?','Weighted margin decomposed into rate and mix, with the rows it came from, so the question does not need a follow-up email.']]},
+{n:'Finance',who:'Ollie and the finance team',loc:'Group finance',
+ d:'Owns the management pack, the budget and the check reports currently being migrated into BI. Most of that work is assembly, not analysis.',
+ rows:[
+ ['Build this month’s pack, same shape as last.','Four site P&Ls, group consolidation, category margin and stock turn, drafted with variance commentary. Review instead of build.'],
+ ['Rebuild the forecast with a range dropped and another added.','Modelled against the sales cube in a conversation, seasonality held, exported to the template the board already reads.'],
+ ['Do the migrated check reports reconcile?','The same source answers both, so differences surface as a list to resolve rather than a fortnight of tracing.']]},
+{n:'IT',who:'Paul',loc:'Group IT, with the incoming consultant',
+ d:'Carrying the hybrid upgrade, the Fabric decision and every ad-hoc report request in the meantime. The third one is the one Milo removes.',
+ rows:[
+ ['What does this do to my upgrade plan?','Nothing. Milo reads Business Central v19 as it stands, so the upgrade stops being a prerequisite for better reporting. We maintain the connectors across version changes, including the table renames that caught you in 2022.'],
+ ['Can I prove who saw what?','A full audit log of every question, answer and refusal, attributable and exportable. Permissions are set by you and cannot be self-granted.'],
+ ['Do we still need Fabric?','No. Reporting continuity is why it is on the roadmap, and the data platform delivers that in week one with the connectors already built and maintained by us. The warehouse is yours either way, so there is nothing it would add here that you do not already get.']]},
+{n:'Store managers',who:'Four sites',loc:'Wychbold → Millets Farm',
+ d:'The audience most likely to decide whether this is real. If it does not work with a phone in one hand and a customer in front of them, it does not work.',
+ rows:[
+ ['Have we got this anywhere in the group, and when is the next one in?','Stock on the floor, stock at the other three sites, next PO date and whether reserving works. One message, no phone call.'],
+ ['How did my weekend go against plan?','Automated Monday 07:00, scoped to their own site, split by category, with anything unusual flagged rather than left to spot.'],
+ ['Can I see how another site is doing?','Availability yes, performance no. Site scoping is enforced at the data layer, not left to a dashboard filter.']]},
+{n:'Buying',who:'Buying team',loc:'Group',
+ d:'Working across seasonal categories where timing decides the year, and where the current cubes cannot join purchasing to sell-through.',
+ rows:[
+ ['Was that shortfall demand, or did it land late?','Sales, receipt dates and out-of-stock days joined in one question, so cause is separable from outcome.'],
+ ['Which lines are ageing and where?','Stock ageing by category and site, with sell-through rate, so markdown decisions are made on the same evidence everywhere.'],
+ ['How did this supplier’s terms actually perform?','On-time delivery against agreed dates, held next to margin achieved on those lines.']]},
+{n:'Marketing',who:'Marketing',loc:'Group',
+ d:'Already using AI for creative work. Has almost no analytical access, and Clubcard is the most under-asked dataset in the business.',
+ rows:[
+ ['Which Clubcard segments came back this season and which didn’t?','Segment-level return rates and basket movement, with personal data suppressed by policy rather than by convention.'],
+ ['Did that campaign move anything at the till?','Campaign window held against trade at the sites in scope, versus plan and versus the sites that were not.'],
+ ['Can I build this view myself?','Yes. Dashboards are built by whoever asks the question, and that is the part people find hardest to believe until they see it.']]}
+];
+const rt=document.getElementById('rtabs'),rp=document.getElementById('rpanels');
+PEOPLE.forEach((d,i)=>{
+  const b=document.createElement('button');b.className='rtb'+(i===0?' act':'');b.textContent=d.n;
+  b.onclick=()=>{[...rt.children].forEach((x,j)=>x.classList.toggle('act',j===i));[...rp.children].forEach((x,j)=>x.classList.toggle('act',j===i));};
+  rt.appendChild(b);
+  const p=document.createElement('div');p.className='rpanel'+(i===0?' act':'');
+  p.innerHTML='<div class="rcard"><div class="rhd"><div><h3>'+d.n+'</h3><p>'+d.d+'</p></div><div class="rwho"><div class="lbl">Who this is for</div><div class="nm">'+d.who+'</div><div class="lc">'+d.loc+'</div></div></div>'
+   +d.rows.map(r=>'<div class="qrow"><div class="qq"><div class="qlab">They ask</div><p>'+r[0]+'</p></div><div class="qa"><div class="qlab">Milo returns</div><p>'+r[1]+'</p></div></div>').join('')
+   +'</div>';
+  rp.appendChild(p);
+});
+
+/* ══════════ SCROLL ══════════ */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}}),{threshold:.1,rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+const navEl=document.getElementById('nav'),prog=document.getElementById('progress');
+addEventListener('scroll',()=>{
+  const y=scrollY,h=document.body.scrollHeight-innerHeight;
+  prog.style.width=(h>0?(y/h)*100:0)+'%';
+  navEl.classList.toggle('stuck',y>24);
+},{passive:true});
+</script>
+</body>
+</html>
