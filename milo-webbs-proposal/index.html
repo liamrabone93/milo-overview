@@ -358,30 +358,6 @@ input[type=range]::-moz-range-thumb{width:17px;height:17px;border-radius:50%;bac
 .cmp-r.hd .c-milo{color:var(--aubergine)}
 @media(max-width:760px){.cmp-r{grid-template-columns:1fr}.cmp-r>div{border-right:0;border-bottom:1px solid var(--rule-soft)}.cmp-r.hd{display:none}.cmp-r>div:first-child{font-size:.78rem}}
 
-/* ── Role tabs ────────────────────────────────────────────────────────────── */
-.rtabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:22px}
-.rtb{font-family:'Archivo',sans-serif;font-size:.81rem;font-weight:500;color:var(--ink-70);background:var(--card);border:1px solid var(--rule);padding:9px 16px;border-radius:999px;cursor:pointer;transition:all .2s}
-.rtb:hover{border-color:var(--ink-25)}
-.rtb.act{background:var(--aubergine);color:#fff;border-color:var(--aubergine);font-weight:600}
-.rpanel{display:none}.rpanel.act{display:block;animation:seedRise .4s var(--ease) both}
-.rcard{background:var(--card);border:1px solid var(--rule);border-radius:18px;overflow:hidden}
-.rhd{display:flex;justify-content:space-between;gap:22px;padding:26px 26px 22px;border-bottom:1px solid var(--rule);flex-wrap:wrap}
-.rhd h3{margin-bottom:7px}
-.rhd p{font-size:.88rem;max-width:560px}
-.rwho{text-align:right;flex-shrink:0}
-.rwho .lbl{font-family:var(--mono);font-size:.58rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-25)}
-.rwho .nm{font-size:.92rem;font-weight:600;margin-top:4px}
-.rwho .lc{font-size:.76rem;color:var(--ink-45)}
-@media(max-width:620px){.rwho{text-align:left}}
-.qrow{display:grid;grid-template-columns:1fr 1.25fr;border-bottom:1px solid var(--rule-soft)}
-.qrow:last-child{border-bottom:0}
-.qrow>div{padding:18px 24px}
-.qq{border-right:1px solid var(--rule-soft);background:var(--paper-lift)}
-@media(max-width:720px){.qrow{grid-template-columns:1fr}.qq{border-right:0;border-bottom:1px solid var(--rule-soft)}}
-.qlab{font-family:var(--mono);font-size:.58rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-25);margin-bottom:7px}
-.qq p{font-size:.87rem;color:var(--ink);font-weight:500;line-height:1.5}
-.qa p{font-size:.85rem;line-height:1.58}
-
 /* ── Pilot weeks ──────────────────────────────────────────────────────────── */
 .weeks{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid rgba(255,255,255,.14);border-radius:16px;overflow:hidden}
 @media(max-width:900px){.weeks{grid-template-columns:repeat(2,1fr)}}
@@ -514,9 +490,7 @@ footer{padding:40px 0 48px;border-top:1px solid var(--rule)}
 
     <p class="hero-answer">That was your question on the call. The answer is no. Not for the reason Fabric is on your roadmap.</p>
 
-    <p class="lead hero-sub">
-      Fabric is on the plan because the hybrid upgrade changes how reporting works. Milo is two products in one: <strong>a data platform</strong> that brings Business Central and your separate payroll system into a single warehouse <strong>you own</strong>, and <strong>an analytics agent</strong> on top that anyone at Webbs can ask a question in plain English. The platform costs nothing on top of a Milo subscription, there is no charge for data transfer or storage at any volume, and we would expect your data in one place inside two weeks.
-    </p>
+    <p class="lead hero-sub">Fabric is on the plan because the hybrid upgrade changes how reporting works. Milo is two products: <strong>a data platform</strong> that brings Business Central and payroll into one warehouse <strong>you own</strong>, and <strong>an analytics agent</strong> anyone at Webbs can ask in plain English. No charge for transfer or storage at any volume, and your data in one place inside two weeks.</p>
 
     <div class="hero-row">
       <a href="#routes" class="btn btn-p">Compare the two routes
@@ -533,7 +507,7 @@ footer{padding:40px 0 48px;border-top:1px solid var(--rule)}
     <div class="tools-head reveal">
       <span class="eyebrow" style="display:block;margin-bottom:11px">What it plugs into</span>
       <h3>It connects to what Webbs already runs.</h3>
-      <p>Business Central first, then payroll, then everything else that holds a number someone asks about. A sample of what we connect to, and we build the ones that are missing.</p>
+      <p>Business Central first, then payroll, then everything else holding a number someone asks about. A sample of what we connect to, and we build the ones that are missing.</p>
     </div>
   </div>
   <div class="marquee reveal d1" style="--dur:58s"><div class="mq-track" id="mq1"></div></div>
@@ -550,10 +524,10 @@ footer{padding:40px 0 48px;border-top:1px solid var(--rule)}
 <section class="sec">
   <div class="wrap">
     <div class="letter reveal">
-      <p>You set the position out clearly, so this answers the question you actually asked rather than the one we&rsquo;d prefer to answer. Business Central v19 on&#8209;prem, a sales cube and a stock cube, Power BI off the back of them, and users held to the parameters you set. Change one and it changes for everybody, so anything genuinely ad hoc goes back to Excel. The hybrid upgrade changes how reporting works, and Fabric is on the roadmap because of that.</p>
+      <p>You set the position out clearly, so this answers the question you asked. Business Central v19 on&#8209;prem, sales and stock cubes, Power BI off the back of them, users held to your parameters. Anything genuinely ad hoc goes back to Excel, and Fabric is on the roadmap because the hybrid upgrade changes how reporting works.</p>
       <p><strong>So: no, you would not also need Fabric.</strong> Milo is two products. A data platform that consolidates Business Central and your separate payroll system into one warehouse, and the analytics agent that sits on top of it. The warehouse is yours, with full access to your data and Milo only facilitating the transfer, and it plugs into Power BI or anything else just as Fabric would. The difference is that we have already built the connectors, and that it costs nothing on top of Milo.</p>
       <p>You asked the sharpest question of the call: when you upgrade and Business Central renames its tables, do you rebuild the whole thing? <strong>No.</strong> Keeping connectors working through version changes is our engineering work, monitored for schema drift and fixed in days rather than months. That is the part that cost you in 2022, and it is the part you are handing over.</p>
-      <p>Below: the data platform plan with timescales, what building it in Fabric would cost you instead, the federated access model, who else we work with, and three slides you can take into Monday. Costings are on the page so you don&rsquo;t have to chase them.</p>
+      
       <div class="sig">
         <div class="sig-av">LR</div>
         <div><div class="sig-n">Liam Rabone</div><div class="sig-r">Milo &middot; liam@milo.ai &middot; with Philip and the data platform team</div></div>
@@ -576,7 +550,7 @@ footer{padding:40px 0 48px;border-top:1px solid var(--rule)}
         <div class="stk-hd"><h4>Today</h4><span class="stk-tag a">Preset parameters</span></div>
         <div class="node"><div class="ic">BC</div><div><div class="nt">Business Central v19</div><div class="ns">Fully on&#8209;premise. Four sites, tills, stock, purchasing, finance.</div></div></div>
         <div class="arrow-d"></div>
-        <div class="node"><div class="ic">▦</div><div><div class="nt">Sales cube &middot; Stock cube</div><div class="ns">Good build, working well. Users held to the parameters you set. Change one and it changes for everyone.</div></div></div>
+        <div class="node"><div class="ic">▦</div><div><div class="nt">Sales cube &middot; Stock cube</div><div class="ns">Good build. Users held to your parameters, and changing one changes it for everyone.</div></div></div>
         <div class="arrow-d"></div>
         <div class="node"><div class="ic">X</div><div><div class="nt">Excel pivot</div><div class="ns">Where every ad&#8209;hoc request ends up, because BI can&rsquo;t start it.</div></div></div>
         <div class="arrow-d"></div>
@@ -589,13 +563,13 @@ footer{padding:40px 0 48px;border-top:1px solid var(--rule)}
 
       <div class="stk plan reveal d2">
         <div class="stk-hd"><h4>If you build it in Fabric</h4><span class="stk-tag a">12&ndash;18 months</span></div>
-        <div class="node"><div class="ic">↑</div><div><div class="nt">Hybrid BC upgrade first</div><div class="ns">Back office to SaaS, tills and front end stay on&#8209;prem. Licensing cost, plus a testing cycle every six months.</div></div></div>
+        <div class="node"><div class="ic">↑</div><div><div class="nt">Hybrid BC upgrade first</div><div class="ns">Back office to SaaS, tills stay on&#8209;prem. Licensing, plus a testing cycle every six months.</div></div></div>
         <div class="arrow-d"></div>
-        <div class="node"><div class="ic">▤</div><div><div class="nt">Build the Fabric warehouse</div><div class="ns">Pipelines for Business Central, then a second one for payroll. Someone specifies, builds and governs all of it.</div></div></div>
+        <div class="node"><div class="ic">▤</div><div><div class="nt">Build the Fabric warehouse</div><div class="ns">Pipelines for Business Central, then payroll. Someone specifies, builds and governs all of it.</div></div></div>
         <div class="arrow-d"></div>
-        <div class="node"><div class="ic">▦</div><div><div class="nt">Re&#8209;express the cubes</div><div class="ns">Semantic models to replace what the sales and stock cubes already do. Work you have paid for once.</div></div></div>
+        <div class="node"><div class="ic">▦</div><div><div class="nt">Re&#8209;express the cubes</div><div class="ns">Semantic models replacing what the cubes already do. Work you have paid for once.</div></div></div>
         <div class="arrow-d"></div>
-        <div class="node"><div class="ic">AI</div><div><div class="nt">Then choose an AI layer</div><div class="ns">Copilot or a third party, evaluated on top, because the warehouse on its own answers nobody&rsquo;s question.</div></div></div>
+        <div class="node"><div class="ic">AI</div><div><div class="nt">Then choose an AI layer</div><div class="ns">Copilot or a third party on top, because a warehouse alone answers nobody&rsquo;s question.</div></div></div>
         <div class="friction">
           <svg width="15" height="15" viewBox="0 0 16 16" fill="none" style="flex-shrink:0;margin-top:2px"><circle cx="8" cy="8" r="6.4" stroke="#FF0045" stroke-width="1.4"/><path d="M8 4.8v3.6M8 10.9v.1" stroke="#FF0045" stroke-width="1.6" stroke-linecap="round"/></svg>
           <p><b>Two jobs, both yours.</b> The pipes and the tool on top, against a team you told us is already stretched.</p>
@@ -610,7 +584,7 @@ footer{padding:40px 0 48px;border-top:1px solid var(--rule)}
         <div class="arrow-d"></div>
         <div class="node milo"><div class="ic">M</div><div><div class="nt">Milo analytics agent</div><div class="ns">Plain&#8209;English questions, cited answers, dashboards anyone can build, automations from any query you ask twice.</div></div></div>
         <div class="arrow-d"></div>
-        <div class="node"><div class="ic">PBI</div><div><div class="nt">Power BI, if you want it</div><div class="ns">The warehouse is a normal data source. Keep Power BI, or let Milo take the dashboards too.</div></div></div>
+        <div class="node"><div class="ic">PBI</div><div><div class="nt">Power BI, if you want it</div><div class="ns">A normal data source. Keep Power BI, or let Milo take the dashboards too.</div></div></div>
         <div class="gain">
           <svg width="15" height="15" viewBox="0 0 16 16" fill="none" style="flex-shrink:0;margin-top:2px"><path d="M3 8.4l3.2 3.2L13 4.9" stroke="#00A924" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           <p><b>Both jobs, ours.</b> The connectors and the tool on top are already built. Upgrade when it suits you, not to unblock reporting.</p>
@@ -634,7 +608,7 @@ footer{padding:40px 0 48px;border-top:1px solid var(--rule)}
     <div class="sec-head reveal">
       <span class="eyebrow"><span class="dot"></span>The two options you asked for</span>
       <h2>Same Milo. Two ways to feed it.</h2>
-      <p class="lead">Milo is the analytics layer either way, so the only real question is where the warehouse underneath it comes from. Ours is already built. Fabric is a programme you scope, procure, build, rebuild and then maintain. Switch between them, the axis is the same.</p>
+      <p class="lead">Milo is the analytics layer either way. The only question is where the warehouse underneath comes from. Ours is already built. Fabric is a programme you scope, procure, build and then maintain.</p>
     </div>
 
     <div class="rt-switch reveal d1" id="rtswitch"></div>
@@ -661,7 +635,7 @@ footer{padding:40px 0 48px;border-top:1px solid var(--rule)}
     <div class="sec-head reveal" style="max-width:660px">
       <span class="eyebrow"><span class="dot"></span>Interactive &middot; click a question</span>
       <h2>Six questions from a Webbs week.</h2>
-      <p class="lead">No dashboard to open, no parameter to pick, no request to raise. Including the one that should get refused, because governance is the part everyone demos last and you flagged first.</p>
+      <p class="lead">No dashboard to open, no parameter to pick, no request to raise. Including the one that gets refused, because governance is what you flagged first.</p>
     </div>
 
     <div class="demo-shell reveal d1">
@@ -702,8 +676,8 @@ footer{padding:40px 0 48px;border-top:1px solid var(--rule)}
     </div>
 
     <div class="grid g4" style="margin-top:20px">
-      <div class="card reveal d1"><div class="c-num">ENFORCEMENT</div><h4>Role&#8209;based, not licence&#8209;based</h4><p>A store manager at Cheltenham sees Cheltenham. That isn&rsquo;t a view we build for them. It&rsquo;s enforced at the data layer before the answer is composed.</p></div>
-      <div class="card reveal d2"><div class="c-num">AUDITABILITY</div><h4>Full audit log</h4><p>Every question, every answer, every refusal, timestamped and attributable. Shown in the demo because it is the first thing an auditor asks for.</p></div>
+      <div class="card reveal d1"><div class="c-num">ENFORCEMENT</div><h4>Role&#8209;based, not licence&#8209;based</h4><p>A store manager at Cheltenham sees Cheltenham. Not a view we build for them: it is enforced at the data layer before the answer is composed.</p></div>
+      <div class="card reveal d2"><div class="c-num">AUDITABILITY</div><h4>Full audit log</h4><p>Every question, answer and refusal, timestamped and attributable. Shown in the demo because it is the first thing an auditor asks for.</p></div>
       <div class="card reveal d3"><div class="c-num">ACCREDITATION</div><h4>Built for regulated data</h4><p>Milo was built originally for iGaming, where data security is the first conversation rather than the last. EU hosted, SOC&nbsp;2 Type&nbsp;II, ISO&nbsp;27001, pen&#8209;tested.</p></div>
       <div class="card reveal d4"><div class="c-num">OWNERSHIP</div><h4>Webbs owns the data</h4><p>The platform is yours. We facilitate the transfer and maintain the connectors. There is no charge for data transfer or storage under the Milo plan.</p></div>
     </div>
@@ -716,7 +690,7 @@ footer{padding:40px 0 48px;border-top:1px solid var(--rule)}
     <div class="sec-head reveal" style="margin-bottom:32px">
       <span class="eyebrow">The question you got stuck on before</span>
       <h2>&ldquo;Would we have to go through the whole thing again?&rdquo;</h2>
-      <p class="lead">When Business Central upgrades, table names change and move. You have been here before: 2022, and you described it as pulling teeth. It is the fairest objection on the call, so it gets a straight answer rather than a paragraph of reassurance.</p>
+      <p class="lead">When Business Central upgrades, table names change and move. You have been here before, in 2022, and called it pulling teeth. The fairest objection on the call, so here is a straight answer.</p>
     </div>
 
     <div class="grid g3">
@@ -740,11 +714,11 @@ footer{padding:40px 0 48px;border-top:1px solid var(--rule)}
     <div class="grid g2" style="margin-top:14px">
       <div class="card reveal d2">
         <h4 style="margin-bottom:9px">On the six&#8209;monthly SaaS upgrades</h4>
-        <p>Once the back office is SaaS, Microsoft ships twice a year and someone at Webbs tests it. Milo does not remove that, and anyone who says otherwise is selling. What changes is that <strong>reporting is no longer the thing at risk on upgrade day</strong>.</p>
+        <p>Microsoft ships twice a year and someone at Webbs tests it. Milo does not remove that, and anyone who says otherwise is selling. What changes is that <strong>reporting is no longer the thing at risk on upgrade day</strong>.</p>
       </div>
       <div class="card reveal d3">
         <h4 style="margin-bottom:9px">On getting hold of someone</h4>
-        <p>You said the hard part was locking a partner down to timescales and getting a response when one person was away. From day one you get a shared channel on WhatsApp, Slack or Teams with <strong>Philip, Andrew, Raksha</strong>, our head of customer success and your account manager in it. Not a ticket queue, and not one person.</p>
+        <p>Locking a partner to timescales was the hard part, you said, and getting an answer when one person was away. From day one you get a shared channel with <strong>Philip, Andrew, Raksha</strong>, our head of customer success and your account manager. Not a ticket queue, and not one person.</p>
       </div>
     </div>
 
@@ -766,8 +740,8 @@ footer{padding:40px 0 48px;border-top:1px solid var(--rule)}
       <div class="card reveal d1" style="border-color:var(--ink-25)">
         <div class="c-num">CLOSEST TO WEBBS</div>
         <h4 style="margin-bottom:10px">A Sage 50 estate, on&#8209;prem, nobody could move</h4>
-        <p style="margin-bottom:12px">A customer had been trying for the best part of a year to get Sage 50 data off an on&#8209;premise server and into a data warehouse. They had effectively given up on it.</p>
-        <p style="margin-bottom:12px">We installed an agent on the server that pushes data out to their warehouse, and it was running <strong>in a week</strong>. Not because the problem was easy, but because the connector work was already done and only needed adapting.</p>
+        <p>A customer had spent the best part of a year trying to get Sage 50 data off an on&#8209;premise server and into a warehouse. They had given up on it.</p>
+        <p>We installed an agent on the server that pushes data out to their warehouse. Running in a week, because the connector work was already done and only needed adapting.</p>
         <p style="font-size:.82rem;color:var(--ink-45)">Same shape as Business Central v19 on&#8209;prem. It is the reason we are confident about two weeks.</p>
       </div>
 
@@ -775,7 +749,7 @@ footer{padding:40px 0 48px;border-top:1px solid var(--rule)}
         <div class="card reveal d2" style="margin-bottom:16px">
           <div class="c-num">YOU ASKED ABOUT VOLUME</div>
           <h4 style="margin-bottom:10px">Many millions of transactions is not a pricing problem</h4>
-          <p>Our largest customer has ingested <strong>over 10TB</strong>, running at millions of transactions an hour. Webbs&rsquo; volume is comfortably inside that. <strong>We do not charge for data transfer or data storage</strong> while you subscribe to Milo, so the bill does not move with your trade.</p>
+          <p>Our largest customer has ingested <strong>over 10TB</strong> at millions of transactions an hour. Webbs sits comfortably inside that, and <strong>we do not charge for data transfer or storage</strong> while you subscribe, so the bill does not move with your trade.</p>
         </div>
         <div class="card reveal d3">
           <div class="c-num">WHO WE WORK WITH</div>
@@ -788,7 +762,7 @@ footer{padding:40px 0 48px;border-top:1px solid var(--rule)}
             <span class="cl">BetGames<i>iGaming &middot; regulated, 300+ tools</i></span>
             <span class="cl">Perlas Network &middot; loto.lt<i>Lithuanian national lottery</i></span>
           </div>
-          <p style="margin-top:14px;font-size:.82rem;color:var(--ink-45)">Milo was hardened in iGaming first: hundreds of tools, multiple languages and currencies, and data security as the opening conversation rather than the closing one. Written case studies for BetGames and loto.lt are ready to send.</p>
+          <p>Milo was hardened in iGaming first: hundreds of tools, multiple currencies, and data security as the opening conversation rather than the closing one. Case studies for BetGames and loto.lt are ready to send.</p>
         </div>
       </div>
     </div>
@@ -801,7 +775,7 @@ footer{padding:40px 0 48px;border-top:1px solid var(--rule)}
     <div class="sec-head reveal">
       <span class="eyebrow">For the formal board at the end of September</span>
       <h2>What Fabric costs that our platform does not.</h2>
-      <p class="lead">Milo sits on both totals below, so it cancels out. Everything left is what building and keeping a Fabric warehouse adds: the days to build it, the capacity you license from day one, the maintenance that never stops, and the reporting still done by hand while you wait. Move the sliders to your own numbers.</p>
+      <p class="lead">Milo sits on both totals, so it cancels out. What is left is what a Fabric warehouse adds: the days to build it, capacity from day one, maintenance that never stops, and reporting done by hand while you wait.</p>
     </div>
 
     <div class="calc reveal d1">
@@ -812,7 +786,7 @@ footer{padding:40px 0 48px;border-top:1px solid var(--rule)}
           <div class="fld">
             <div class="fld-top"><span class="fld-lab">Consultancy days to build the Fabric warehouse</span><span class="fld-val" id="v-days">45 days</span></div>
             <input type="range" id="s-days" min="10" max="140" step="5" value="45"/>
-            <div class="fld-hint">Design, Business Central and payroll pipelines, semantic models, rebuilding what the cubes do today.</div>
+            <div class="fld-hint">Pipelines, semantic models, rebuilding what the cubes do today.</div>
           </div>
 
           <div class="fld">
@@ -824,25 +798,25 @@ footer{padding:40px 0 48px;border-top:1px solid var(--rule)}
           <div class="fld">
             <div class="fld-top"><span class="fld-lab">Fabric capacity and licensing</span><span class="fld-val" id="v-cap">&pound;1,400/mo</span></div>
             <input type="range" id="s-cap" min="0" max="6000" step="100" value="1400"/>
-            <div class="fld-hint">Reserved capacity plus seats. Set it to zero if it is already committed elsewhere.</div>
+            <div class="fld-hint">Reserved capacity plus seats. Zero it if already committed elsewhere.</div>
           </div>
 
           <div class="fld">
             <div class="fld-top"><span class="fld-lab">Maintenance days a year, once it is live</span><span class="fld-val" id="v-maint">12 days</span></div>
             <input type="range" id="s-maint" min="0" max="60" step="2" value="12"/>
-            <div class="fld-hint">Broken pipelines, schema changes, and the table renames every Business Central upgrade brings. This one does not stop.</div>
+            <div class="fld-hint">Broken pipelines, schema changes, table renames at every upgrade. This one does not stop.</div>
           </div>
 
           <div class="fld">
             <div class="fld-top"><span class="fld-lab">Months until it answers its first question</span><span class="fld-val" id="v-mo">9 months</span></div>
             <input type="range" id="s-mo" min="2" max="18" step="1" value="9"/>
-            <div class="fld-hint">Not go&#8209;live, but the point at which someone who is not in IT gets an answer they trust.</div>
+            <div class="fld-hint">Not go&#8209;live: when someone outside IT gets an answer they trust.</div>
           </div>
 
           <div class="fld">
             <div class="fld-top"><span class="fld-lab">Internal hours a week on reporting today</span><span class="fld-val" id="v-hrs">14 hrs/wk</span></div>
             <input type="range" id="s-hrs" min="2" max="60" step="2" value="14"/>
-            <div class="fld-hint">Finance pulling the pack, IT servicing requests, managers rebuilding pivots. It continues until the new platform answers.</div>
+            <div class="fld-hint">Finance pulling the pack, IT servicing requests, managers rebuilding pivots. Continues until the platform answers.</div>
           </div>
 
           <div class="fld">
@@ -864,39 +838,12 @@ footer{padding:40px 0 48px;border-top:1px solid var(--rule)}
             <div class="cf-l"><b id="f-label">&hellip;</b><span id="f-sub">&hellip;</span></div>
             <div class="cf-v" id="f-val">&hellip;</div>
           </div>
-          <p class="calc-note">Deliberately generous to Fabric: no internal project management time, no testing effort, no contingency, and the prerequisite hybrid upgrade costed at zero. The maintenance line is the one to watch, because it is the only one that comes back every year.</p>
+          <p class="calc-note">Generous to Fabric: no project management, no testing, no contingency, and the prerequisite hybrid upgrade costed at zero. Watch the maintenance line, the only one that comes back every year.</p>
         </div>
       </div>
     </div>
 
-    <div style="margin-top:20px" class="reveal d2">
-      <div class="cmp">
-        <div class="cmp-r hd"><div>&nbsp;</div><div>If you built it in Fabric</div><div class="c-milo">Milo + our data platform</div></div>
-        <div class="cmp-r"><div>First useful answer</div><div>After the warehouse, the pipelines and the semantic models. Months.</div><div class="c-milo"><b>Week one of four.</b> Connectors first, questions immediately after.</div></div>
-        <div class="cmp-r"><div>Who builds a new dashboard</div><div>Whoever owns the semantic model. Everyone else raises a request.</div><div class="c-milo"><b>Anyone who can type a question.</b> Finance, buying, store managers.</div></div>
-        <div class="cmp-r"><div>The chairman&rsquo;s ad hoc in the room</div><div>Only if someone anticipated it and built the view.</div><div class="c-milo"><b>Asked and answered live</b>, with the rows it came from.</div></div>
-        <div class="cmp-r"><div>Who maintains the BC connector through upgrades</div><div>You, or the partner you pay to.</div><div class="c-milo"><b>Us.</b> We build every connector from scratch and keep it working.</div></div>
-        <div class="cmp-r"><div>Payroll joined to trade</div><div>Yes, once the second pipeline is built and governed.</div><div class="c-milo"><b>Yes, in the pilot</b>, ringfenced to named people from day one.</div></div>
-        <div class="cmp-r"><div>When Business Central renames its tables</div><div>Anomalies to chase, and a rebuild conversation with your partner.</div><div class="c-milo"><b>Our engineering work.</b> Monitored for drift, fixed in days.</div></div>
-        <div class="cmp-r"><div>Cost of the warehouse itself</div><div>Implementation, then capacity and licensing every month.</div><div class="c-milo"><b>&pound;0 on top of Milo</b>, including transfer and storage at any volume.</div></div>
-        <div class="cmp-r"><div>Keeping it alive, year after year</div><div>A standing maintenance line on a team of four, or a partner day rate.</div><div class="c-milo"><b>Zero days from Webbs.</b> Monitoring and repair are our engineering work.</div></div>
-        <div class="cmp-r"><div>Prerequisite work before it starts</div><div>The hybrid BC upgrade has to land first.</div><div class="c-milo"><b>None.</b> It reads Business Central v19 on&#8209;prem as it stands.</div></div>
-        <div class="cmp-r"><div>If it turns out not to be worth it</div><div>The programme and the headcount are already spent.</div><div class="c-milo"><b>You stop after four weeks.</b> No term, nothing to unwind.</div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════ ROLES ══════════ -->
-<section class="sec">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Role by role</span>
-      <h2>Who opens it, and what they ask.</h2>
-      <p class="lead">Milo earns its place one person at a time. These are the people at Webbs most likely to use it in week one, and the questions they are already asking somebody else.</p>
-    </div>
-    <div class="rtabs reveal d1" id="rtabs"></div>
-    <div id="rpanels"></div>
+    
   </div>
 </section>
 
@@ -906,7 +853,7 @@ footer{padding:40px 0 48px;border-top:1px solid var(--rule)}
     <div class="sec-head reveal">
       <span class="eyebrow"><span class="dot"></span>The proof of concept</span>
       <h2>Four weeks. Your data, your rules, no term.</h2>
-      <p class="lead">We expect your data in one place inside <strong>two weeks</strong>; the month is the buffer, not the plan. Milo does the engineering and the connector work. The effort on your side is onboarding, telling us what the rules mean. If you don&rsquo;t like it, there is no commitment beyond the pilot fee.</p>
+      <p class="lead">Your data in one place inside <strong>two weeks</strong>; the month is buffer, not plan. Milo does the engineering. Your side is onboarding, telling us what the rules mean. No commitment beyond the pilot fee.</p>
     </div>
 
     <div class="weeks reveal d1">
@@ -916,9 +863,8 @@ footer{padding:40px 0 48px;border-top:1px solid var(--rule)}
       <div class="wk"><div class="wn">Week 04</div><h4>Decide with evidence</h4><p>A written read&#8209;out you can take straight to the board: what worked, what didn&rsquo;t, what it would cost at scale.</p><ul><li>Usage by team and by question</li><li>Honest list of what Milo couldn&rsquo;t answer</li><li>Extend, pause, or stop: your call</li></ul></div>
     </div>
 
-    <div class="grid g3" style="margin-top:20px">
-      <div class="card reveal d1"><h4 style="margin-bottom:9px">What we need from Webbs</h4><p>Access handed over, an hour a week from whoever knows the definitions, and four to six people willing to ask it real questions. The build is done by Philip&rsquo;s team, not yours. You told us you only have so many people.</p></div>
-      <div class="card reveal d2"><h4 style="margin-bottom:9px">Who you&rsquo;re dealing with</h4><p>A shared channel with <strong>Philip, Andrew, Raksha</strong> and your account manager from day one. Same people through the pilot and after it.</p></div>
+    <div class="grid g2" style="margin-top:20px">
+      <div class="card reveal d1"><h4 style="margin-bottom:9px">What we need from Webbs</h4><p>Access handed over, an hour a week from whoever knows the definitions, and four to six people willing to ask real questions. The build is Philip&rsquo;s team, not yours.</p></div>
       <div class="card reveal d3"><h4 style="margin-bottom:9px">Your IT consultant is welcome in it</h4><p>Genuinely. They should pressure&#8209;test this. Running the pilot first means they roadmap around something Webbs has tested, instead of choosing between two sets of claims.</p></div>
     </div>
   </div>
@@ -961,7 +907,7 @@ footer{padding:40px 0 48px;border-top:1px solid var(--rule)}
             <ul><li><strong>Unlimited users</strong> across all four sites</li><li>1,000 question interactions a month included</li><li>&pound;250 per extra 200 if you ever exceed it</li><li><strong>Data platform included</strong>, no charge for transfer or storage</li></ul>
           </div>
         </div>
-        <p class="pnote reveal d2">The data lake and the analytics agent are a two&#8209;part product, bundled here at no extra cost under the Milo plan. Standalone data&#8209;platform pricing, if you ever wanted the lake without the agent, is still being finalised. We&rsquo;ll confirm it rather than guess at it.</p>
+        <p class="pnote reveal d2">The data lake and the analytics agent are one bundled product under the Milo plan. Standalone platform pricing, if you ever wanted the lake without the agent, is still being finalised.</p>
       </div>
     </div>
   </div>
@@ -979,7 +925,7 @@ footer{padding:40px 0 48px;border-top:1px solid var(--rule)}
       <div class="bpc reveal d1">
         <div class="bpc-t"><div class="n">SLIDE 01</div><h4>Same tool, cheaper plumbing</h4></div>
         <div class="bpc-b">
-          <p>Either way we run Milo. The question is only where the warehouse under it comes from. Build it in Fabric and we scope, procure, build and then maintain it. Take theirs and it is already built, included, and maintained by them.</p>
+          <p>Either way we run Milo. The only question is where the warehouse under it comes from. Build it in Fabric and we scope, procure, build and then maintain it. Take theirs and it is already built and maintained.</p>
           <div class="kv"><span>Fabric warehouse build</span><b>12&ndash;18 mo</b></div>
           <div class="kv"><span>Their platform</span><b>2 weeks</b></div>
           <div class="kv"><span>Maintenance owner</span><b>Them, not us</b></div>
@@ -1035,7 +981,7 @@ footer{padding:40px 0 48px;border-top:1px solid var(--rule)}
       </div>
       <p class="num">September 2026</p>
     </div>
-    <p class="disclaim">Webbs and the Webbs Garden Centres wordmark are trademarks of Webbs Garden Centres and are used here only to identify the recipient of this proposal. Brand colours and the wordmark are referenced from webbsdirect.co.uk so this document reads in your house style; the typeface is a close substitute for the licensed original. Every figure in the interactive demo is illustrative sample data. Milo has not been connected to Webbs systems. Cost&#8209;model outputs depend entirely on the assumptions you set.</p>
+    <p class="disclaim">Webbs and the Webbs wordmark are trademarks of Webbs Garden Centres, used here only to identify the recipient. Brand colours and typeface are referenced from webbsdirect.co.uk so this reads in your house style. Every figure in the demo is illustrative sample data: Milo has not been connected to Webbs systems. Cost&#8209;model outputs depend on the assumptions you set.</p>
   </div>
 </footer>
 
@@ -1282,56 +1228,6 @@ IDS.forEach(id=>document.getElementById(id).addEventListener('input',calc));
 calc();
 
 /* ══════════ ROLE PANELS ══════════ */
-const PEOPLE=[
-{n:'Board',who:'The chairman',loc:'Group',
- d:'Wants to ask something specific, in the room, and see the answer before the next agenda item. Today that is a request and a wait.',
- rows:[
- ['Why is one site behind plan this month?','Variance by category and weekday for that site, held against the group, so the answer separates a site problem from a season.'],
- ['How did the group trade this weekend?','Group and site-level trade against plan and against last year, asked in a sentence rather than found in a dashboard.'],
- ['Is that margin movement real or mix?','Weighted margin decomposed into rate and mix, with the rows it came from, so the question does not need a follow-up email.']]},
-{n:'Finance',who:'Ollie and the finance team',loc:'Group finance',
- d:'Owns the management pack, the budget and the check reports currently being migrated into BI. Most of that work is assembly, not analysis.',
- rows:[
- ['Build this month’s pack, same shape as last.','Four site P&Ls, group consolidation, category margin and stock turn, drafted with variance commentary. Review instead of build.'],
- ['Rebuild the forecast with a range dropped and another added.','Modelled against the sales cube in a conversation, seasonality held, exported to the template the board already reads.'],
- ['Do the migrated check reports reconcile?','The same source answers both, so differences surface as a list to resolve rather than a fortnight of tracing.']]},
-{n:'IT',who:'Paul',loc:'Group IT, with the incoming consultant',
- d:'Carrying the hybrid upgrade, the Fabric decision and every ad-hoc report request in the meantime. The third one is the one Milo removes.',
- rows:[
- ['What does this do to my upgrade plan?','Nothing. Milo reads Business Central v19 as it stands, so the upgrade stops being a prerequisite for better reporting. We maintain the connectors across version changes, including the table renames that caught you in 2022.'],
- ['Can I prove who saw what?','A full audit log of every question, answer and refusal, attributable and exportable. Permissions are set by you and cannot be self-granted.'],
- ['Do we still need Fabric?','No. Reporting continuity is why it is on the roadmap, and the data platform delivers that in week one with the connectors already built and maintained by us. The warehouse is yours either way, so there is nothing it would add here that you do not already get.']]},
-{n:'Store managers',who:'Four sites',loc:'Wychbold → Millets Farm',
- d:'The audience most likely to decide whether this is real. If it does not work with a phone in one hand and a customer in front of them, it does not work.',
- rows:[
- ['Have we got this anywhere in the group, and when is the next one in?','Stock on the floor, stock at the other three sites, next PO date and whether reserving works. One message, no phone call.'],
- ['How did my weekend go against plan?','Automated Monday 07:00, scoped to their own site, split by category, with anything unusual flagged rather than left to spot.'],
- ['Can I see how another site is doing?','Availability yes, performance no. Site scoping is enforced at the data layer, not left to a dashboard filter.']]},
-{n:'Buying',who:'Buying team',loc:'Group',
- d:'Working across seasonal categories where timing decides the year, and where the current cubes cannot join purchasing to sell-through.',
- rows:[
- ['Was that shortfall demand, or did it land late?','Sales, receipt dates and out-of-stock days joined in one question, so cause is separable from outcome.'],
- ['Which lines are ageing and where?','Stock ageing by category and site, with sell-through rate, so markdown decisions are made on the same evidence everywhere.'],
- ['How did this supplier’s terms actually perform?','On-time delivery against agreed dates, held next to margin achieved on those lines.']]},
-{n:'Marketing',who:'Marketing',loc:'Group',
- d:'Already using AI for creative work. Has almost no analytical access, and Clubcard is the most under-asked dataset in the business.',
- rows:[
- ['Which Clubcard segments came back this season and which didn’t?','Segment-level return rates and basket movement, with personal data suppressed by policy rather than by convention.'],
- ['Did that campaign move anything at the till?','Campaign window held against trade at the sites in scope, versus plan and versus the sites that were not.'],
- ['Can I build this view myself?','Yes. Dashboards are built by whoever asks the question, and that is the part people find hardest to believe until they see it.']]}
-];
-const rt=document.getElementById('rtabs'),rp=document.getElementById('rpanels');
-PEOPLE.forEach((d,i)=>{
-  const b=document.createElement('button');b.className='rtb'+(i===0?' act':'');b.textContent=d.n;
-  b.onclick=()=>{[...rt.children].forEach((x,j)=>x.classList.toggle('act',j===i));[...rp.children].forEach((x,j)=>x.classList.toggle('act',j===i));};
-  rt.appendChild(b);
-  const p=document.createElement('div');p.className='rpanel'+(i===0?' act':'');
-  p.innerHTML='<div class="rcard"><div class="rhd"><div><h3>'+d.n+'</h3><p>'+d.d+'</p></div><div class="rwho"><div class="lbl">Who this is for</div><div class="nm">'+d.who+'</div><div class="lc">'+d.loc+'</div></div></div>'
-   +d.rows.map(r=>'<div class="qrow"><div class="qq"><div class="qlab">They ask</div><p>'+r[0]+'</p></div><div class="qa"><div class="qlab">Milo returns</div><p>'+r[1]+'</p></div></div>').join('')
-   +'</div>';
-  rp.appendChild(p);
-});
-
 /* ══════════ SCROLL ══════════ */
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}}),{threshold:.1,rootMargin:'0px 0px -50px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
