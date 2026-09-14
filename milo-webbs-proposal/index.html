@@ -417,16 +417,6 @@ input[type=range]::-moz-range-thumb{width:17px;height:17px;border-radius:50%;bac
 .bpc-b .kv b{font-family:var(--mono);font-weight:500;color:var(--aubergine);white-space:nowrap}
 
 /* ── CTA + footer ─────────────────────────────────────────────────────────── */
-#cta{background:var(--aubergine);color:#fff;padding:96px 0 88px;text-align:center;position:relative;overflow:hidden}
-#cta::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.09) 1px,transparent 1px);background-size:26px 26px;-webkit-mask-image:radial-gradient(ellipse 60% 70% at 50% 42%,#000,transparent 74%);mask-image:radial-gradient(ellipse 60% 70% at 50% 42%,#000,transparent 74%)}
-#cta .wrap{position:relative;z-index:2}
-#cta h2{max-width:780px;margin:16px auto 18px}
-#cta p{max-width:600px;margin:0 auto;color:rgba(255,255,255,.68)}
-.cta-row{display:flex;gap:13px;justify-content:center;flex-wrap:wrap;margin-top:34px}
-.btn-w{background:#fff;color:var(--aubergine)}
-.btn-w:hover{transform:translateY(-2px)}
-.btn-o{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.34)}
-.btn-o:hover{transform:translateY(-2px);border-color:#fff}
 footer{padding:40px 0 48px;border-top:1px solid var(--rule)}
 .foot{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
 .foot-l{display:flex;align-items:center;gap:11px}
@@ -467,7 +457,7 @@ footer{padding:40px 0 48px;border-top:1px solid var(--rule)}
       <a href="#model">Cost model</a>
       <a href="#pilot">The pilot</a>
     </div>
-    <a href="#cta" class="nav-cta">Start the pilot</a>
+    <a href="mailto:liam@milo.ai?subject=Milo%20pilot%20for%20Webbs" class="nav-cta">Start the pilot</a>
   </div>
 </nav>
 
@@ -908,20 +898,6 @@ footer{padding:40px 0 48px;border-top:1px solid var(--rule)}
         </div>
         <p class="pnote reveal d2">The data lake and the analytics agent are one bundled product under the Milo plan. Standalone platform pricing, if you ever wanted the lake without the agent, is still being finalised.</p>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════ CTA ══════════ -->
-<section id="cta">
-  <div class="wrap">
-    <span class="eyebrow" style="color:var(--lavender)">Next step</span>
-    <h2>Say yes to six weeks, not to a platform.</h2>
-    <p>If Monday goes well, we can have the Business Central connector in progress the same week. If it doesn&rsquo;t, we&rsquo;d still rather hear why than not hear.</p>
-    <div class="cta-row">
-      <a href="mailto:liam@milo.ai?subject=Webbs%20%C3%97%20Milo%20%E2%80%94%20pilot" class="btn btn-w">Start the pilot
-        <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-      <a href="mailto:liam@milo.ai?subject=Webbs%20%C3%97%20Milo%20%E2%80%94%20questions%20before%20the%20board" class="btn btn-o">Send questions before Monday</a>
     </div>
   </div>
 </section>
